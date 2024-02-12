@@ -12,13 +12,14 @@ CREATE TABLE users (
 
 CREATE TABLE campaign(
 	campaign_id SERIAL,
-	campaignManager INT NOT NULL,
+	username varchar(50) NOT NULL,
 	campaignName varchar(50) NOT NULL UNIQUE,
 	campaignType varchar(20) NOT NULL UNIQUE,
 	description varchar(300) NOT NULL,
 	amountGoal numeric (13,2) NOT NULL, 
 	balance numeric (13,2) NOT NULL,
-	CONSTRAINT PK_campaign PRIMARY KEY (campaign_id)
+	CONSTRAINT PK_campaign PRIMARY KEY (campaign_id),
+	CONSTRAINT FK_campaign FOREIGN KEY (username) REFERENCES users(username)
 );
 
 
