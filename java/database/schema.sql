@@ -21,7 +21,7 @@ CREATE TABLE campaign(
 	CONSTRAINT PK_campaign PRIMARY KEY (campaign_id),
 	CONSTRAINT FK_campaign FOREIGN KEY (username) REFERENCES users(username)
 );
-
+git
 
 CREATE TABLE campaign_user (
     campaign_user_id SERIAL PRIMARY KEY,
