@@ -10,6 +10,10 @@ public class CampaignDto {
     private double amountGoal;
     private double balance;
 
+
+    public CampaignDto(){}
+
+
     public CampaignDto(int campaign_id, String username, String campaignName, String campaignType, String description, double amountGoal, double balance) {
         this.campaign_id = campaign_id;
         this.username = username;
