@@ -13,7 +13,7 @@
             </li>
             <li class="nav-item">
               <router-link class="nav-link" v-bind:to="{name:'campaignCreate'}">Create Campaign</router-link>
-            </li>                        
+            </li>                       
           </ul>
           <ul class="navbar-nav">
             <li class="nav-item">
