@@ -1,9 +1,11 @@
 package com.techelevator.controller;
 
 import com.techelevator.dao.CampaignDao;
+import com.techelevator.exception.DaoException;
 import com.techelevator.model.CampaignDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,7 +42,15 @@ public class AppController {
     }
 
     @RequestMapping(path="/delete", method = RequestMethod.DELETE)
-    public void deleteCampaign(Principal principal, @RequestParam("campaign_id") int campaign_id) {
-        dao.deleteCampaign(principal.getName(),campaign_id);
+    public ResponseEntity<String> deleteCampaign(Principal principal, @RequestParam("campaign_id") int campaign_id) {
+
+        try {
+            dao.deleteCampaign(principal.getName(), campaign_id);
+            return ResponseEntity.ok("Campaign deleted successfully");
+        } catch (DaoException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
-}
+
+    }
+

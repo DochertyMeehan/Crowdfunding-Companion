@@ -1,6 +1,8 @@
 package com.techelevator.dao;
 
+import com.techelevator.exception.DaoException;
 import com.techelevator.model.CampaignDto;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
@@ -82,7 +84,24 @@ public class CampaignJdbcDao implements CampaignDao {
 
     @Override
     public void deleteCampaign(String name,int campaignId) {
-        String sql = "DELETE FROM campaign WHERE campaign_id = ? AND username = ?";
-        template.update(sql, campaignId, name);
+
+      try {
+          if (getUsernameByCampaignId(campaignId).equals(name)) {
+              String sql = "DELETE FROM campaign WHERE campaign_id = ? AND username = ?";
+              template.update(sql, campaignId, name);
+          }
+      } catch (DataAccessException e){
+          throw new DaoException("Cannot delete campaign that isn't yours");
+      }
+
+
+    }
+
+    public String getUsernameByCampaignId(int campaignId){
+        String sql = "SELECT FROM campaign WHERE campaign_id = ? RETURNING username;";
+
+       String username = template.queryForObject(sql, String.class, campaignId);
+
+        return username;
     }
 }
