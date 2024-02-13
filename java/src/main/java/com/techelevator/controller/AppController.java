@@ -23,8 +23,8 @@ public class AppController {
         return dao.getCampaigns();
     }
 
-    @RequestMapping(path="/campaign/{campaign_id}", method = RequestMethod.GET)
-    public CampaignDto getCampaign(@PathVariable int campaign_id) {
+    @RequestMapping(path="/campaign", method = RequestMethod.GET)
+    public CampaignDto getCampaign(@RequestParam("campaign_id") int campaign_id) {
         return dao.getCampaign(campaign_id);
     }
 

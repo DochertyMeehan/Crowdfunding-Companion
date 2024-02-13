@@ -67,7 +67,7 @@ public class CampaignJdbcDao implements CampaignDao {
         double amountGoal = campaignToCreate.getAmountGoal();
         double balance = campaignToCreate.getBalance();
 
-        String sql = "INSERT INTO campaign(username, campaignName, campaignType, description, amountGoal, balance) VALUES (?, ?, ?, ?, ?, ?) RETURNING campaign_id";
+        String sql = "INSERT INTO campaign(username, campaignName, campaignType, description, amountGoal, balance) VALUES (?, ?, ?, ?, ?, ?) RETURNING campaign_id;";
         int newCampaignID = template.queryForObject(sql, Integer.class, username, campaignName, campaignType, description, amountGoal, balance);
 
         return getCampaign(newCampaignID);
@@ -83,6 +83,6 @@ public class CampaignJdbcDao implements CampaignDao {
     @Override
     public void deleteCampaign(String name,int campaignId) {
         String sql = "DELETE FROM campaign WHERE campaign_id = ? AND username = ?";
-        template.update(sql, campaignId);
+        template.update(sql, campaignId, name);
     }
 }
