@@ -10,6 +10,6 @@ public interface CampaignDao {
     public CampaignDto getCampaign(int campaignId);
     public CampaignDto createCampaign(CampaignDto campaignToCreate);
     public CampaignDto editCampaign(CampaignDto campaignToEdit);
-    public void deleteCampaign(int campaignId);
+    public void deleteCampaign(String name,int campaignId);
 
 }

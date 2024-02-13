@@ -8,6 +8,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -38,8 +39,8 @@ public class AppController {
         return dao.editCampaign(campaign);
     }
 
-    @RequestMapping(path="/delete/{campaign_id}", method = RequestMethod.DELETE)
-    public void deleteCampaign(@PathVariable int campaign_id) {
-        dao.deleteCampaign(campaign_id);
+    @RequestMapping(path="/delete", method = RequestMethod.DELETE)
+    public void deleteCampaign(Principal principal, @RequestParam("campaign_id") int campaign_id) {
+        dao.deleteCampaign(principal.getName(),campaign_id);
     }
 }

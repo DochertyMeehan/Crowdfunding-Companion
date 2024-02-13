@@ -81,8 +81,8 @@ public class CampaignJdbcDao implements CampaignDao {
     }
 
     @Override
-    public void deleteCampaign(int campaignId) {
-        String sql = "DELETE FROM campaign WHERE campaign_id = ?";
+    public void deleteCampaign(String name,int campaignId) {
+        String sql = "DELETE FROM campaign WHERE campaign_id = ? AND username = ?";
         template.update(sql, campaignId);
     }
 }
