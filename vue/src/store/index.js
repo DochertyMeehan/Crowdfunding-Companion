@@ -7,7 +7,8 @@ export function createStore(currentToken, currentUser) {
   let store = _createStore({
     state: {
       token: currentToken || '',
-      user: currentUser || {}
+      user: currentUser || {},
+      campaigns: [],
     },
     mutations: {
       SET_AUTH_TOKEN(state, token) {
@@ -25,6 +26,13 @@ export function createStore(currentToken, currentUser) {
         state.token = '';
         state.user = {};
         axios.defaults.headers.common = {};
+      },
+      SET_CAMPAIGNS(state,campaignData) {
+        state.campaigns = campaignData;
+      },
+      TOGGLE_SHOW_DETAILS(state,campaign){
+        const theCampaign = state.campaigns.find(curCampaign => curCampaign.campaign_id == campaign.campaign_id);
+        theCampaign.showDetails = !theCampaign.showDetails;
       },
       SET_NOTIFICATION(state, notification) {
         // Clear the current notification if one exists

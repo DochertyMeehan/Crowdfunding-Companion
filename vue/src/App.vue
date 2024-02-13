@@ -26,3 +26,6 @@
     <router-view />
   </div>
 </template>
+<script>
+import CampaignView from './views/CampaignView.vue';
+</script>
