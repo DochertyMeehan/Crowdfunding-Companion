@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -37,24 +38,24 @@ public class AppController {
     }
 
     @RequestMapping(path="/edit-campaign", method = RequestMethod.PUT)
-    public ResponseEntity<String> editCampaign(@Valid @RequestBody CampaignDto campaign, Principal principal) {
+    public void editCampaign(@Valid @RequestBody CampaignDto campaign, Principal principal) {
         try {
             dao.editCampaign(campaign, principal.getName());
-        return ResponseEntity.ok("Campaign updated successfully");
+         ResponseEntity.ok("Campaign updated successfully");
     } catch (DaoException e) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+         ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
     }
 
     }
 
     @RequestMapping(path="/delete", method = RequestMethod.DELETE)
-    public ResponseEntity<String> deleteCampaign(Principal principal, @RequestParam("campaign_id") int campaign_id) {
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteCampaign(Principal principal, @RequestParam("campaign_id") int campaign_id) {
 
         try {
             dao.deleteCampaign(principal.getName(), campaign_id);
-            return ResponseEntity.ok("Campaign deleted successfully");
         } catch (DaoException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+             ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
 
