@@ -7,8 +7,11 @@ import LoginView from '../views/LoginView.vue';
 import LogoutView from '../views/LogoutView.vue';
 import RegisterView from '../views/RegisterView.vue';
 import CreateCampaignView from '../views/CreateCampaignView.vue';
-import CampaignView from '../views/CampaignView.vue'
-// import CampaignDetails from '../views/'
+
+import CampaignView from '../views/CampaignView.vue';
+import SingleCampaignView from '../views/SingleCampaignView.vue';
+import EditCampaignView from '../views/EditCampaignView.vue'
+
 
 /**
  * The Vue Router is used to "direct" the browser to render a specific view component
@@ -22,7 +25,7 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: HomeView,
+    component: CampaignView,
     meta: {
       requiresAuth: true
     }
@@ -64,7 +67,23 @@ const routes = [
     name: "all-campaigns",
     component: CampaignView,
     meta: {
-      requiresAuth: true
+      requiresAuth: false
+    }
+  },
+  {
+    path: "/view/campaign/:id",
+    name: "SingleCampaignView",
+    component: SingleCampaignView,
+    meta: {
+      requireAuth: false
+    }
+  },
+  {
+    path: "/view/campaign/:id/edit",
+    name: "EditCampaign",
+    component: EditCampaignView,
+    meta: {
+      requireAuth: true
     }
   }
   // {

@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @PreAuthorize("isAuthenticated()")
-@CrossOrigin
+@CrossOrigin(origins = "*")
 public class AppController {
     @Autowired
     private CampaignDao dao;
@@ -37,8 +37,14 @@ public class AppController {
     }
 
     @RequestMapping(path="/edit-campaign", method = RequestMethod.PUT)
-    public CampaignDto editCampaign(@Valid @RequestBody CampaignDto campaign) {
-        return dao.editCampaign(campaign);
+    public ResponseEntity<String> editCampaign(@Valid @RequestBody CampaignDto campaign, Principal principal) {
+        try {
+            dao.editCampaign(campaign, principal.getName());
+        return ResponseEntity.ok("Campaign updated successfully");
+    } catch (DaoException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+    }
+
     }
 
     @RequestMapping(path="/delete", method = RequestMethod.DELETE)

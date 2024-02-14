@@ -25,10 +25,14 @@
                             </div>
                             <div class="row align-items-center mb-3">
                                 <div class="col-2">
-                                    Type
+                                    Type of Campaign
                                 </div>
                                 <div class="col-10">
-                                    <input class="form-control" type="text" placeholder="Type" aria-label="Campaign Type" v-model="formData.campaignType">
+                                    <select class="form-control" id="campaignType" name="campaignType" v-model="formData.campaignType">
+                                        <option value="option1">Option 1</option>
+                                        <option value="option2">Option 2</option>
+                                        <option value="option3">Option 3</option>
+                                    </select>                                
                                 </div>
                             </div>
                             <div class="row align-items-center mb-3">
@@ -48,10 +52,12 @@
                                 </div>
                             </div>
                             <div class="row justify-content-center mb-3">
-                                <div class="col-6 d-grid">
+                                <div class="col-3 d-grid">
                                     <button type="submit" class="btn btn-primary">Create</button>
                                 </div>
-                                
+                                <div class="col-3 d-grid">
+                                    <button type="submit" class="btn btn-primary" @click="goToCampaignList">Cancel</button>
+                                </div>                                  
                             </div>
                         </div>
                         
@@ -80,6 +86,9 @@ export default {
     };
   },
   methods: {
+    goToCampaignList(){
+        this.$router.push({name: 'home'});
+    },
     submitForm(){
         campaignService.createNewCampaign(this.formData).then(resp => {
             if (resp.status === 201){

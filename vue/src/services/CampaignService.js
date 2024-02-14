@@ -9,5 +9,14 @@ export default {
     },
     getCampaigns() {
         return axios.get('/all-campaigns');
-    }
-}
+    },
+    editCampaign(campaign) {
+        return axios.put('/edit-campaign', campaign);
+    },
+    getCampaign(id) {
+        return axios.get('/campaign', {params: { campaign_id: id }});
+    },
+    deleteCampaign(id){
+        return axios.delete('/delete', {params: { campaign_id: id }})
+    },
+}    

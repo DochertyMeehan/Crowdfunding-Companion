@@ -76,10 +76,25 @@ public class CampaignJdbcDao implements CampaignDao {
     }
 
     @Override
-    public CampaignDto editCampaign(CampaignDto campaignToEdit) {
-        String sql = "UPDATE campaign SET campaignName = ?, campaignType = ?, description = ?, amountGoal = ?, balance = ? WHERE campaign_id = ?";
-        template.update(sql, campaignToEdit.getCampaignName(), campaignToEdit.getCampaignType(), campaignToEdit.getDescription(), campaignToEdit.getAmountGoal(), campaignToEdit.getBalance(), campaignToEdit.getCampaign_id());
-        return getCampaign(campaignToEdit.getCampaign_id());
+    public void editCampaign(CampaignDto campaignToEdit, String username) {
+
+        try {
+            if(getUsernameByCampaignId(campaignToEdit.getCampaign_id()).equals(username)){
+                String sql = "UPDATE campaign SET campaignName = ?, campaignType = ?, " +
+                        "description = ?, amountGoal = ?, balance = ? WHERE campaign_id = ?;";
+
+                template.update(sql,
+                        campaignToEdit.getCampaignName(),
+                        campaignToEdit.getCampaignType(),
+                        campaignToEdit.getDescription(),
+                        campaignToEdit.getAmountGoal(),
+                        campaignToEdit.getBalance(),
+                        campaignToEdit.getCampaign_id());
+            }
+
+        } catch (DataAccessException e) {
+            throw new DaoException("Cannot Update Campaign that isn't yours");
+        }
     }
 
     @Override
