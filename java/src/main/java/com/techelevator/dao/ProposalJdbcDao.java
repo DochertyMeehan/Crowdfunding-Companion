@@ -1,7 +1,9 @@
 package com.techelevator.dao;
 
+import com.techelevator.exception.DaoException;
 import com.techelevator.model.CampaignDto;
 import com.techelevator.model.ProposalDto;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
@@ -62,19 +64,53 @@ public class ProposalJdbcDao implements ProposalDao{
 
     @Override
     public ProposalDto createProposal(ProposalDto proposalToCreate) {
-        return null;
+       int campaignid = proposalToCreate.getCampaign_id();
+       String proposalname = proposalToCreate.getProposal_name();
+       String description = proposalToCreate.getDescription();
+       String proposal = proposalToCreate.getProposal_status();
+
+        String sql = "INSERT INTO proposal (campaign_id, proposal_name, description,proposal_status,vote_passed)" +
+        " VALUES ((SELECT campaign_id FROM campaign WHERE campaignName = ?), ?, ?, ?, NULL) RETURNING proposal_id;";
+        int newProposalID = template.queryForObject(sql, Integer.class, campaignid, proposalname, description, proposal);
+
+        return getProposal(newProposalID);
     }
 
     @Override
-    public void editProposal(ProposalDto proposalToEdit, String username) {
+    public void editProposal(ProposalDto proposalToEdit, String username, int campaignId) {
+        try {
+            if (getUsernameByCampaignId(campaignId).equals(username)) {
+                String sql = "UPDATE proposal SET description = ?, proposal_name = ?, " +
+                        " proposal_status = ? WHERE proposal_id = ?;";
+                template.update(sql,
+                        proposalToEdit.getDescription(),
+                        proposalToEdit.getProposal_name(),
+                        proposalToEdit.getProposal_status(),
+                        proposalToEdit.getProposal_id());
+            }
+        }catch(DataAccessException e){
+                throw new DaoException("Cannot edit proposal that isn't yours");
+            }
+        }
 
-        String sql = "UPDATE proposal SET description = ?, proposal_name = ?, " +
-                " proposal_status = ? WHERE proposal_id = ?;";
-
-    }
 
     @Override
-    public void deleteProposal(String name, int proposalId) {
+    public void deleteProposal(String name,int campaignId, int proposalId) {
+        try {
+            if (getUsernameByCampaignId(campaignId).equals(name)) {
+                String sql = "DELETE FROM proposal WHERE proposal_id = ? AND username = ?";
+                template.update(sql, proposalId, name);
+            }
+        } catch (DataAccessException e){
+            throw new DaoException("Cannot delete proposal that isn't yours");
+        }
 
     }
+
+    public String getUsernameByCampaignId(int campaignId){
+        String sql = "SELECT username FROM campaign WHERE campaign_id = ?;";
+        String username = template.queryForObject(sql, String.class, campaignId);
+        return username;
+    }
+
 }
