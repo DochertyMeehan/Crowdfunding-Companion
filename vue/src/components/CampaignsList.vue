@@ -1,4 +1,5 @@
 <template>
+  <p>About us</p>
   <div class="container">
     <div class="row">
       <div class="col-4" v-for="(campaign, index) in campaigns" v-bind:key="index">        
