@@ -1,8 +1,10 @@
 package com.techelevator.controller;
 
 import com.techelevator.dao.CampaignDao;
+import com.techelevator.dao.ProposalDao;
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.CampaignDto;
+import com.techelevator.model.ProposalDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +22,10 @@ import java.util.List;
 public class AppController {
     @Autowired
     private CampaignDao dao;
+
+    @Autowired
+    private ProposalDao propdao;
+
 
     @RequestMapping(path="/all-campaigns", method = RequestMethod.GET)
     public List<CampaignDto> getAllCampaigns() {
@@ -48,6 +54,7 @@ public class AppController {
 
     }
 
+    // changing path to delete-campaign ?
     @RequestMapping(path="/delete", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteCampaign(Principal principal, @RequestParam("campaign_id") int campaign_id) {
@@ -59,5 +66,48 @@ public class AppController {
         }
     }
 
+    @RequestMapping(path="/all-proposals", method = RequestMethod.GET)
+    public List<ProposalDto> getProposals() {
+        return propdao.getProposals();
     }
+
+    @RequestMapping(path="/proposal", method = RequestMethod.GET)
+    public ProposalDto getProposal(@RequestParam("proposal_id") int proposal_id) {
+        return propdao.getProposal(proposal_id);
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @RequestMapping(path="/create-proposal", method = RequestMethod.POST)
+    public ProposalDto createProposal(@Valid @RequestBody ProposalDto proposal, @RequestParam("campaignName") String campaignName) {
+        return propdao.createProposal(proposal, campaignName);
+    }
+
+    @RequestMapping(path="/edit-proposal", method = RequestMethod.PUT)
+    public void editProposal(@Valid @RequestBody ProposalDto proposal, Principal principal) {
+        try {
+            propdao.editProposal(proposal, principal.getName(), proposal.getCampaign_id());
+            ResponseEntity.ok("Proposal updated successfully");
+        } catch (DaoException e) {
+            ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+
+    }
+
+    @RequestMapping(path="/delete-proposal", method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteProposal(Principal principal, @RequestParam("proposal_id") int proposal_id, @RequestParam("campaign_id") int campaign_id) {
+
+        try {
+            propdao.deleteProposal(principal.getName(), proposal_id, campaign_id);
+        } catch (DaoException e) {
+            ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+    }
+
+
+
+
+
+
+}
 
