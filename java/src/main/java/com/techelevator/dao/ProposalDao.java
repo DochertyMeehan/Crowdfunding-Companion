@@ -11,7 +11,7 @@ public interface ProposalDao {
 
     public ProposalDto getProposal(int proposalId);
 
-    public ProposalDto createProposal(ProposalDto proposalToCreate);
+    public ProposalDto createProposal(ProposalDto proposalToCreate, String campaignName);
 
     public void editProposal(ProposalDto proposalToEdit, String username, int campaignId);
 

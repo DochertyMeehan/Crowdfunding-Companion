@@ -6,11 +6,13 @@ import com.techelevator.model.ProposalDto;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class ProposalJdbcDao implements ProposalDao{
 
 
@@ -63,15 +65,15 @@ public class ProposalJdbcDao implements ProposalDao{
     }
 
     @Override
-    public ProposalDto createProposal(ProposalDto proposalToCreate) {
-       int campaignid = proposalToCreate.getCampaign_id();
-       String proposalname = proposalToCreate.getProposal_name();
-       String description = proposalToCreate.getDescription();
-       String proposal = proposalToCreate.getProposal_status();
+    public ProposalDto createProposal(ProposalDto proposalToCreate, String campaignName) {
+        int campaignid = proposalToCreate.getCampaign_id();
+        String proposalname = proposalToCreate.getProposal_name();
+        String description = proposalToCreate.getDescription();
+        String proposal = proposalToCreate.getProposal_status();
 
-        String sql = "INSERT INTO proposal (campaign_id, proposal_name, description,proposal_status,vote_passed)" +
-        " VALUES ((SELECT campaign_id FROM campaign WHERE campaignName = ?), ?, ?, ?, NULL) RETURNING proposal_id;";
-        int newProposalID = template.queryForObject(sql, Integer.class, campaignid, proposalname, description, proposal);
+        String sql = "INSERT INTO proposal (campaign_id, proposal_name, vote_passed, description, proposal_status)" +
+                " VALUES ((SELECT campaign_id FROM campaign WHERE campaignName = ?), ?, NULL, ?, ?) RETURNING proposal_id;";
+        int newProposalID = template.queryForObject(sql, Integer.class, campaignName, proposalname, description, proposal);
 
         return getProposal(newProposalID);
     }
