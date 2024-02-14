@@ -4,7 +4,7 @@
       <p>{{campaign.description }}</p>
       <router-link v-bind:to="{ name: 'EditCampaign', params: { id: $route.params.campaign_id } }" class="btn btn-submit">Edit
       Campaign</router-link>
-    <button class="btn btn-cancel" v-on:click="removeCampaign(2)">Delete Card</button>
+    <button class="btn btn-cancel" v-on:click="removeCampaign()">Delete Card</button>
     </div>
   </template>
   
@@ -25,7 +25,12 @@
             'Are you sure you want to delete this card? This action cannot be undone.'
           )
         ) {
-          CampaignService.deleteCampaign(id)
+          
+          CampaignService.deleteCampaign(id).then(resp => {
+            if (resp.status === 200) {
+              this
+            }
+          })
           this.$router.push({ name: 'home' });
         }        
       }
