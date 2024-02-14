@@ -34,7 +34,7 @@
     </div>
   </template>
 <script>
-
+import CampaignService from '../services/CampaignService';
 export default {
   data() {
     return {
@@ -48,22 +48,20 @@ export default {
     };
   },
   created() {
-    let id = parseInt(this.$route.params.id);
-    if (id != 0) {
-        console.log(id)
-    //   boardService
-    //     .getCard(cardId)
+    // let id = parseInt(this.$route.params.id);
+    // if (id != 0) {
+    //   CampaignService
+    //     .getCard(id)
     //     .then(response => {
-    //       this.card = response.data;
-    //       this.isLoading = false;
+    //       this.formData = response.data;
     //     })
     //     .catch(error => {
     //       if (error.response && error.response.status === 404) {
-    //         this.$store.commit('SET_NOTIFICATION', `Error getting card ${cardId}. This card may have been deleted or you have entered an invalid card ID.`);
-    //         this.$router.push({ name: 'HomeView' });
+    //         this.$store.commit('SET_NOTIFICATION', `Error getting card ${id}. This card may have been deleted or you have entered an invalid card ID.`);
+    //         this.$router.push({ name: 'home' });
     //       }
     //     });
-    }
+    // }
   }
   
 };
