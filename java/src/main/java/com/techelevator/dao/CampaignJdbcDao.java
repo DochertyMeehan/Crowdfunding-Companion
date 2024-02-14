@@ -113,7 +113,7 @@ public class CampaignJdbcDao implements CampaignDao {
     }
 
     public String getUsernameByCampaignId(int campaignId){
-        String sql = "SELECT FROM campaign WHERE campaign_id = ? RETURNING username;";
+        String sql = "SELECT username FROM campaign WHERE campaign_id = ?;";
 
        String username = template.queryForObject(sql, String.class, campaignId);
 
