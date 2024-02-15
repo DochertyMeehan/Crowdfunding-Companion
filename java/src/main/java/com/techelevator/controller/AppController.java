@@ -1,9 +1,11 @@
 package com.techelevator.controller;
 
 import com.techelevator.dao.CampaignDao;
+import com.techelevator.dao.DonationDao;
 import com.techelevator.dao.ProposalDao;
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.CampaignDto;
+import com.techelevator.model.DonationDto;
 import com.techelevator.model.ProposalDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,12 +23,16 @@ import java.util.List;
 @PreAuthorize("isAuthenticated()")
 @CrossOrigin(origins = "*")
 public class AppController {
-    @Autowired
+
     private CampaignDao dao;
-
-    @Autowired
     private ProposalDao propdao;
+    private DonationDao donationDao;
 
+    public AppController(CampaignDao dao, ProposalDao propdao, DonationDao donationDao) {
+        this.dao = dao;
+        this.propdao = propdao;
+        this.donationDao = donationDao;
+    }
 
     @RequestMapping(path="/all-campaigns", method = RequestMethod.GET)
     public List<CampaignDto> getAllCampaigns() {
@@ -117,6 +123,17 @@ public class AppController {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage(), e);
         }
 
+    }
+
+    @RequestMapping(path = "/create-donation", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createDonation(@RequestBody DonationDto donationDto){
+
+        try {
+            donationDao.createDonation(donationDto);
+        } catch (DaoException e){
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage(), e);
+        }
     }
 
 

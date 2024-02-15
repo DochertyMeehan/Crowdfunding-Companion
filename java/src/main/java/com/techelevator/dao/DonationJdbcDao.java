@@ -33,25 +33,27 @@ public class DonationJdbcDao implements DonationDao{
     }
 
     @Override
-    public DonationDto createDonation(DonationDto donationToCreate) {
+    public void createDonation(DonationDto donationToCreate) {
         int userId = donationToCreate.getUser_id();
         int campaignId = donationToCreate.getCampaign_id();
         double amount = donationToCreate.getAmount();
 
-        String sql = "INSERT INTO donation(user_id, campaign_id, amount) VALUES (?, ?, ?) RETURNING donation_id;";
-        int newDonationID = template.queryForObject(sql, Integer.class, userId, campaignId, amount);
-        updateBalanceForCampaign(donationToCreate.getCampaign_id(), donationToCreate.getAmount());
-        return getDonation(newDonationID);
+        String sql = "INSERT INTO donation(user_id, campaign_id, amount) VALUES (?, ?, ?);";
+        template.update(sql,userId, campaignId, amount);
+        updateBalanceForCampaign(campaignId, amount);
+
     }
 
     public void updateBalanceForCampaign(int campaignId, double amount){
         String sql = "SELECT balance FROM campaign WHERE campaign_id = ?";
-        double balance = template.queryForObject(sql, Double.class, campaignId);
+        double balance = template.queryForObject(sql, Double.class,campaignId);
 
-        String sql2 = "UPDATE campaign SET balance = ? + ?";
+        double newBalance = balance + amount;
+
+        String sql2 = "UPDATE campaign SET balance = ? WHERE campaign_id = ?";
         template.update(sql2,
-                balance,
-                amount
+                newBalance,
+                campaignId
                 );
     }
 
