@@ -10,7 +10,9 @@ import CreateCampaignView from '../views/CreateCampaignView.vue';
 
 import CampaignView from '../views/CampaignView.vue';
 import SingleCampaignView from '../views/SingleCampaignView.vue';
-import EditCampaignView from '../views/EditCampaignView.vue'
+import EditCampaignView from '../views/EditCampaignView.vue';
+import ProposalsView from '../views/ProposalsView.vue';
+import ProposalForm from '../components/ProposalForm.vue';
 
 
 /**
@@ -82,6 +84,22 @@ const routes = [
     path: "/view/campaign/:id/edit",
     name: "EditCampaign",
     component: EditCampaignView,
+    meta: {
+      requireAuth: true
+    }
+  },
+  {
+    path: "/view/campaign/:id/proposals",
+    name: "ProposalList",
+    component: ProposalsView,
+    meta: {
+      requireAuth: true
+    }
+  },
+  {
+    path:"/view/campaign/:id/makeProposal",
+    name: "CreateProposal",
+    component: ProposalForm,
     meta: {
       requireAuth: true
     }

@@ -5,17 +5,18 @@
       <router-link v-bind:to="{ name: 'EditCampaign', params: { id: $route.params.campaign_id } }" class="btn btn-submit">Edit
       Campaign</router-link>
     <button class="btn btn-cancel" v-on:click="removeCampaign(id)">Delete Card</button>
-    <ProposalList />
+    <div class="container">
+        <button><router-link class="nav-link" v-bind:to="{ name: 'ProposalList' }">See all the proposals</router-link></button>
+    </div>
     </div>
   </template>
   
 <script>
 import CampaignService from '../services/CampaignService';
-import ProposalList from '../components/ProposalList.vue'
+import ProposalsView from '../views/ProposalsView.vue';
 
   export default {
     components: {
-      ProposalList
     },
     data() {
         return {

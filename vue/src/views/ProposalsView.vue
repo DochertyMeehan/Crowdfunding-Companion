@@ -1,6 +1,7 @@
 <template>
-    <div>
-        <h4>Proposal List</h4>
+    <router-link v-bind:to="{ name: 'SingleCampaignView' }">Go back </router-link>
+    <div class="container">
+        <div>
             <ul>
                 <li v-for="proposal in proposals" :key="proposal.id">
                     {{ proposal.description }} |
@@ -8,6 +9,8 @@
                     {{ proposal.vote_passed }}
                 </li>   
             </ul> 
+            <button><router-link class="nav-link" v-bind:to="{ name: 'CreateProposal' }">Make a new Proposal</router-link></button>
+        </div>
     </div>
 </template>
 <script>
@@ -21,7 +24,7 @@ export default {
     },
     methods: {
         loadData() {
-            CampaignService.getAllProposals().then(res => {
+            CampaignService.getAllProposals(this.$route.params.id).then(res => {
                 this.proposals = res.data;
             });
     
