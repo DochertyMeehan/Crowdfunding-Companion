@@ -11,8 +11,12 @@ import CreateCampaignView from '../views/CreateCampaignView.vue';
 import CampaignView from '../views/CampaignView.vue';
 import SingleCampaignView from '../views/SingleCampaignView.vue';
 import EditCampaignView from '../views/EditCampaignView.vue';
+<<<<<<< HEAD
 import ProposalsView from '../views/ProposalsView.vue';
 import ProposalForm from '../components/ProposalForm.vue';
+=======
+import FAQView from '../views/FAQview.vue';
+>>>>>>> b9a60dac489841e8cae644a0cbc3bcc4161bbac9
 
 
 /**
@@ -103,7 +107,13 @@ const routes = [
     meta: {
       requireAuth: true
     }
+  },
+  {
+    path: "/faq",
+    name: "FAQ",
+    component: FAQView
   }
+
   // {
   //   path:"/campaign/:campaign_id",
   //   name: "campaign-details",
