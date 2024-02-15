@@ -10,7 +10,8 @@ import CreateCampaignView from '../views/CreateCampaignView.vue';
 
 import CampaignView from '../views/CampaignView.vue';
 import SingleCampaignView from '../views/SingleCampaignView.vue';
-import EditCampaignView from '../views/EditCampaignView.vue'
+import EditCampaignView from '../views/EditCampaignView.vue';
+import FAQView from '../views/FAQview.vue';
 
 
 /**
@@ -85,7 +86,13 @@ const routes = [
     meta: {
       requireAuth: true
     }
+  },
+  {
+    path: "/faq",
+    name: "FAQ",
+    component: FAQView
   }
+
   // {
   //   path:"/campaign/:campaign_id",
   //   name: "campaign-details",

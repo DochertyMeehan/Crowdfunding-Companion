@@ -13,6 +13,9 @@
             </li>
             <li class="nav-item">
               <router-link class="nav-link" v-bind:to="{name:'campaignCreate'}">Create Campaign</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" v-bind:to="{name: 'FAQ'}">FAQ</router-link>
             </li>                       
           </ul>
           <ul class="navbar-nav">
@@ -33,4 +36,5 @@
 </template>
 <script>
 import CampaignView from './views/CampaignView.vue';
+import FAQview from './views/FAQview.vue';
 </script>

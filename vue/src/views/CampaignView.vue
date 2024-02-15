@@ -7,7 +7,7 @@
 </template>
 <script>
 
-import CampaignsList from '../components/CampaignsList.vue';
+import CampaignsList from '../views/CampaignsList.vue';
 import CampaignService from '../services/CampaignService';
 export default {
     data(){

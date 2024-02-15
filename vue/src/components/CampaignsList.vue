@@ -2,8 +2,8 @@
   <div class="container">
     <div>
     <div>
-      <h4>About us</h4>
-      <p>Under the sapphire canopy of the evening sky, the city came alive with a kaleidoscope of colors, as skyscrapers stretched their shimmering fingers towards the heavens. The neon signs that adorned bustling avenues flickered like distant stars, casting a vibrant glow upon the bustling streets below. A symphony of honks and distant chatter intermingled with the rhythmic footsteps of pedestrians, creating a lively urban tapestry. In the midst of this kinetic energy, an old bookstore stood with weathered charm, its shelves laden with tales from worlds unknown. A street artist, inspired by the city's heartbeat, wielded a paintbrush with fervor, leaving behind strokes of imagination on a once mundane wall. As the night unfurled, a food market erupted in a mosaic of scents, tempting passersby with the savory promises of diverse cuisines. In a hidden courtyard, an impromptu gathering of musicians conjured melodies that danced through the air, inviting anyone with a listening ear to join their nocturnal serenade. The city, a living organism, pulsed with life, its narrative woven from the threads of countless stories that played out under the moonlit sky.</p>
+      <h4>Welcome to Crowdfunding Companion!</h4>
+      <p>The easiest way to fundraise and donate to the causes that matter most to you.</p>
     </div>
   </div>
   </div>
