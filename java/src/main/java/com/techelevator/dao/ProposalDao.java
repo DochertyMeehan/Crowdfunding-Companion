@@ -17,5 +17,7 @@ public interface ProposalDao {
 
     public void deleteProposal(String name,int campaignId, int proposalId);
 
+    public List<ProposalDto> getProposalByCampaignId(String username, int campaignId);
+
 
 }

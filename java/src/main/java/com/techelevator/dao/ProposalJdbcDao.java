@@ -117,4 +117,20 @@ public class ProposalJdbcDao implements ProposalDao{
         return username;
     }
 
+    public List<ProposalDto> getProposalByCampaignId(String username, int campaignId){
+        List<ProposalDto> proposalDtoList = new ArrayList<>();
+
+        String sql = "SELECT * from proposal WHERE campaign_id = ?;";
+        SqlRowSet result = template.queryForRowSet(sql,campaignId);
+
+        while (result.next()){
+            ProposalDto proposalDto = mapRowToProposal(result);
+            proposalDtoList.add(proposalDto);
+        }
+
+        return proposalDtoList;
+
+    }
+
+
 }

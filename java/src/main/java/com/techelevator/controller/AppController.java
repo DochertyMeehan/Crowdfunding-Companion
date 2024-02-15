@@ -107,10 +107,16 @@ public class AppController {
     }
 
 
-    public List<ProposalDto> getProposalListByCampaignId(Principal principal, ProposalDto proposalDto){
+    @RequestMapping(path = "/getProposalListByCampaignId", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
+    public List<ProposalDto> getProposalListByCampaignId(Principal principal, @RequestParam("campaign_id") int campaignId){
 
+        try {
+          return   propdao.getProposalByCampaignId(principal.getName(), campaignId);
+        } catch (DaoException e){
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage(), e);
+        }
 
-        return null;
     }
 
 
