@@ -6,6 +6,7 @@
                         <div class="mb-3">
                         <label for="campaign_id" class="form-label">Campaign ID</label>
                         <input v-model="editCampaign.campaign_id" type="text" class="form-control" id="campaign_id"  required>
+                        <!-- {{ editCampaign.campaign_id }} -->
                         </div>
                         <div class="mb-3">
                         <label for="username" class="form-label">Creator</label>
@@ -20,9 +21,19 @@
                         <div class="mb-3">
                         <label for="campaignType" class="form-label">Campaign Type</label>
                         <select v-model="editCampaign.campaignType" class="form-select" id="campaignType" required>
-                                                        <option value="option1">Option 1</option>
-                                                        <option value="option2">Option 2</option>
-                                                        <option value="option3">Option 3</option>
+                                                        <option value="option1">Animals</option>
+                                                        <option value="option2">Business</option>
+                                                        <option value="option3">Education</option>
+                                                        <option value="option4">Emergency</option>
+                                                        <option value="option5">Events</option>
+                                                        <option value="option6">Family</option>
+                                                        <option value="option7">Medical</option>
+                                                        <option value="option8">Memorial</option>
+                                                        <option value="option9">Nonprofit</option>
+                                                        <option value="option10">Sports</option>
+                                                        <option value="option11">Travel</option>
+                                                        <option value="option12">Wishes</option>
+
                         </select>
                         </div>
                 
