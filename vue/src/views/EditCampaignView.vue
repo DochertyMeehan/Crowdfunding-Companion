@@ -1,5 +1,5 @@
 <template>
-   <div>
+   <div v-if="isReady">
     <EditCampaign :formData="formData" />
    </div>
   </template>
@@ -20,6 +20,7 @@ export default {
         description: '',
         amountGoal: 0,
       },
+      isReady: false,
     };
   },
   created() {
@@ -29,7 +30,7 @@ export default {
         .getCampaign(id)
         .then(response => {
           this.formData = response.data;
-
+          this.isReady = true;
         })      
         .catch(error => {
           if (error.response && error.response.status === 404) {

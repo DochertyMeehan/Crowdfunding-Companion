@@ -4,13 +4,12 @@
                     <h2>Edit Form</h2>
                     <form @submit.prevent="submitForm">
                         <div class="mb-3">
-                        <label for="campaign_id" class="form-label">Campaign ID</label>
-                        <input v-model="editCampaign.campaign_id" type="text" class="form-control" id="campaign_id"  required>
-                        <!-- {{ editCampaign.campaign_id }} -->
+                        <label for="campaign_id" class="form-label">Campaign ID: </label>
+                        {{ editCampaign.campaign_id }}
                         </div>
                         <div class="mb-3">
-                        <label for="username" class="form-label">Creator</label>
-                        <input v-model="editCampaign.username" type="text" class="form-control" id="username"  required>
+                        <label for="username" class="form-label">Creator: </label>
+                          {{  editCampaign.username }}
                         </div>
                 
                         <div class="mb-3">
@@ -21,18 +20,18 @@
                         <div class="mb-3">
                         <label for="campaignType" class="form-label">Campaign Type</label>
                         <select v-model="editCampaign.campaignType" class="form-select" id="campaignType" required>
-                                                        <option value="option1">Animals</option>
-                                                        <option value="option2">Business</option>
-                                                        <option value="option3">Education</option>
-                                                        <option value="option4">Emergency</option>
-                                                        <option value="option5">Events</option>
-                                                        <option value="option6">Family</option>
-                                                        <option value="option7">Medical</option>
-                                                        <option value="option8">Memorial</option>
-                                                        <option value="option9">Nonprofit</option>
-                                                        <option value="option10">Sports</option>
-                                                        <option value="option11">Travel</option>
-                                                        <option value="option12">Wishes</option>
+                                                        <option value="Animals">Animals</option>
+                                                        <option value="Business">Business</option>
+                                                        <option value="Education">Education</option>
+                                                        <option value="Emergency">Emergency</option>
+                                                        <option value="Events">Events</option>
+                                                        <option value="Family">Family</option>
+                                                        <option value="Medical">Medical</option>
+                                                        <option value="Memorial">Memorial</option>
+                                                        <option value="Nonprofit">Nonprofit</option>
+                                                        <option value="Sports">Sports</option>
+                                                        <option value="Travel">Travel</option>
+                                                        <option value="Wishes">Wishes</option>
 
                         </select>
                         </div>
