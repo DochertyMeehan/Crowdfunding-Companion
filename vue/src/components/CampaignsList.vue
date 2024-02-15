@@ -16,8 +16,9 @@
           </div>
           <div class="card-body">
             <h5 class="card-title">{{ campaign.campaignName}}</h5>
-            <p class="card-text">{{ campaign.amountGoal }}</p>
-            <p class="card-text">{{ campaign.balance }}</p>
+            <br>
+            <p class="card-text">Goal: ${{ campaign.amountGoal }}</p>
+            <p class="card-text">Current Balance: ${{ campaign.balance }}</p>
             <p class="card-text">{{ campaign.description }}</p>
             <a href="#" class="btn btn-primary">Donate for this Campaign</a>
           </div>
@@ -45,5 +46,18 @@ export default {
 <style>
 .card {
   cursor: pointer;
+  color: #87ae73;
+}
+.container {
+  color: #87ae73;
+}
+.btn {
+  background-color: #87ae73;
+  color: white;
+  border-color: navy;
+}
+.btn:hover {
+  background-color: white;
+  color: #87ae73;
 }
 </style>

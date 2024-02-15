@@ -1,6 +1,7 @@
 <template>
+    <div class="faq">
   <h1>FAQ</h1>
-   <h6>What is Crowdfunding Companion?</h6> 
+   <h4>What is Crowdfunding Companion?</h4> 
    <h6>Crowdfunding Companion was created by 6 software developers who wanted to make it easy to fundraise for any need. Whether it be due to unforeseen circumstances, 
     wanting to contribute to a cause near and dear to your heart, or any other reason, Crowdfunding Companion is here to help. We make it simple for fundraisers to create 
     campaigns and for donors to put money towards causes that are most important to them.</h6>
@@ -13,10 +14,6 @@
 <h4>What is Crowdfunding?</h4>
 <h6>Crowdfunding is a method of raising funds for a project or cause by collecting small contributions from a large number of people, typically via the internet. 
     It allows individuals or organizations to reach out to a wide audience and gather support for their initiatives.</h6>
-<!-- <h4>Is Crowdfunding Companion secure?</h4>
-<h6>Yes, Crowdfunding Companion prioritizes the security and privacy of both campaign creators and donors. We utilize industry-standard encryption protocols to safeguard 
-    sensitive information and ensure secure transactions.
-</h6> -->
 <h4>How can I trust the campaigns listed on Crowdfunding Companion?</h4>
 <h6>While Crowdfunding Companion strives to provide a platform for legitimate and worthy causes, we recommend donors to exercise discretion and perform due diligence 
     before contributing to any campaign. We encourage campaign creators to provide transparent information about their objectives and how the funds will be utilized.</h6>
@@ -26,6 +23,7 @@
 <h4>Are there any fees?</h4>
 <h6>Crowdfunding Companion is totally free to donors and to donation recipients! We made this website to help those in need and do not take any cut of the 
     fundraising at all. This means more money goes directly to those in need.</h6>
+</div>
 </template>
 
 <script>
@@ -35,8 +33,7 @@ export default {
 </script>
 
 <style>
-h3 {
-    color: green;
+.faq {
+    color: #87ae73;
 }
-
 </style>
