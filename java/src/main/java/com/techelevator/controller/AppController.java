@@ -86,8 +86,8 @@ public class AppController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path="/create-proposal", method = RequestMethod.POST)
-    public ProposalDto createProposal(@Valid @RequestBody ProposalDto proposal, @RequestParam("campaignName") String campaignName) {
-        return propdao.createProposal(proposal, campaignName);
+    public ProposalDto createProposal(@Valid @RequestBody ProposalDto proposal, @RequestParam("campaign_id") int campaignId) {
+        return propdao.createProposal(proposal, campaignId);
     }
 
     @RequestMapping(path="/edit-proposal", method = RequestMethod.PUT)
@@ -134,6 +134,16 @@ public class AppController {
         } catch (DaoException e){
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage(), e);
         }
+    }
+
+
+    @ResponseStatus(HttpStatus.OK)
+    public List<DonationDto> getDonationsByCampaignId(@RequestParam("campaign_id") int campaignId, Principal principal){
+
+     //   try {
+        return     donationDao.getDonationsByCampaignId(campaignId, principal.getName());
+       // }
+
     }
 
 
