@@ -65,15 +65,15 @@ public class ProposalJdbcDao implements ProposalDao{
     }
 
     @Override
-    public ProposalDto createProposal(ProposalDto proposalToCreate, String campaignName) {
+    public ProposalDto createProposal(ProposalDto proposalToCreate, int campaignId) {
         int campaignid = proposalToCreate.getCampaign_id();
         String proposalname = proposalToCreate.getProposal_name();
         String description = proposalToCreate.getDescription();
         String proposal = proposalToCreate.getProposal_status();
 
         String sql = "INSERT INTO proposal (campaign_id, proposal_name, vote_passed, description, proposal_status)" +
-                " VALUES ((SELECT campaign_id FROM campaign WHERE campaignName = ?), ?, NULL, ?, ?) RETURNING proposal_id;";
-        int newProposalID = template.queryForObject(sql, Integer.class, campaignName, proposalname, description, proposal);
+                " VALUES ((SELECT campaign_id FROM campaign WHERE campaign_id = ?), ?, NULL, ?, ?) RETURNING proposal_id;";
+        int newProposalID = template.queryForObject(sql, Integer.class, campaignId, proposalname, description, proposal);
 
         return getProposal(newProposalID);
     }
