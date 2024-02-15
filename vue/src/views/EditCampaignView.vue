@@ -1,6 +1,6 @@
 <template>
-   <div v-if="isloading">
-    <EditCampaign  />
+   <div v-if="isReady">
+    <EditCampaign :formData="formData" />
    </div>
   </template>
 <script>
@@ -20,7 +20,7 @@ export default {
         description: '',
         amountGoal: 0,
       },
-      isloading: false,
+      isReady: false,
     };
   },
   created() {
@@ -30,7 +30,7 @@ export default {
         .getCampaign(id)
         .then(response => {
           this.formData = response.data;
-          this.isloading = true;
+          this.isReady = true;
         })      
         .catch(error => {
           if (error.response && error.response.status === 404) {
@@ -40,11 +40,11 @@ export default {
         });
     }
   },
-//   methods: {
-//     updateFormData(newFormData) {
-//         this.formData = newFormData;
-//     },
-//   },
+  // methods: {
+  //   updateFormData(newFormData) {
+  //       this.formData = newFormData;
+  //   },
+  // },
   
 };
 </script>

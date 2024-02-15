@@ -13,6 +13,7 @@
                                 </div>
                                 <div class="col-10">
                                     <input class="form-control" type="text" placeholder="Username" aria-label="Username" v-model="formData.username">
+                                    <!-- {{ formData.username }} -->
                                 </div>
                             </div>
                             <div class="row align-items-center mb-3">
@@ -29,18 +30,18 @@
                                 </div>
                                 <div class="col-10">
                                     <select class="form-control" id="campaignType" name="campaignType" v-model="formData.campaignType">
-                                                        <option value="option1">Animals</option>
-                                                        <option value="option2">Business</option>
-                                                        <option value="option3">Education</option>
-                                                        <option value="option4">Emergency</option>
-                                                        <option value="option5">Events</option>
-                                                        <option value="option6">Family</option>
-                                                        <option value="option7">Medical</option>
-                                                        <option value="option8">Memorial</option>
-                                                        <option value="option9">Nonprofit</option>
-                                                        <option value="option10">Sports</option>
-                                                        <option value="option11">Travel</option>
-                                                        <option value="option12">Wishes</option>
+                                                        <option value="Animals">Animals</option>
+                                                        <option value="Business">Business</option>
+                                                        <option value="Education">Education</option>
+                                                        <option value="Emergency">Emergency</option>
+                                                        <option value="Events">Events</option>
+                                                        <option value="Family">Family</option>
+                                                        <option value="Medical">Medical</option>
+                                                        <option value="Memorial">Memorial</option>
+                                                        <option value="Nonprofit">Nonprofit</option>
+                                                        <option value="Sports">Sports</option>
+                                                        <option value="Travel">Travel</option>
+                                                        <option value="Wishes">Wishes</option>
                                     </select>                                
                                 </div>
                             </div>

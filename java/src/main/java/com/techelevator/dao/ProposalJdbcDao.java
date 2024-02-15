@@ -79,9 +79,9 @@ public class ProposalJdbcDao implements ProposalDao{
     }
 
     @Override
-    public void editProposal(ProposalDto proposalToEdit, String username, int campaignId) {
+    public void editProposal(ProposalDto proposalToEdit, String username) {
         try {
-            if (getUsernameByCampaignId(campaignId).equals(username)) {
+            if (getUsernameByCampaignId(proposalToEdit.getCampaign_id()).equals(username)) {
                 String sql = "UPDATE proposal SET description = ?, proposal_name = ?, " +
                         " proposal_status = ? WHERE proposal_id = ?;";
                 template.update(sql,
@@ -97,14 +97,16 @@ public class ProposalJdbcDao implements ProposalDao{
 
 
     @Override
-    public void deleteProposal(String name,int campaignId, int proposalId) {
+    public void deleteProposal(String name,int proposalId,int campaignId) {
         try {
             if (getUsernameByCampaignId(campaignId).equals(name)) {
-                String sql = "DELETE FROM proposal WHERE proposal_id = ? AND username = ?";
-                template.update(sql, proposalId, name);
+                String sql = "DELETE FROM proposal WHERE proposal_id = ? AND campaign_id = ?";
+                template.update(sql, proposalId, campaignId);
+            }else {
+                throw new DaoException("Cannot delete proposal that isn't yours");
             }
         } catch (DataAccessException e){
-            throw new DaoException("Cannot delete proposal that isn't yours");
+            throw new DaoException("Database error occurred while deleting the proposal", e);
         }
 
     }
@@ -114,5 +116,21 @@ public class ProposalJdbcDao implements ProposalDao{
         String username = template.queryForObject(sql, String.class, campaignId);
         return username;
     }
+
+    public List<ProposalDto> getProposalByCampaignId(String username, int campaignId){
+        List<ProposalDto> proposalDtoList = new ArrayList<>();
+
+        String sql = "SELECT * from proposal WHERE campaign_id = ?;";
+        SqlRowSet result = template.queryForRowSet(sql,campaignId);
+
+        while (result.next()){
+            ProposalDto proposalDto = mapRowToProposal(result);
+            proposalDtoList.add(proposalDto);
+        }
+
+        return proposalDtoList;
+
+    }
+
 
 }

@@ -13,9 +13,11 @@ public interface ProposalDao {
 
     public ProposalDto createProposal(ProposalDto proposalToCreate, String campaignName);
 
-    public void editProposal(ProposalDto proposalToEdit, String username, int campaignId);
+    public void editProposal(ProposalDto proposalToEdit, String username);
 
     public void deleteProposal(String name,int campaignId, int proposalId);
+
+    public List<ProposalDto> getProposalByCampaignId(String username, int campaignId);
 
 
 }
