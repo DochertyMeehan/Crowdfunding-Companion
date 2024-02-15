@@ -29,9 +29,18 @@
                                 </div>
                                 <div class="col-10">
                                     <select class="form-control" id="campaignType" name="campaignType" v-model="formData.campaignType">
-                                        <option value="option1">Option 1</option>
-                                        <option value="option2">Option 2</option>
-                                        <option value="option3">Option 3</option>
+                                                        <option value="option1">Animals</option>
+                                                        <option value="option2">Business</option>
+                                                        <option value="option3">Education</option>
+                                                        <option value="option4">Emergency</option>
+                                                        <option value="option5">Events</option>
+                                                        <option value="option6">Family</option>
+                                                        <option value="option7">Medical</option>
+                                                        <option value="option8">Memorial</option>
+                                                        <option value="option9">Nonprofit</option>
+                                                        <option value="option10">Sports</option>
+                                                        <option value="option11">Travel</option>
+                                                        <option value="option12">Wishes</option>
                                     </select>                                
                                 </div>
                             </div>
