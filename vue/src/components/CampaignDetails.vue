@@ -1,13 +1,18 @@
 <template>
-    <div>
-      <h2>{{ campaign.username }}</h2>
-      <p>{{campaign.description }}</p>
+    <div class="campaign-details">
+      <h2>{{ campaign.campaignName }}</h2>
+      <p>Campaign Manager: {{ campaign.username }}</p>
+      <p>Campaign Type: {{ campaign.campaignType }}</p>
+      <p>What are we raising money for? <br>
+        {{campaign.description }}</p>
+      <p>Goal: ${{ campaign.amountGoal }}</p>
+      <p>Balance: ${{ campaign.balance }}</p>
+      <div class="container">
+        <button><router-link class="nav-link" v-bind:to="{ name: 'ProposalList' }">See all the proposals</router-link></button>
+    </div>
       <router-link v-bind:to="{ name: 'EditCampaign', params: { id: $route.params.campaign_id } }" class="btn btn-submit">Edit
       Campaign</router-link>
     <button class="btn btn-cancel" v-on:click="removeCampaign(id)">Delete Card</button>
-    <div class="container">
-        <button><router-link class="nav-link" v-bind:to="{ name: 'ProposalList' }">See all the proposals</router-link></button>
-    </div>
     </div>
   </template>
   
@@ -57,4 +62,36 @@ import ProposalsView from '../views/ProposalsView.vue';
     },
 };
   </script>
+  <style>
+.campaign-details {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid navy;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .1);
+    color: #87ae73;
+}
+.campaign-details h2 {
+    margin-top: 0;
+}
+.campaign-details p {
+    margin: 10px 0;
+}
+.btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    background-color: #87ae73;
+    color: white;
+    border-color: navy;
+}
+.btn:hover {
+  background-color: white;
+  color: #87ae73;
+  border-color: navy;
+}
+</style>
   

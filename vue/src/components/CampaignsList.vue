@@ -1,15 +1,13 @@
 <template>
   <div class="container">
     <div>
-    <div>
       <h4>Welcome to Crowdfunding Companion!</h4>
       <p>The easiest way to fundraise and donate to the causes that matter most to you.</p>
     </div>
   </div>
-  </div>
   <div class="container">
     <div class="row">
-      <div class="col-4" v-for="(campaign, index) in campaigns" v-bind:key="index">        
+      <div class="col-4" v-for="(campaign, index) in filteredCampaigns" v-bind:key="index">        
         <div class="card"  v-on:click="viewCampaignDetails(campaign)">
           <div class="card-header">
             {{ campaign.campaignType}}
@@ -23,7 +21,7 @@
             <a href="#" class="btn btn-primary">Donate for this Campaign</a>
           </div>
           <div class="card-footer text-body-secondary">
-            {{ campaign.username }}
+            A fundraiser organized by: {{ campaign.username }}
           </div>
         </div>  
       </div>
@@ -35,11 +33,33 @@
 export default {
   name: 'all-campaigns',
   props: ['campaigns'],
+  data() {
+    return {
+      selectedCampaignType: '',
+    };
+  },
   methods: {
     viewCampaignDetails(campaign) {
       this.$router.push({ name: 'SingleCampaignView', params: { id: campaign.campaign_id } });
     },
   },
+  computed: {
+    campaignTypes() {
+      const types = new Set();
+      this.campaigns.forEach(campaign => {
+        types.add(campaign.campaignType);
+      });
+      return Array.from(types);
+    },
+    filteredCampaigns() {
+      if(!this.searchQuery) {
+        return this.campaigns;
+      }
+      return this.campaigns.filter(campaign => {
+        return campaign.campaignType === this.selectedCampaignType;
+      });
+    }
+  }
 };
 </script>
 
@@ -47,9 +67,11 @@ export default {
 .card {
   cursor: pointer;
   color: #87ae73;
+  margin-bottom: 20px;
 }
 .container {
   color: #87ae73;
+  margin-bottom: 20px;
 }
 .btn {
   background-color: #87ae73;
@@ -59,5 +81,10 @@ export default {
 .btn:hover {
   background-color: white;
   color: #87ae73;
+}
+select {
+  padding: 8px 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
 }
 </style>
