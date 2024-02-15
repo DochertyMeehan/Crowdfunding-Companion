@@ -85,7 +85,7 @@ public class AppController {
     @RequestMapping(path="/edit-proposal", method = RequestMethod.PUT)
     public void editProposal(@Valid @RequestBody ProposalDto proposal, Principal principal) {
         try {
-            propdao.editProposal(proposal, principal.getName(), proposal.getCampaign_id());
+            propdao.editProposal(proposal, principal.getName());
             ResponseEntity.ok("Proposal updated successfully");
         } catch (DaoException e) {
             ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());

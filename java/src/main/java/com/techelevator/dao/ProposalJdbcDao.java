@@ -79,9 +79,9 @@ public class ProposalJdbcDao implements ProposalDao{
     }
 
     @Override
-    public void editProposal(ProposalDto proposalToEdit, String username, int campaignId) {
+    public void editProposal(ProposalDto proposalToEdit, String username) {
         try {
-            if (getUsernameByCampaignId(campaignId).equals(username)) {
+            if (getUsernameByCampaignId(proposalToEdit.getCampaign_id()).equals(username)) {
                 String sql = "UPDATE proposal SET description = ?, proposal_name = ?, " +
                         " proposal_status = ? WHERE proposal_id = ?;";
                 template.update(sql,
