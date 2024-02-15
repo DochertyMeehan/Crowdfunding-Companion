@@ -40,7 +40,7 @@
                                     Description
                                 </div>
                                 <div class="col-10">
-                                    <input class="form-control" type="text" placeholder="Description" aria-label="Description" v-model="formData.description">
+                                    <textarea class="form-control" type="text" placeholder="Description" aria-label="Description" v-model="formData.description"> </textarea>
                                 </div>
                             </div>
                             <div class="row align-items-center mb-3">

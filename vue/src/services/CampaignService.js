@@ -19,4 +19,7 @@ export default {
     deleteCampaign(id){
         return axios.delete('/delete', {params: { campaign_id: id }})
     },
+    getAllProposals() {
+        return axios.get('/all-proposals');
+    }
 }    

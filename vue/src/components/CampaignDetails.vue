@@ -5,56 +5,55 @@
       <router-link v-bind:to="{ name: 'EditCampaign', params: { id: $route.params.campaign_id } }" class="btn btn-submit">Edit
       Campaign</router-link>
     <button class="btn btn-cancel" v-on:click="removeCampaign(id)">Delete Card</button>
+    <ProposalList />
     </div>
   </template>
   
-  <script>
-  import CampaignService from '../services/CampaignService';
+<script>
+import CampaignService from '../services/CampaignService';
+import ProposalList from '../components/ProposalList.vue'
+
   export default {
+    components: {
+      ProposalList
+    },
     data() {
-      return {
-        selectedCampaign: '',
-      };
+        return {
+            selectedCampaign: '',
+        };
     },
     props: ['campaign'],
-
     methods: {
-      removeCampaign() {
-        if (
-          confirm(
-            'Are you sure you want to delete this card? This action cannot be undone.'
-          )
-        ) {
-          CampaignService.deleteCampaign(this.campaign.campaign_id).then(resp => {
-            if (resp.status === 204) 
-            console.log(resp.status)
-            {
-              console.log("haha")
-              this.$store.commit('SET_NOTIFICATION', 
-              {
-                message: 'Campaign was successfully deleted.',
-                type: 'Success'
-              }
-            );
-            this.$router.push({ name: 'home' });
-
+        removeCampaign() {
+            if (confirm('Are you sure you want to delete this card? This action cannot be undone.')) {
+                CampaignService.deleteCampaign(this.campaign.campaign_id).then(resp => {
+                    if (resp.status === 204)
+                        console.log(resp.status);
+                    {
+                        console.log("haha");
+                        this.$store.commit('SET_NOTIFICATION', {
+                            message: 'Campaign was successfully deleted.',
+                            type: 'Success'
+                        });
+                        this.$router.push({ name: 'home' });
+                    }
+                }).catch(err => {
+                    if (err.response) {
+                        this.$store.commit('SET_NOTIFICATION', `Error deleting card. Response received was "${err.response.statusText}".`);
+                    }
+                    else if (err.request) {
+                        this.$store.commit('SET_NOTIFICATION', 'Error deleting card. Server could not be reached.');
+                    }
+                    else {
+                        this.$store.commit('SET_NOTIFICATION', 'Error deleting card. Request could not be created.');
+                    }
+                });
             }
-          }).catch (err => {
-            if (err.response) {
-              this.$store.commit('SET_NOTIFICATION',
-                `Error deleting card. Response received was "${err.response.statusText}".`);
-            } else if (err.request) {
-              this.$store.commit('SET_NOTIFICATION', 'Error deleting card. Server could not be reached.');
-            } else {
-              this.$store.commit('SET_NOTIFICATION', 'Error deleting card. Request could not be created.');
-            }
-          })
-        }        
-      }
+        }
     },
     created() {
-      this.selectedCampaign = this.$route.params.campaign_id;
+        this.selectedCampaign = this.$route.params.campaign_id;
     },
-  };
+};
   </script>
   

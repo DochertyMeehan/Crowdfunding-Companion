@@ -20,6 +20,11 @@
               <router-link class="nav-link" v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
             </li>
           </ul>
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <router-link class="nav-link" v-bind:to="{ name: 'login' }" v-if="$store.state.token != ''">LogIn</router-link>
+            </li>
+          </ul>
         </div>
       </div>
     </nav>
