@@ -129,8 +129,9 @@ public class ProposalJdbcDao implements ProposalDao{
         }
 
         return proposalDtoList;
-
     }
+
+
 
 
 }
