@@ -21,5 +21,8 @@ export default {
     },
     getAllProposals(id) {
         return axios.get('/getProposalListByCampaignId', {params: { campaign_id: id }})
+    },
+    makeProposal(proposal) {
+        return axios.post('/create-proposal', proposal);
     }
 }    
