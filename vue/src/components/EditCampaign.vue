@@ -5,22 +5,23 @@
                     <form @submit.prevent="submitForm">
                         <div class="mb-3">
                         <label for="campaign_id" class="form-label">Campaign ID</label>
-                        <input v-model="editCampaign.campaign_id" type="text" class="form-control" id="campaign_id"  required>
-                        <!-- {{ editCampaign.campaign_id }} -->
+                        <!-- <input v-model="currentCampaign.campaign_id" type="text" class="form-control" id="campaign_id"  required> -->
+                        {{ editCampaign.campaign_id }}
                         </div>
                         <div class="mb-3">
                         <label for="username" class="form-label">Creator</label>
-                        <input v-model="editCampaign.username" type="text" class="form-control" id="username"  required>
+                        <!-- <input v-model="currentCampaign.username" type="text" class="form-control" id="username"  required> -->
+                        {{ editCampaign.username }}
                         </div>
                 
                         <div class="mb-3">
                         <label for="campaignName" class="form-label">Campaign Name</label>
-                        <input v-model="editCampaign.campaignName" type="text" class="form-control" id="campaignName" required>
+                        <input v-model="currentCampaign.campaignName" type="text" class="form-control" id="campaignName" required>
                         </div>
                 
                         <div class="mb-3">
                         <label for="campaignType" class="form-label">Campaign Type</label>
-                        <select v-model="editCampaign.campaignType" class="form-select" id="campaignType" required>
+                        <select v-model="currentCampaign.campaignType" class="form-select" id="campaignType" required>
                                                         <option value="option1">Animals</option>
                                                         <option value="option2">Business</option>
                                                         <option value="option3">Education</option>
@@ -62,8 +63,9 @@ export default {
       required: true
     },
   },
+
   data() {
-    return {
+    return {  
         editCampaign: {
             campaign_id: this.formData.campaign_id,
             username: this.formData.username,
@@ -79,7 +81,7 @@ export default {
   methods: {
     submitForm() {
         console.log('Submitting form:', this.editCampaign);
-        CampaignService.editCampaign(this.editCampaign)
+        CampaignService.editCampaign(this.currentCampaign)
         .then(resp => {
             console.log('Response from service:', resp);
             console.log('Updated data from server:', resp.data);
@@ -88,7 +90,7 @@ export default {
                 this.$store.commit(
                     'SET_NOTIFICATION',
                     {
-                        message: `Campaign ${this.editCampaign.id} was updated.`,
+                        message: `Campaign ${this.currentCampaign.id} was updated.`,
                         type: 'success'
                     }
                 );
