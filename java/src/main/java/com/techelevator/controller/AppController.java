@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -66,6 +67,7 @@ public class AppController {
         }
     }
 
+    // most likely not needed
     @RequestMapping(path="/all-proposals", method = RequestMethod.GET)
     public List<ProposalDto> getProposals() {
         return propdao.getProposals();
@@ -100,10 +102,16 @@ public class AppController {
         try {
             propdao.deleteProposal(principal.getName(), proposal_id, campaign_id);
         } catch (DaoException e) {
-            ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage(), e);
         }
     }
 
+
+    public List<ProposalDto> getProposalListByCampaignId(Principal principal, ProposalDto proposalDto){
+
+
+        return null;
+    }
 
 
 

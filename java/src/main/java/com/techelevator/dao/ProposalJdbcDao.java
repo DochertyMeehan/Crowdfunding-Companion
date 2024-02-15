@@ -97,14 +97,16 @@ public class ProposalJdbcDao implements ProposalDao{
 
 
     @Override
-    public void deleteProposal(String name,int campaignId, int proposalId) {
+    public void deleteProposal(String name,int proposalId,int campaignId) {
         try {
             if (getUsernameByCampaignId(campaignId).equals(name)) {
-                String sql = "DELETE FROM proposal WHERE proposal_id = ? AND username = ?";
-                template.update(sql, proposalId, name);
+                String sql = "DELETE FROM proposal WHERE proposal_id = ? AND campaign_id = ?";
+                template.update(sql, proposalId, campaignId);
+            }else {
+                throw new DaoException("Cannot delete proposal that isn't yours");
             }
         } catch (DataAccessException e){
-            throw new DaoException("Cannot delete proposal that isn't yours");
+            throw new DaoException("Database error occurred while deleting the proposal", e);
         }
 
     }
