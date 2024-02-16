@@ -46,6 +46,7 @@ CREATE TABLE proposal (
 	campaign_id INT NOT NULL,
 	proposal_name varchar(40) NOT NULL,
 	description varchar(300) NOT NULL,
+	proposal_deadline date NOT NULL,
 	proposal_status varchar(20) NOT NULL,
 	vote_passed BOOLEAN,
 	CONSTRAINT FK_proposal_campaignId FOREIGN KEY (campaign_id) REFERENCES campaign(campaign_id) 
@@ -55,7 +56,7 @@ CREATE TABLE vote (
 	vote_id SERIAL PRIMARY KEY,
 	proposal_id INT NOT NULL,
 	vote_response BOOLEAN NOT NULL,
-	CONSTRAINT FK_vote_campaignId FOREIGN KEY (proposal_id) REFERENCES campaign(campaign_id)
+	CONSTRAINT FK_vote_proposal_id FOREIGN KEY (proposal_id) REFERENCES proposal(proposal_id)
 );
 
 
