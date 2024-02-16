@@ -47,6 +47,7 @@ export default {
   },
   name: 'all-campaigns',
   props: ['campaigns'],
+  
   data() {
     return {
       selectedCampaignType: '',

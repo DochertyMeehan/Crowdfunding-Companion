@@ -35,5 +35,13 @@ export default {
     },
     makeDonation(donation){
         return axios.post('/create-donation', donation);
+    },
+    getDonationForCreator(id) {
+        console.log(`/get-donations-list-by-campaign-id/creator?campaign_id=${id}`)
+        return axios.get(`/get-donations-list-by-campaign-id/creator?campaign_id=${id}`)
+    },
+    getDonationForDonor(id){
+        console.log(`/get-donations-list-by-campaign-id/donor?campaign_id=${id}`)
+        return axios.get(`/get-donations-list-by-campaign-id/donor?campaign_id=${id}`)
     }
 }    

@@ -179,6 +179,7 @@ public class DonationJdbcDao implements DonationDao{
             donorList.add(mapRowToDonor(results));
         }
         return donorList;
+
     }
 
     public String mapRowToDonor(SqlRowSet rowSet){

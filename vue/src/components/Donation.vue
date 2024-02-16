@@ -71,11 +71,19 @@ export default {
             }
         })
         this.submitted = true;
-    }
+    },
+    // loadData(){
+    //     CampaignService.getDonationForDonor(this.router.params.id).then(res => {
+
+    //         })
+    // }        
   },
   mounted() {
     this.donation.campaign_id    = this.$route.params.id;
     this.donation.user_id        = this.$store.state.user.id;
   },
+  // created() {
+  //   this.loadData()
+  // }
 };
 </script>

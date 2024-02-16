@@ -15,13 +15,11 @@
       Campaign</router-link>
     <button class="btn btn-cancel" v-on:click="removeCampaign(id)">Delete Card</button>
     </div>
+    <br>
+    <br>
     <div>
-        <ul class="list-group">
-            <li class="list-group-item">Donor: </li>
-            <li class="list-group-item">Donor:</li>
-            <li class="list-group-item">Donor:</li>
-            <li class="list-group-item">Donor:</li>
-            <li class="list-group-item">Donor:</li>
+        <ul class="list-group list-group-flush" v-for="(donation, index) in donations" v-bind:key="index">
+            <li class="list-group-item">{{ index }}. {{ donation.username }} donated: {{ donation.amount }}$ for this campaign</li>
         </ul>
     </div>
   </template>
@@ -36,6 +34,8 @@ import ProposalsView from '../views/ProposalsView.vue';
     data() {
         return {
             selectedCampaign: '',
+            donations:{
+            },
         };
     },
     props: ['campaign'],
@@ -65,11 +65,22 @@ import ProposalsView from '../views/ProposalsView.vue';
                     }
                 });
             }
-        }
+        },
+        loadData(){
+            CampaignService.getDonationForCreator(this.$route.params.id).then(res => {
+                console.log(res.status)
+                this.donations = res.data
+                console.log(this.donation)
+            });
+
+        },
+
     },
     created() {
         this.selectedCampaign = this.$route.params.campaign_id;
+        this.loadData();
     },
+   
 };
   </script>
   <style>
