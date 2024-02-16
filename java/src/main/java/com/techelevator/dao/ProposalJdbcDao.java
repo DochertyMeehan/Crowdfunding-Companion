@@ -73,7 +73,7 @@ public class ProposalJdbcDao implements ProposalDao{
         String proposalname = proposalToCreate.getProposal_name();
         String description = proposalToCreate.getDescription();
         String proposal = proposalToCreate.getProposal_status();
-        LocalDate proposalDeadline = proposalToCreate.getProposal_dealine();
+        LocalDate proposalDeadline = proposalToCreate.getProposal_deadline();
 
         String sql = "INSERT INTO proposal (campaign_id, proposal_name, vote_passed, description, proposal_deadline, proposal_status)" +
                 " VALUES ((SELECT campaign_id FROM campaign WHERE campaign_id = ?), ?, NULL, ?, ?, ?) RETURNING proposal_id;";
