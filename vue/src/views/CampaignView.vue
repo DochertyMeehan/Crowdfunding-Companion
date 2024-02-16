@@ -2,7 +2,7 @@
     <div>
         <div>
             <CampaignsList v-bind:campaigns="campaignData"/>
-        </div>
+        </div>       
     </div>
 </template>
 <script>

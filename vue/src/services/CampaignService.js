@@ -8,6 +8,7 @@ export default {
         return axios.post('/create-campaign', campaign);
     },
     getCampaigns() {
+        console.log("alo")
         return axios.get('/all-campaigns');
     },
     editCampaign(campaign) {

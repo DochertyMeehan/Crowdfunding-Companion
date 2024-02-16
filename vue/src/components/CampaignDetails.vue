@@ -7,13 +7,22 @@
         {{campaign.description }}</p>
       <p>Goal: ${{ campaign.amountGoal }}</p>
       <p>Balance: ${{ campaign.balance }}</p>
-      <router-link class="btn btn-primary" v-bind:to="{name: 'donation'}">Donation</router-link>
+      <router-link class="btn btn-primary" v-bind:to="{name: 'donation'}">donate</router-link>
       <div class="container">
         <button><router-link class="nav-link" v-bind:to="{ name: 'ProposalList' }">See all the proposals</router-link></button>
     </div>
       <router-link v-bind:to="{ name: 'EditCampaign', params: { id: $route.params.campaign_id } }" class="btn btn-submit">Edit
       Campaign</router-link>
     <button class="btn btn-cancel" v-on:click="removeCampaign(id)">Delete Card</button>
+    </div>
+    <div>
+        <ul class="list-group">
+            <li class="list-group-item">Donor: </li>
+            <li class="list-group-item">Donor:</li>
+            <li class="list-group-item">Donor:</li>
+            <li class="list-group-item">Donor:</li>
+            <li class="list-group-item">Donor:</li>
+        </ul>
     </div>
   </template>
   

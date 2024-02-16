@@ -12,8 +12,9 @@
                                     Username
                                 </div>
                                 <div class="col-10">
-                                    <input class="form-control" type="text" placeholder="Username" aria-label="Username" v-model="formData.username">
-                                    <!-- {{ formData.username }} -->
+                                    <!-- <input class="form-control" type="text" placeholder="Username" aria-label="Username" v-model="formData.username">
+                                    {{ formData.username }} -->
+                                    {{ $store.state.user.username }}
                                 </div>
                             </div>
                             <div class="row align-items-center mb-3">
@@ -87,13 +88,16 @@ export default {
   data() {
     return {
       formData: {
-        username: '',
+        username: null,
         campaignName: '',
         campaignType: '',
         description: '',
         amountGoal: null,
       },
     };
+  },
+  mounted() {
+    this.formData.username = this.$store.state.user.username;
   },
   methods: {
     goToCampaignList(){
