@@ -10,6 +10,7 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,9 +46,10 @@ public class ProposalJdbcDao implements ProposalDao{
         String proposalName = rowset.getString("proposal_name");
         Boolean votePassed = rowset.getBoolean("vote_passed");
         String proposalStatus = rowset.getString("proposal_status");
+        LocalDate proposalDeadline = rowset.getDate("proposal_deadline").toLocalDate();
 
 
-        ProposalDto proposal = new ProposalDto(proposalId, campaignId, description, votePassed, proposalName, proposalStatus);
+        ProposalDto proposal = new ProposalDto(proposalId, campaignId, description, votePassed, proposalName, proposalStatus, proposalDeadline);
         return proposal;
     }
 
@@ -71,10 +73,11 @@ public class ProposalJdbcDao implements ProposalDao{
         String proposalname = proposalToCreate.getProposal_name();
         String description = proposalToCreate.getDescription();
         String proposal = proposalToCreate.getProposal_status();
+        LocalDate proposalDeadline = proposalToCreate.getProposal_dealine();
 
-        String sql = "INSERT INTO proposal (campaign_id, proposal_name, vote_passed, description, proposal_status)" +
-                " VALUES ((SELECT campaign_id FROM campaign WHERE campaign_id = ?), ?, NULL, ?, ?) RETURNING proposal_id;";
-        int newProposalID = template.queryForObject(sql, Integer.class, campaignId, proposalname, description, proposal);
+        String sql = "INSERT INTO proposal (campaign_id, proposal_name, vote_passed, description, proposal_deadline, proposal_status)" +
+                " VALUES ((SELECT campaign_id FROM campaign WHERE campaign_id = ?), ?, NULL, ?, ?, ?) RETURNING proposal_id;";
+        int newProposalID = template.queryForObject(sql, Integer.class, campaignId, proposalname, description, proposalDeadline, proposal);
 
         return getProposal(newProposalID);
     }
