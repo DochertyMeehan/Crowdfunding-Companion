@@ -10,7 +10,7 @@ public interface DonationDao {
 
     public void createDonation(DonationDto donationToCreate);
 
-    public List<DonationDto> getDonationsByCampaignId(int userId,String username);
+    public List<DonationDto> getDonationsByCampaignId(int userId);
 
     public List<DonationDto> getDonationsByUserId(DonationDto donotation);
 

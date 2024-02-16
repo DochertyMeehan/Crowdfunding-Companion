@@ -59,10 +59,22 @@ public class DonationJdbcDao implements DonationDao{
     }
 
     @Override
-    public List<DonationDto> getDonationsByCampaignId(int userId, String username) {
-        List<DonationDto> donations = new ArrayList<>();
+    public List<DonationDto> getDonationsByCampaignId(int campaign_id) {
+        List<DonationDto> donationDtoList = new ArrayList<>();
 
-        return donations;
+        String sql = "SELECT donation.amount, users.username\n" +
+                "FROM donation\n" +
+                "JOIN users ON donation.user_id = users.user_id\n" +
+                "WHERE donation.campaign_id = ?;\n";
+
+        SqlRowSet results = template.queryForRowSet(sql,campaign_id);
+
+        while (results.next()){
+            DonationDto donationDto = mapRowToDonation(results);
+            donationDtoList.add(donationDto);
+        }
+
+        return donationDtoList;
 
     }
 
