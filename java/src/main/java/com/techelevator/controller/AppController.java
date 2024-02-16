@@ -3,11 +3,9 @@ package com.techelevator.controller;
 import com.techelevator.dao.CampaignDao;
 import com.techelevator.dao.DonationDao;
 import com.techelevator.dao.ProposalDao;
+import com.techelevator.dao.VoteDao;
 import com.techelevator.exception.DaoException;
-import com.techelevator.model.CampaignDto;
-import com.techelevator.model.DonationDto;
-import com.techelevator.model.DonorUserDto;
-import com.techelevator.model.ProposalDto;
+import com.techelevator.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,11 +26,13 @@ public class AppController {
     private CampaignDao dao;
     private ProposalDao propdao;
     private DonationDao donationDao;
+    private VoteDao voteDao;
 
-    public AppController(CampaignDao dao, ProposalDao propdao, DonationDao donationDao) {
+    public AppController(CampaignDao dao, ProposalDao propdao, DonationDao donationDao, VoteDao voteDao) {
         this.dao = dao;
         this.propdao = propdao;
         this.donationDao = donationDao;
+        this.voteDao = voteDao;
     }
 
     @RequestMapping(path="/all-campaigns", method = RequestMethod.GET)
@@ -163,8 +163,15 @@ public class AppController {
 
     }
 
-
-
+    @RequestMapping(path = "/add-vote", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
+    public void addVote(@RequestBody VoteDto voteDto) {
+        try {
+            voteDao.addVote(voteDto);
+        } catch (DaoException e){
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage(), e);
+        }
+    }
 
 
 }
