@@ -1,7 +1,31 @@
 <template>
- <div>
-    <h2>Amount Form</h2>
-    <form @submit.prevent="submitForm">
+ <div class="container">
+  <h2>Thank you for your Donation</h2>
+    <div class="mb-3">
+        <label for="fullName" class="form-label">Full Name</label>
+        <input type="text" class="form-control" id="fullName">
+      </div>
+      
+      <div class="mb-3">
+        <label for="email" class="form-label">Email Address</label>
+        <input type="email" class="form-control" id="email">
+      </div>
+      
+      <div class="mb-3">
+        <label for="paymentMethod" class="form-label">Payment Method</label>
+        <select class="form-select" id="paymentMethod" >
+          <option value="creditCard">Credit Card</option>
+          <option value="paypal">PayPal</option>
+        </select>
+      </div>
+      
+      <div>
+        <div class="mb-3">
+          <label for="cardNumber" class="form-label">Credit Card Number</label>
+          <input type="text" class="form-control" id="cardNumber">
+        </div>
+      </div>
+    <form @submit.prevent="submitForm" >
       <label for="amount">Amount:</label>
       <input
         type="number"
@@ -37,7 +61,14 @@ export default {
     submitForm() {
         this.donation.amount = this.amount;
         CampaignService.makeDonation(this.donation).then(res => {
-
+          if (res.status === 201){
+                this.$store.commit('SET_NOTIFICATION', {
+                    message: 'A new donation was added.',
+                    type: 'success'
+                }
+                );
+                this.$router.push({name: 'SingleCampaignView'});
+            }
         })
         this.submitted = true;
     }

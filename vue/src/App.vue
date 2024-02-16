@@ -2,7 +2,7 @@
   <div id="capstone-app">
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container">
-        <a class="navbar-brand" href="#">Crowdfunding Companion</a>
+        <a class="navbar-brand">Crowdfunding Companion</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -23,11 +23,11 @@
               <router-link class="nav-link" v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
             </li>
           </ul>
-          <ul class="navbar-nav">
+          <!-- <ul class="navbar-nav">
             <li class="nav-item">
               <router-link class="nav-link" v-bind:to="{ name: 'login' }" v-if="$store.state.token != ''">LogIn</router-link>
             </li>
-          </ul>
+          </ul> -->
         </div>
       </div>
     </nav>

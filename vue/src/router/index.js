@@ -14,7 +14,8 @@ import EditCampaignView from '../views/EditCampaignView.vue';
 import ProposalsView from '../views/ProposalsView.vue';
 import ProposalForm from '../components/ProposalForm.vue';
 import FAQView from '../views/FAQview.vue';
-import Donation from '../components/Donation.vue'
+import Donation from '../components/Donation.vue';
+import CampaignsList from '../components/CampaignsList.vue';
 
 
 
