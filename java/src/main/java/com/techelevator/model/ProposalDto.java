@@ -1,5 +1,8 @@
 package com.techelevator.model;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 public class ProposalDto {
 
     private int proposal_id;
@@ -13,14 +16,17 @@ public class ProposalDto {
 
     private String proposal_status;
 
+    private LocalDate proposal_deadline;
 
-    public ProposalDto(int proposal_id, int campaign_id, String proposal_name, boolean vote_passed, String description, String proposal_status) {
+
+    public ProposalDto(int proposal_id, int campaign_id, String proposal_name, boolean vote_passed, String description, String proposal_status, LocalDate proposal_deadline) {
         this.proposal_id = proposal_id;
         this.campaign_id = campaign_id;
         this.proposal_name = proposal_name;
         this.vote_passed = vote_passed;
         this.description = description;
         this.proposal_status = proposal_status;
+        this.proposal_deadline = proposal_deadline;
     }
 
     public int getProposal_id() {
@@ -69,5 +75,13 @@ public class ProposalDto {
 
     public void setProposal_status(String proposal_status) {
         this.proposal_status = proposal_status;
+    }
+
+    public LocalDate getProposal_deadline() {
+        return proposal_deadline;
+    }
+
+    public void setProposal_deadline(LocalDate proposal_deadline) {
+        this.proposal_deadline = proposal_deadline;
     }
 }
