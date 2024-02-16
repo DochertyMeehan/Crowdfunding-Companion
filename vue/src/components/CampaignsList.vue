@@ -25,9 +25,9 @@
           </div>
           <div class="card-footer text-body-secondary">
             <div class="row d-flex align-items-center">
-              <div class="col">
+              <!-- <div class="col">
                 {{ campaign.username }}
-              </div>
+              </div> -->
               <div class="col text-end">
                 <router-link class="btn btn-primary" v-bind:to="{name: 'donation', params: {id: campaign.campaign_id}}">Donation</router-link>
               </div>
