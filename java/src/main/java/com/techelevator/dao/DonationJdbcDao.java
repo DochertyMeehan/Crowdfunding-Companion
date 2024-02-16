@@ -70,8 +70,7 @@ public class DonationJdbcDao implements DonationDao{
         SqlRowSet results = template.queryForRowSet(sql,campaign_id);
 
         while (results.next()){
-            DonationDto donationDto = mapRowToDonation(results);
-            donationDtoList.add(donationDto);
+            donationDtoList.add(mapRowToDonation(results));
         }
 
         return donationDtoList;
