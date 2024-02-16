@@ -78,7 +78,7 @@ export default {
   methods: {
     submitForm() {
         console.log('Submitting form:', this.editCampaign);
-        CampaignService.editCampaign(this.currentCampaign)
+        CampaignService.editCampaign(this.editCampaign)
         .then(resp => {
             console.log('Response from service:', resp);
             console.log('Updated data from server:', resp.data);
@@ -87,7 +87,7 @@ export default {
                 this.$store.commit(
                     'SET_NOTIFICATION',
                     {
-                        message: `Campaign ${this.currentCampaign.id} was updated.`,
+                        message: `Campaign ${this.editCampaign.id} was updated.`,
                         type: 'success'
                     }
                 );

@@ -11,6 +11,8 @@ export default {
         return axios.get('/all-campaigns');
     },
     editCampaign(campaign) {
+        console.log("alo")
+        console.log(campaign)
         return axios.put('/edit-campaign', campaign);
     },
     getCampaign(id) {
@@ -22,7 +24,15 @@ export default {
     getAllProposals(id) {
         return axios.get('/getProposalListByCampaignId', {params: { campaign_id: id }})
     },
-    makeProposal(proposal) {
-        return axios.post('/create-proposal', proposal);
+    // makeProposal(id, proposal) {
+    //     return axios.post('/create-proposal' + {params: { campaign_id: id }}, proposal);
+    // }
+    makeProposal(id, proposal) {
+        console.log(`/create-proposal?campaign_id=${id}`)
+        console.log(proposal)
+        return axios.post(`/create-proposal?campaign_id=${id}`, proposal);
+    },
+    makeDonation(donation){
+        return axios.post('/create-donation', donation);
     }
 }    

@@ -14,6 +14,7 @@ import EditCampaignView from '../views/EditCampaignView.vue';
 import ProposalsView from '../views/ProposalsView.vue';
 import ProposalForm from '../components/ProposalForm.vue';
 import FAQView from '../views/FAQview.vue';
+import Donation from '../components/Donation.vue'
 
 
 
@@ -110,6 +111,14 @@ const routes = [
     path: "/faq",
     name: "FAQ",
     component: FAQView
+  },
+  {
+    path: "/view/campaign/:id/donate",
+    name: "donation",
+    component: Donation,
+    meta: {
+      requireAuth: true
+    }
   }
 
   // {

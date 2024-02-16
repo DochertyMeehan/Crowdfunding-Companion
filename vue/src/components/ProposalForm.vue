@@ -1,29 +1,23 @@
 <template>
     <router-link class="nav-link" v-bind:to="{ name: 'ProposalList' }">Go back</router-link>
     <div class="container">
-        <form @submit.prevent="submitProposal">
+        <form @submit.prevent="save" v-show="!isSaving">
             <div class="mb-3">
-                <label for="proposalName" class="form-label">campaign_id</label>
-                <input v-model="campaign_id" type="text" class="form-control" id="proposalName" required>
+                <label for="proposalId" class="form-label">campaign_id</label>
+                <input v-model="campaign_id" type="text" class="form-control" id="proposalId" >
                 </div>
                 <div class="mb-3">
                     <label for="proposalName" class="form-label">Proposal Name</label>
-                    <input v-model="proposalName" type="text" class="form-control" id="proposalName" required>
+                    <input v-model="newProposal.proposal_name" type="text" class="form-control" id="proposalName" >
                 </div>
-
-                <div class="mb-3">
-                    <label for="votePassed" class="form-label">Vote Passed</label>
-                    <input v-model="votePassed" type="text" class="form-control" id="votePassed" required>
-                </div>
-
                 <div class="mb-3">
                     <label for="description" class="form-label">Description</label>
-                    <textarea v-model="description" class="form-control" id="description" rows="3" required></textarea>
+                    <textarea v-model="newProposal.description" class="form-control" id="description" rows="3"></textarea>
                 </div>
 
                 <div class="mb-3">
                     <label for="proposalStatus" class="form-label">Proposal Status</label>
-                    <select v-model="proposalStatus" class="form-select" id="proposalStatus" required>
+                    <select v-model="newProposal.proposal_status" class="form-select" id="proposalStatus" >
                     <option value="pending">Pending</option>
                     <option value="approved">Approved</option>
                     <option value="rejected">Rejected</option>
@@ -31,29 +25,36 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary">Submit Proposal</button>
+                <button class="btn btn-primary" v-bind:to="{ name: 'ProposalList' }">Cancel</button>
                 </form>
   </div>
 </template>
 <script>
 import CampaignService from '../services/CampaignService';
-
-
 export default {
     data() {
         return {
-            proposalData: {
-                campaign_id: '',
-                proposal_name: '',
-                description: '',
-                proposal_status: '',
+            campaign_id: this.$route.params.id,
+            newProposal: {
             },
+            isSaving: false
         };
     },
-    methods: {
-        submitForm() {
-            CampaignService.makeProposal(this.proposalData)
-            console.log('hellp')
-            console.log(this.proposalData)
+    methods: {        
+        save() {
+                this.isSaving = true;
+                console.log("Test")
+                console.log("ID=", this.$route.params.id)
+                CampaignService.makeProposal(this.$route.params.id, this.newProposal)         
+                .then(res => {
+                    console.log("hello")   
+                    console.log(this.newProposal)
+                    
+                    if (res.status === 201) {
+                        console.log(res.status)
+                        this.$router.push({name: 'ProposalList'})
+                    }
+                })
         }
     },
     

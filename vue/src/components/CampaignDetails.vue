@@ -2,9 +2,12 @@
     <div>
       <h2>{{ campaign.username }}</h2>
       <p>{{campaign.description }}</p>
+      <p>{{ campaign.amountGoal }}</p>
+      <router-link class="btn btn-primary" v-bind:to="{name: 'donation'}">Donation</router-link>
       <router-link v-bind:to="{ name: 'EditCampaign', params: { id: $route.params.campaign_id } }" class="btn btn-submit">Edit
       Campaign</router-link>
-    <button class="btn btn-cancel" v-on:click="removeCampaign(id)">Delete Card</button>
+    <button class="btn btn-cancel" v-on:click="removeCampaign(id)">Delete Card</button> 
+
     <div class="container">
         <button><router-link class="nav-link" v-bind:to="{ name: 'ProposalList' }">See all the proposals</router-link></button>
     </div>
