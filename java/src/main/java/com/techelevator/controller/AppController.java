@@ -6,6 +6,7 @@ import com.techelevator.dao.ProposalDao;
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.CampaignDto;
 import com.techelevator.model.DonationDto;
+import com.techelevator.model.DonorUserDto;
 import com.techelevator.model.ProposalDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -137,17 +138,28 @@ public class AppController {
     }
 
 
-    @RequestMapping(path = "/get-donations-list-by-campaign-id", method = RequestMethod.GET)
+    @RequestMapping(path = "/get-donations-list-by-campaign-id/creator", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    public List<DonationDto> getDonationsByCampaignId(@RequestParam("campaign_id") int campaign_id){
+    public List<DonorUserDto> getDonationsByCampaignIdForCreator(@RequestParam("campaign_id") int campaign_id, Principal principal){
 
 
      try {
-         return donationDao.getDonationsByCampaignId(campaign_id);
+         return donationDao.getDonationsByCampaignIdForCreator(campaign_id, principal.getName());
      } catch (DaoException e){
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage(), e);
         }
 
+    }
+    @RequestMapping(path = "/get-donations-list-by-campaign-id/donor", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
+    public List<DonorUserDto> getDonationsByCampaignIdForDonor(@RequestParam("campaign_id") int campaign_id, Principal principal){
+
+
+        try {
+            return donationDao.getDonationsByCampaignIdForDonor(campaign_id, principal.getName());
+        } catch (DaoException e){
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage(), e);
+        }
 
     }
 
