@@ -23,10 +23,14 @@
                     <option value="rejected">Rejected</option>
                     </select>
                 </div>
+                <div class="mb-3">
+                    <label for="deadline" class="form-label">Deadline</label>
+                    <input v-model="newProposal.proposal_deadline" type="date" class="form-control" id="deadline" required>
+                </div>
 
                 <button type="submit" class="btn btn-primary">Submit Proposal</button>
                 <button class="btn btn-primary" v-bind:to="{ name: 'ProposalList' }">Cancel</button>
-                </form>
+            </form>
   </div>
 </template>
 <script>
