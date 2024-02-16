@@ -44,6 +44,7 @@ public class DonationJdbcDao implements DonationDao{
 
     }
 
+
     public void updateBalanceForCampaign(int campaignId, double amount){
         String sql = "SELECT balance FROM campaign WHERE campaign_id = ?";
         double balance = template.queryForObject(sql, Double.class,campaignId);
@@ -58,7 +59,7 @@ public class DonationJdbcDao implements DonationDao{
     }
 
     @Override
-    public List<DonationDto> getDonationsByCampaignId(int campaignId,String username) {
+    public List<DonationDto> getDonationsByCampaignId(int userId, String username) {
         List<DonationDto> donations = new ArrayList<>();
 
         return donations;
@@ -71,7 +72,7 @@ public class DonationJdbcDao implements DonationDao{
         String sql = "SELECT donation WHERE user_id = ?;";
         SqlRowSet result = template.queryForRowSet(sql, donation.getUser_id());
 
-        while (result.next()){
+       while (result.next()){
             DonationDto donate = mapRowToDonation(result);
             donations.add(donate);
         }
@@ -100,6 +101,7 @@ public class DonationJdbcDao implements DonationDao{
                 "JOIN donation ON users.user_id = donation.user_id WHERE donation.user_id = 4;";
         return null;
     }
+
 
 
 

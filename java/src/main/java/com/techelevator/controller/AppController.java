@@ -138,10 +138,10 @@ public class AppController {
 
 
     @ResponseStatus(HttpStatus.OK)
-    public List<DonationDto> getDonationsByCampaignId(@RequestParam("campaign_id") int campaignId, Principal principal){
+    public List<DonationDto> getDonationsByCampaignId(@RequestParam("donation_id") int donationId, Principal principal){
 
      //   try {
-        return     donationDao.getDonationsByCampaignId(campaignId, principal.getName());
+        return     donationDao.getDonationsByCampaignId(donationId, principal.getName());
        // }
 
     }
