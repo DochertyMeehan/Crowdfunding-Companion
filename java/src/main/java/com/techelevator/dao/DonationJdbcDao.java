@@ -217,6 +217,23 @@ public class DonationJdbcDao implements DonationDao{
 
     }
 
+    public List<DonorUserDto> getHallOfFameDonors(){
+        List<DonorUserDto> hallOfFamers = new ArrayList<>();
+
+        String sql = "SELECT users.username, SUM(donation.amount) AS total_donation_amount\n" +
+                "FROM users\n" +
+                "JOIN donation ON users.user_id = donation.user_id\n" +
+                "GROUP BY users.username\n" +
+                "ORDER BY total_donation_amount DESC\n" +
+                "LIMIT 10;";
+        SqlRowSet results = template.queryForRowSet(sql);
+        while (results.next()){
+            hallOfFamers.add(mapRowToDonorUser(results));
+        }
+        return hallOfFamers;
+
+    }
+
     public String mapRowToDonor(SqlRowSet rowSet){
         String username = rowSet.getString("username");
 

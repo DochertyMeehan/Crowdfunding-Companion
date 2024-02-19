@@ -20,5 +20,5 @@ public interface DonationDao {
 
     public List<DonorUserDto> getDonationsByCampaignIdForDonor(int campaign_id, String username);
 
-
+    public List<DonorUserDto> getHallOfFameDonors();
 }

@@ -183,6 +183,14 @@ public class AppController {
         voteDao.updateProposalStatus(proposalId);
     }
 
+    @RequestMapping(path = "/hall-of-fame", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
+    public List<DonorUserDto> getHallOfFameDonors(){
+        return donationDao.getHallOfFameDonors();
+    }
+
+
+
 
 }
 
