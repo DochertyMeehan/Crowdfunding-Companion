@@ -43,4 +43,6 @@ public class VoteJdbcDao implements VoteDao {
 //    public List<VoteDto> getVotesByProposalId(int proposalId) {
 //        return null;
 //    }
+
+    // if (select * from vote where user_id & proposal_id exists), then reject the vote
 }

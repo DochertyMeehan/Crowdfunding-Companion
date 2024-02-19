@@ -67,6 +67,8 @@ import ProposalsView from '../views/ProposalsView.vue';
             }
         },
         loadData(){
+            console.log("hello")
+            console.log(this.campaign)
             CampaignService.getDonationForCreator(this.$route.params.id).then(res => {
                 console.log(res.status)
                 this.donations = res.data

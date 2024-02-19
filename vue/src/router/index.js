@@ -33,7 +33,7 @@ const routes = [
     name: 'home',
     component: CampaignView,
     meta: {
-      requiresAuth: true
+      requiresAuth: false
     }
   },
   {
@@ -81,7 +81,7 @@ const routes = [
     name: "SingleCampaignView",
     component: SingleCampaignView,
     meta: {
-      requireAuth: false
+      requireAuth: true
     }
   },
   {
@@ -120,7 +120,8 @@ const routes = [
     meta: {
       requireAuth: true
     }
-  }
+  },
+
 
   // {
   //   path:"/campaign/:campaign_id",
