@@ -1,0 +1,33 @@
+<template>
+    <div>
+    <ul class="list-group">
+      <li v-for="(person, index) in listOfHall" :key="index" class="list-group-item">
+        <div class="row">
+            <div class="col text-capitalize">{{ person.username }}</div>
+            <div class="col">{{ person.amount }}$</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</template>
+<script>
+import CampaignService from '../services/CampaignService';
+export default {
+    data() {
+        return {
+            listOfHall: [],
+        }
+    },
+    methods: {
+        loadData() {
+            CampaignService.getHallOfFameDonors().then(res => {
+                this.listOfHall = res.data
+            
+            })
+        }
+    },
+    created() {
+        this.loadData()
+    }
+}
+</script>

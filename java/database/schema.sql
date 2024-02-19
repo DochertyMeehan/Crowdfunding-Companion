@@ -54,9 +54,11 @@ CREATE TABLE proposal (
 
 CREATE TABLE vote (
 	vote_id SERIAL PRIMARY KEY,
+	user_id INT NOT NULL,
 	proposal_id INT NOT NULL,
 	vote_response BOOLEAN NOT NULL,
-	CONSTRAINT FK_vote_proposal_id FOREIGN KEY (proposal_id) REFERENCES proposal(proposal_id)
+	CONSTRAINT FK_vote_proposal_id FOREIGN KEY (proposal_id) REFERENCES proposal(proposal_id),
+	CONSTRAINT FK_vote_user_id FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
 

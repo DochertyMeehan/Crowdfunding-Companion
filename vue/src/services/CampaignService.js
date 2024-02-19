@@ -44,6 +44,7 @@ export default {
         console.log(`/get-donations-list-by-campaign-id/donor?campaign_id=${id}`)
         return axios.get(`/get-donations-list-by-campaign-id/donor?campaign_id=${id}`)
     },
+
     createVote(vote){
         return axios.post('/add-vote', vote);
     },
@@ -51,6 +52,9 @@ export default {
         const formData = new FormData();
         formData.append('proposalId', id);
         return axios.put('/update-vote', formData);
-    }
+    },
+    getHallOfFameDonors() {
+        return axios.get('/hall-of-fame');
+    },
 
 }    
