@@ -3,11 +3,9 @@ package com.techelevator.dao;
 import com.techelevator.model.VoteDto;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
-
 import javax.sql.DataSource;
 import java.time.LocalDate;
-import java.time.chrono.ChronoLocalDate;
-import java.util.Date;
+
 
 @Component
 public class VoteJdbcDao implements VoteDao {
@@ -19,18 +17,40 @@ public class VoteJdbcDao implements VoteDao {
 
 
     @Override
-    public void addVote(VoteDto vote) {
-
-
+    public void addVote(VoteDto vote, String username) {
         LocalDate proposalDeadline = getProposalDeadlineByProposalId(vote.getProposal_id());
 
         if (getCampaignBalanceByProposalId(vote.getProposal_id()) == getCampaignGoalByProposalId(vote.getProposal_id())
                 && LocalDate.now().isBefore(proposalDeadline)) {
-            String sql = "INSERT INTO vote(proposal_id, vote_response) VALUES (?, ?);";
-            template.update(sql, vote.getProposal_id(), vote.isVote_response());
-        }
 
+            boolean hasVoted = hasUserVotedForProposal(getUserIdByUsername(username), vote.getProposal_id());
+
+            if (hasVoted) {
+                String sql = "UPDATE vote SET vote_response = ? WHERE user_id = ? AND proposal_id = ?";
+                template.update(sql, vote.isVote_response(), getUserIdByUsername(username), vote.getProposal_id());
+            } else {
+                String sql = "INSERT INTO vote(user_id ,proposal_id,vote_response) VALUES (?, ?, ?)";
+                template.update(sql, getUserIdByUsername(username),vote.getProposal_id(), vote.isVote_response());
+            }
+        }
     }
+
+    public int getUserIdByUsername(String username){
+        String sql = "SELECT user_id from users where username = ?;";
+        return template.queryForObject(sql, Integer.class,username);
+    }
+
+
+
+    public boolean hasUserVotedForProposal(int userId, int proposalId) {
+        String sql = "SELECT COUNT(*) FROM vote WHERE user_id = ? AND proposal_id = ?";
+        int count = template.queryForObject(sql, Integer.class, userId, proposalId);
+        return count > 0;
+    }
+
+
+
+
 
 
     public double getCampaignBalanceByProposalId(int proposal_id){

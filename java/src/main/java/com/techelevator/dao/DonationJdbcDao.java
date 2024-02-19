@@ -1,10 +1,8 @@
 package com.techelevator.dao;
 
 import com.techelevator.exception.DaoException;
-import com.techelevator.model.CampaignDto;
 import com.techelevator.model.DonationDto;
 import com.techelevator.model.DonorUserDto;
-import com.techelevator.model.ProposalDto;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -17,23 +15,12 @@ import java.util.List;
 @Component
 public class DonationJdbcDao implements DonationDao{
 
-    private JdbcTemplate template;
+    private final JdbcTemplate template;
 
     public DonationJdbcDao(DataSource dataSource) {
         this.template = new JdbcTemplate(dataSource);
     }
 
-    @Override
-    public DonationDto getDonation(int donationId) {
-        String sql = "SELECT * FROM donation WHERE donation_id = ?";
-        SqlRowSet result = template.queryForRowSet(sql, donationId);
-
-        DonationDto donation = null;
-        if (result.next()) {
-            donation = mapRowToDonation(result);
-        }
-        return donation;
-    }
 
     @Override
     public String createDonation(DonationDto donationToCreate) {
@@ -60,25 +47,19 @@ public class DonationJdbcDao implements DonationDao{
     public double getBalanceByCampaignId(int campaign_id){
 
         String sql = "SELECT balance FROM campaign WHERE campaign_id = ?";
-        double balance = template.queryForObject(sql, Double.class,campaign_id);
-
-        return balance;
+        return template.queryForObject(sql, Double.class,campaign_id);
     }
 
     public double getAmountGoalByCampaignId(int campaign_id){
         String sql = "SELECT amountGoal FROM campaign WHERE campaign_id = ?";
-        double amountGoal = template.queryForObject(sql, Double.class,campaign_id);
-
-        return amountGoal;
+        return template.queryForObject(sql, Double.class,campaign_id);
     }
 
     public double getAmountDifferenceByCampaignId(int campaign_id, double amount){
         String sql = "SELECT balance FROM campaign WHERE campaign_id = ?";
         double balance = template.queryForObject(sql, Double.class,campaign_id);
 
-        double newBalance = balance + amount;
-
-        return newBalance;
+        return balance + amount;
     }
 
 
@@ -119,44 +100,6 @@ public class DonationJdbcDao implements DonationDao{
             throw new DaoException("Cannot view donations of campaign that's not yours");
         }
         return donationUserDtoList;
-    }
-
-    @Override
-    public List<DonationDto> getDonationsByUserId(DonationDto donation) {
-        List<DonationDto> donations = new ArrayList<>();
-        String sql = "SELECT donation WHERE user_id = ?;";
-        SqlRowSet result = template.queryForRowSet(sql, donation.getUser_id());
-
-       while (result.next()){
-            DonationDto donate = mapRowToDonation(result);
-            donations.add(donate);
-        }
-        return donations;
-    }
-
-
-
-    public String getUsernameByDonationId(int donationId){
-        String sql = "SELECT username FROM campaign WHERE donation_id = ?;";
-
-        String username = template.queryForObject(sql, String.class, donationId);
-
-        return username;
-    }
-
-    public String getDonorUsernameByUserId(int userId){
-        String sql = "select username FROM users\n" +
-                "JOIN donation ON users.user_id = donation.user_id WHERE donation.user_id = 4;";
-        return null;
-    }
-
-    public DonationDto mapRowToDonation(SqlRowSet rowset) {
-        int userId = rowset.getInt("user_id");
-        int campaignId = rowset.getInt("campaign_id");
-        double amount = rowset.getDouble("amount");
-
-        DonationDto donation = new DonationDto(userId, campaignId, amount);
-        return donation;
     }
     public DonorUserDto mapRowToDonorUser(SqlRowSet rowset) {
         String username = rowset.getString("username");
@@ -249,11 +192,5 @@ public class DonationJdbcDao implements DonationDao{
         DonorUserDto donation = new DonorUserDto(username, amount);
         return donation;
     }
-
-
-
-
-
-
 
 }

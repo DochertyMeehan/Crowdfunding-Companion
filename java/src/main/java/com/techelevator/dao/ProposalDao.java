@@ -1,23 +1,22 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.ProposalDto;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 import java.util.List;
 
 public interface ProposalDao {
 
+     ProposalDto getProposal(int proposalId);
 
-    public List<ProposalDto> getProposals();
+     ProposalDto createProposal(ProposalDto proposalToCreate, int campaignId);
 
-    public ProposalDto getProposal(int proposalId);
+     void editProposal(ProposalDto proposalToEdit, String username);
 
-    public ProposalDto createProposal(ProposalDto proposalToCreate, int campaignId);
+     void deleteProposal(String name,int campaignId, int proposalId);
 
-    public void editProposal(ProposalDto proposalToEdit, String username);
-
-    public void deleteProposal(String name,int campaignId, int proposalId);
-
-    public List<ProposalDto> getProposalByCampaignId(String username, int campaignId);
+     List<ProposalDto> getProposalByCampaignId(String username, int campaignId);
+     ProposalDto mapRowToProposal(SqlRowSet rowset);
 
 
 }

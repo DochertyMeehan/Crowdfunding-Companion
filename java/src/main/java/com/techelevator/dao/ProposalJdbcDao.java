@@ -1,10 +1,8 @@
 package com.techelevator.dao;
 
 import com.techelevator.exception.DaoException;
-import com.techelevator.model.CampaignDto;
 import com.techelevator.model.ProposalDto;
 import org.springframework.dao.DataAccessException;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
@@ -22,21 +20,6 @@ public class ProposalJdbcDao implements ProposalDao{
 
     public ProposalJdbcDao(DataSource dataSource) {
         this.template = new JdbcTemplate(dataSource);
-    }
-
-    @Override
-    public List<ProposalDto> getProposals() {
-        String sql = "SELECT * FROM proposal";
-        List<ProposalDto> proposals = new ArrayList<>();
-
-        SqlRowSet results = template.queryForRowSet(sql);
-
-        while(results.next()) {
-            ProposalDto proposal = mapRowToProposal(results);
-            proposals.add(proposal);
-        }
-
-        return proposals;
     }
 
     public ProposalDto mapRowToProposal(SqlRowSet rowset) {
@@ -134,8 +117,5 @@ public class ProposalJdbcDao implements ProposalDao{
 
         return proposalDtoList;
     }
-
-
-
 
 }

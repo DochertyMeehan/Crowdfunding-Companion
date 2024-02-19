@@ -6,11 +6,9 @@ import com.techelevator.dao.ProposalDao;
 import com.techelevator.dao.VoteDao;
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -66,7 +64,6 @@ public class AppController {
 
     }
 
-    // changing path to delete-campaign ?
     @RequestMapping(path="/delete", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteCampaign(Principal principal, @RequestParam("campaign_id") int campaign_id) {
@@ -76,12 +73,6 @@ public class AppController {
         } catch (DaoException e) {
              ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
-    }
-
-    // most likely not needed
-    @RequestMapping(path="/all-proposals", method = RequestMethod.GET)
-    public List<ProposalDto> getProposals() {
-        return propdao.getProposals();
     }
 
     @RequestMapping(path="/proposal", method = RequestMethod.GET)
@@ -169,9 +160,9 @@ public class AppController {
 
     @RequestMapping(path = "/add-vote", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public void addVote(@RequestBody VoteDto voteDto) {
+    public void addVote(@RequestBody VoteDto voteDto, Principal principal) {
         try {
-            voteDao.addVote(voteDto);
+            voteDao.addVote(voteDto, principal.getName());
         } catch (DaoException e){
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage(), e);
         }
@@ -188,9 +179,6 @@ public class AppController {
     public List<DonorUserDto> getHallOfFameDonors(){
         return donationDao.getHallOfFameDonors();
     }
-
-
-
 
 }
 
