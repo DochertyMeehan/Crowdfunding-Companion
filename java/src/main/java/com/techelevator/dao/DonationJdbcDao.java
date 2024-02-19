@@ -228,7 +228,7 @@ public class DonationJdbcDao implements DonationDao{
                 "LIMIT 10;";
         SqlRowSet results = template.queryForRowSet(sql);
         while (results.next()){
-            hallOfFamers.add(mapRowToDonorUser(results));
+            hallOfFamers.add(HOFmapRowToDonorUser(results));
         }
         return hallOfFamers;
 
@@ -239,6 +239,17 @@ public class DonationJdbcDao implements DonationDao{
 
         return username;
     }
+
+
+    public DonorUserDto HOFmapRowToDonorUser(SqlRowSet rowset) {
+        String username = rowset.getString("username");
+
+        double amount = rowset.getDouble("total_donation_amount");
+
+        DonorUserDto donation = new DonorUserDto(username, amount);
+        return donation;
+    }
+
 
 
 
