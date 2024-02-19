@@ -9,7 +9,7 @@ public interface DonationDao {
 
     public DonationDto getDonation(int donationId);
 
-    public void createDonation(DonationDto donationToCreate);
+    public String createDonation(DonationDto donationToCreate);
 
     public List<DonorUserDto> getDonationsByCampaignIdForCreator(int campaign_id, String username);
 

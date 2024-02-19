@@ -36,16 +36,51 @@ public class DonationJdbcDao implements DonationDao{
     }
 
     @Override
-    public void createDonation(DonationDto donationToCreate) {
+    public String createDonation(DonationDto donationToCreate) {
         int userId = donationToCreate.getUser_id();
         int campaignId = donationToCreate.getCampaign_id();
         double amount = donationToCreate.getAmount();
 
-        String sql = "INSERT INTO donation(user_id, campaign_id, amount) VALUES (?, ?, ?);";
-        template.update(sql,userId, campaignId, amount);
-        updateBalanceForCampaign(campaignId, amount);
+
+
+        if (getBalanceByCampaignId(campaignId) == getAmountGoalByCampaignId(campaignId)){
+
+            return "Funding goal already met";
+        } else if (getAmountDifferenceByCampaignId(campaignId,amount) > getAmountGoalByCampaignId(campaignId)) {
+            return "Maximum donation allowed $" +  (getAmountGoalByCampaignId(campaignId) - getBalanceByCampaignId(campaignId));
+        }
+            String sql = "INSERT INTO donation(user_id, campaign_id, amount) VALUES (?, ?, ?);";
+            template.update(sql,userId, campaignId, amount);
+            updateBalanceForCampaign(campaignId, amount);
+            return "Thank you for donating!";
 
     }
+
+
+    public double getBalanceByCampaignId(int campaign_id){
+
+        String sql = "SELECT balance FROM campaign WHERE campaign_id = ?";
+        double balance = template.queryForObject(sql, Double.class,campaign_id);
+
+        return balance;
+    }
+
+    public double getAmountGoalByCampaignId(int campaign_id){
+        String sql = "SELECT amountGoal FROM campaign WHERE campaign_id = ?";
+        double amountGoal = template.queryForObject(sql, Double.class,campaign_id);
+
+        return amountGoal;
+    }
+
+    public double getAmountDifferenceByCampaignId(int campaign_id, double amount){
+        String sql = "SELECT balance FROM campaign WHERE campaign_id = ?";
+        double balance = template.queryForObject(sql, Double.class,campaign_id);
+
+        double newBalance = balance + amount;
+
+        return newBalance;
+    }
+
 
 
     public void updateBalanceForCampaign(int campaignId, double amount){
