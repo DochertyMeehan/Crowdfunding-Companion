@@ -8,6 +8,8 @@ public interface VoteDao {
 
     public void addVote(VoteDto vote);
 //    List<VoteDto> getVotesByProposalId(int proposalId);
-    public int totalVotesByProposalId(int proposalId);
-    public int totalTrueVotesByProposalId(int proposalId);
+    public double totalVotesByProposalId(int proposalId);
+    public double totalTrueVotesByProposalId(int proposalId);
+
+    public void updateProposalStatus(int proposalId);
 }
