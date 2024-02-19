@@ -7,20 +7,17 @@
   </div>
   <div class="container">
     <div class="row">
-      <div class="col-4" v-for="(campaign, index) in campaigns" v-bind:key="index">        
-        <div class="card mb-3">
-          <div class="card-header" v-on:click="viewCampaignDetails(campaign)">
-      <!-- <div class="col-4" v-for="(campaign, index) in filteredCampaigns" v-bind:key="index">        
-        <div class="card"  v-on:click="viewCampaignDetails(campaign)">
-          <div class="card-header">
-       -->
-            {{ campaign.campaignType}}
+      <div class="col-4" v-for="(campaign, index) in cards" v-bind:key="index">        
+        <div class="card mb-3" v-on:click="viewCampaignDetails(campaign)">
+          <div class="card-header logged-in-card">
+            <i class="fa-solid fa-list"></i> {{ campaign.campaignType}}
           </div>
-          <div class="card-body"  v-on:click="viewCampaignDetails(campaign)">
+          <div class="card-body text-capitalize logged-in-card">
             <h5 class="card-title">{{ campaign.campaignName}}</h5>
-            <br>
-            <p class="card-text">Goal: ${{ campaign.amountGoal }}</p>
-            <p class="card-text">Current Balance: ${{ campaign.balance }}</p>
+            <div class="progress" role="progressbar" aria-label="Success example" :aria-valuenow="campaign.percentage" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar bg-success" :style="{ width: campaign.percentage + '%' }"></div>
+            </div>
+            <p class="card-text"><i class="fa-solid fa-bullseye"></i> ${{ campaign.balance }} raised of ${{ campaign.amountGoal }}</p>
             <p class="card-text">{{ campaign.description }}</p>
           </div>
           <div class="card-footer text-body-secondary">
@@ -42,20 +39,25 @@
 
 <script>
 export default {
-  components: {
-  
-  },
-  name: 'all-campaigns',
   props: ['campaigns'],
-  
   data() {
     return {
       selectedCampaignType: '',
+      cards: [],
+      searchQuery: '', 
     };
   },
   methods: {
+    loadData() {
+      this.cards = this.campaigns
+    },
     viewCampaignDetails(campaign) {
-      this.$router.push({ name: 'SingleCampaignView', params: { id: campaign.campaign_id } });
+      const user = this.$store.state.user;
+      if (user && Object.keys(user).length === 0 && user.constructor === Object) {
+        this.$router.push({ name: 'login' });
+      } else {
+        this.$router.push({ name: 'SingleCampaignView', params: { id: campaign.campaign_id } });
+      }
     },
   },
   computed: {
@@ -67,20 +69,26 @@ export default {
       return Array.from(types);
     },
     filteredCampaigns() {
-      if(!this.searchQuery) {
+      if (!this.searchQuery) {
         return this.campaigns;
       }
       return this.campaigns.filter(campaign => {
         return campaign.campaignType === this.selectedCampaignType;
       });
-    }
+    },
+  },
+  created() {
+    this.loadData()
   }
 };
 </script>
 
 <style>
-.card {
+.logged-in-card {
   cursor: pointer;
+}
+
+.card {  
   color: #87ae73;
   margin-bottom: 20px;
 }

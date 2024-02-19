@@ -8,7 +8,6 @@ export default {
         return axios.post('/create-campaign', campaign);
     },
     getCampaigns() {
-        console.log("alo")
         return axios.get('/all-campaigns');
     },
     editCampaign(campaign) {
@@ -17,6 +16,7 @@ export default {
         return axios.put('/edit-campaign', campaign);
     },
     getCampaign(id) {
+        console.log("this is getcampaign")
         return axios.get('/campaign', {params: { campaign_id: id }});
     },
     deleteCampaign(id){

@@ -33,8 +33,12 @@ public class AppController {
         this.propdao = propdao;
         this.donationDao = donationDao;
         this.voteDao = voteDao;
+
     }
 
+
+
+    @PreAuthorize("permitAll()")
     @RequestMapping(path="/all-campaigns", method = RequestMethod.GET)
     public List<CampaignDto> getAllCampaigns() {
         return dao.getCampaigns();
