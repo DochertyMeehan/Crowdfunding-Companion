@@ -8,8 +8,7 @@
 </div>
     <div class="faq-item">
     <h4>How does Crowdfunding Companion work?</h4>
-    <p>To create a campaign, simply click on “Create Campaign” and fill out the form. From there, you can edit or delete a campaign that is no longer needed. You can also 
-        create proposals for donors to vote on how funds are spent. <br>
+    <p>To create a campaign, simply click on “Create Campaign” and fill out the form. From there, you can edit a campaign and create proposals for donors to vote on how funds are spent. <br>
         <br>
         If you are a donor, simply click on a campaign and input your donation amount. As a donor, you will receive a vote for each proposal a campaign manager issues. 
         Vote to have the money spent in whatever manner you feel is most appropriate. </p>

@@ -16,6 +16,7 @@ import ProposalForm from '../components/ProposalForm.vue';
 import FAQView from '../views/FAQview.vue';
 import Donation from '../components/Donation.vue';
 import CampaignsList from '../components/CampaignsList.vue';
+import hallOfFame from '../views/HallOfFame.vue';
 
 
 
@@ -117,6 +118,14 @@ const routes = [
     path: "/view/campaign/:id/donate",
     name: "donation",
     component: Donation,
+    meta: {
+      requireAuth: true
+    }
+  },
+  {
+    path: "/hall-of-fame",
+    name: "HallOfFame",
+    component: hallOfFame,
     meta: {
       requireAuth: true
     }

@@ -43,5 +43,9 @@ export default {
     getDonationForDonor(id){
         console.log(`/get-donations-list-by-campaign-id/donor?campaign_id=${id}`)
         return axios.get(`/get-donations-list-by-campaign-id/donor?campaign_id=${id}`)
+    },
+    getHallOfFameDonors() {
+        console.log(`/hall-of-fame`)
+        return axios.get(`/hall-of-fame`)
     }
 }    
