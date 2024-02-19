@@ -86,6 +86,7 @@ public class VoteJdbcDao implements VoteDao {
         if (calculateVote(proposalId) > .50){
 
             String sql = "UPDATE proposal SET vote_passed = true WHERE proposal_id = ?;";
+//            String sql = "UPDATE proposal SET vote_passed = true, proposal_status = 'Archived' WHERE proposal_id = ?;";
 
             template.update(sql, proposalId);
 
