@@ -128,10 +128,10 @@ public class AppController {
 
     @RequestMapping(path = "/create-donation", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public void createDonation(@RequestBody DonationDto donationDto){
+    public String createDonation(@RequestBody DonationDto donationDto){
 
         try {
-            donationDao.createDonation(donationDto);
+        return donationDao.createDonation(donationDto);
         } catch (DaoException e){
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage(), e);
         }

@@ -5,7 +5,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
-import java.util.List;
+import java.time.LocalDate;
+import java.time.chrono.ChronoLocalDate;
+import java.util.Date;
 
 @Component
 public class VoteJdbcDao implements VoteDao {
@@ -15,11 +17,47 @@ public class VoteJdbcDao implements VoteDao {
         this.template = new JdbcTemplate(dataSource);
     }
 
+
     @Override
     public void addVote(VoteDto vote) {
-        String sql = "INSERT INTO vote(proposal_id, vote_response) VALUES (?, ?);";
-        template.update(sql, vote.getProposal_id(), vote.isVote_response());
+
+
+        LocalDate proposalDeadline = getProposalDeadlineByProposalId(vote.getProposal_id());
+
+        if (getCampaignBalanceByProposalId(vote.getProposal_id()) == getCampaignGoalByProposalId(vote.getProposal_id())
+                && LocalDate.now().isBefore(proposalDeadline)) {
+            String sql = "INSERT INTO vote(proposal_id, vote_response) VALUES (?, ?);";
+            template.update(sql, vote.getProposal_id(), vote.isVote_response());
+        }
+
     }
+
+
+    public double getCampaignBalanceByProposalId(int proposal_id){
+
+            String sql = "select campaign.balance\n" +
+                    "from campaign\n" +
+                    "join proposal on campaign.campaign_id = proposal.campaign_id\n" +
+                    "where proposal.proposal_id = ?;";
+
+            return template.queryForObject(sql, Double.class ,proposal_id);
+    }
+
+    public double getCampaignGoalByProposalId(int proposal_id){
+        String sql = "select campaign.amountGoal\n" +
+                "from campaign\n" +
+                "join proposal on campaign.campaign_id = proposal.campaign_id\n" +
+                "where proposal.proposal_id = ?;";
+
+        return template.queryForObject(sql, Double.class ,proposal_id);
+    }
+
+    public LocalDate getProposalDeadlineByProposalId(int proposal_id){
+        String sql = "select proposal_deadline from proposal where proposal_id = ?;";
+
+        return template.queryForObject(sql, LocalDate.class ,proposal_id);
+    }
+
 
     @Override
     public int totalTrueVotesByProposalId(int proposalId) {
