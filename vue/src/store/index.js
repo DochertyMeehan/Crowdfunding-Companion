@@ -1,6 +1,6 @@
 import { createStore as _createStore } from 'vuex';
 import axios from 'axios';
-const NOTIFICATION_TIMEOUT = 6000;
+const NOTIFICATION_TIMEOUT = 3000;
 
 
 export function createStore(currentToken, currentUser) {

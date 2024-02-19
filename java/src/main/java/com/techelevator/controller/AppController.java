@@ -180,6 +180,7 @@ public class AppController {
     @RequestMapping(path = "/update-vote", method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.OK)
     public void updateVote(@RequestParam("proposalId") int proposalId){
+        System.out.println(proposalId);
         voteDao.updateProposalStatus(proposalId);
     }
 

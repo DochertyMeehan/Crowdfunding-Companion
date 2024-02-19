@@ -21,10 +21,10 @@ public class VoteJdbcDao implements VoteDao {
     @Override
     public void addVote(VoteDto vote) {
 
-
         LocalDate proposalDeadline = getProposalDeadlineByProposalId(vote.getProposal_id());
 
-        if (getCampaignBalanceByProposalId(vote.getProposal_id()) == getCampaignGoalByProposalId(vote.getProposal_id())
+        // can balance >= goal ? what if the last person donated more than the goal?
+        if (getCampaignBalanceByProposalId(vote.getProposal_id()) >= getCampaignGoalByProposalId(vote.getProposal_id())
                 && LocalDate.now().isBefore(proposalDeadline)) {
             String sql = "INSERT INTO vote(proposal_id, vote_response) VALUES (?, ?);";
             template.update(sql, vote.getProposal_id(), vote.isVote_response());
