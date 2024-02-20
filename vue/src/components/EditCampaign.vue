@@ -19,7 +19,7 @@
                         <div class="mb-3">
                         <label for="campaignType" class="form-label">Campaign Type</label>
                         <select v-model="editCampaign.campaignType" class="form-select" id="campaignType" required>
-                                                        <option value="Animals">Animals</option>
+                                                        <option value="Animals" >Animals</option>
                                                         <option value="Business">Business</option>
                                                         <option value="Education">Education</option>
                                                         <option value="Emergency">Emergency</option>

@@ -5,6 +5,20 @@
       <p>The easiest way to fundraise and donate to the causes that matter most to you.</p>
     </div>
   </div>
+
+  <div class="container">
+  <div class="row">
+    <div class="col-12">
+      <label for="search">Search by Campaign Type:</label>
+      <input type="text" id="search" v-model="searchQuery" @input="filterCampaigns" class="form-control">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4" v-for="(campaign, index) in filteredCampaigns" :key="index">
+    </div>
+  </div>
+</div>
+
   <div class="container">
     <div class="row">
       <div class="col-4" v-for="(campaign, index) in cards" v-bind:key="index">        
@@ -62,20 +76,21 @@ export default {
   },
   computed: {
     campaignTypes() {
-      const types = new Set();
-      this.campaigns.forEach(campaign => {
-        types.add(campaign.campaignType);
-      });
-      return Array.from(types);
-    },
-    filteredCampaigns() {
-      if (!this.searchQuery) {
-        return this.campaigns;
-      }
-      return this.campaigns.filter(campaign => {
-        return campaign.campaignType === this.selectedCampaignType;
-      });
-    },
+      
+    //   const types = new Set();
+    //   this.campaigns.forEach(campaign => {
+    //     types.add(campaign.campaignType);
+    //   });
+    //   return Array.from(types);
+    // },
+    // filteredCampaigns() {
+    //   if (!this.searchQuery) {
+    //     return this.campaigns;
+    //   }
+    //   return this.campaigns.filter(campaign => {
+    //     return campaign.campaignType === this.selectedCampaignType;
+    //   });
+    // },
   },
   created() {
     this.loadData()

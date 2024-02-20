@@ -56,5 +56,9 @@ export default {
     getHallOfFameDonors() {
         return axios.get('/hall-of-fame');
     },
+    getDonationHistory() {
+        console.log("hello")
+        return axios.get('/campaigns-donated-to');
+    }
 
 }    

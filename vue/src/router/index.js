@@ -17,6 +17,7 @@ import FAQView from '../views/FAQview.vue';
 import Donation from '../components/Donation.vue';
 import CampaignsList from '../components/CampaignsList.vue';
 import hallOfFame from '../views/HallOfFameView.vue';
+import DonationHistoryView from '../views/DonationHistoryView.vue'
 
 
 
@@ -130,6 +131,15 @@ const routes = [
       requireAuth: true
     }
   },
+  {
+    path:"/view/donation",
+    name: "DonationHistory",
+    component: DonationHistoryView,
+    meta: {
+      requireAuth: true
+    }
+
+  }
 
   // {
   //   path:"/campaign/:campaign_id",

@@ -19,6 +19,9 @@
             </li>  
             <li class="nav-item">
               <router-link class="nav-link" v-bind:to="{name: 'FAQ'}">FAQ</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" v-bind:to="{name: 'DonationHistory'}">Your Donations</router-link>
             </li>                       
           </ul>
           <ul class="navbar-nav">
