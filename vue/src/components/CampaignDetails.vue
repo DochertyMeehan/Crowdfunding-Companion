@@ -19,7 +19,7 @@
     <br>
     <div>
         <ul class="list-group list-group-flush" v-for="(donation, index) in donations" v-bind:key="index">
-            <li class="list-group-item">{{ index }}. {{ donation.username }} donated: {{ donation.amount }}$ for this campaign</li>
+            <li class="list-group-item">{{ index }}. {{ donation.username }} donated: ${{ donation.amount }} for this campaign</li>
         </ul>
     </div>
   </template>

@@ -4,7 +4,7 @@
       <li v-for="(person, index) in listOfHall" :key="index" class="list-group-item">
         <div class="row">
             <div class="col text-capitalize">{{ person.username }}</div>
-            <div class="col">{{ person.amount }}$</div>
+            <div class="col">${{ person.amount }}</div>
         </div>
       </li>
     </ul>
@@ -31,3 +31,11 @@ export default {
     }
 }
 </script>
+<style>
+.list-group {
+    color: #87ae73;
+    max-width: 900px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+}
+</style>
