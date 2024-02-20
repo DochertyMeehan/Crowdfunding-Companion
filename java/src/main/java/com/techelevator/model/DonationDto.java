@@ -7,10 +7,13 @@ public class DonationDto {
 
     private double amount;
 
-    public DonationDto(int user_id, int campaign_id, double amount) {
+    private String donation_comment;
+
+    public DonationDto(int user_id, int campaign_id, double amount, String donation_comment) {
         this.user_id = user_id;
         this.campaign_id = campaign_id;
         this.amount = amount;
+        this.donation_comment = donation_comment;
     }
 
     public int getUser_id() {
@@ -35,5 +38,13 @@ public class DonationDto {
 
     public void setAmount(double amount) {
         this.amount = amount;
+    }
+
+    public String getDonation_comment() {
+        return donation_comment;
+    }
+
+    public void setDonation_comment(String donation_comment) {
+        this.donation_comment = donation_comment;
     }
 }
