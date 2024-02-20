@@ -21,7 +21,7 @@
       
       <div>
         <div class="mb-3">
-          <label for="cardNumber" class="form-label">Credit Card Number</label>
+          <label for="cardNumber" class="form-label">Credit Card Number/PayPal Account Name</label>
           <input type="text" class="form-control" id="cardNumber">
         </div>
       </div>
