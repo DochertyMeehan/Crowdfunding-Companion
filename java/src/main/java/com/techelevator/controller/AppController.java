@@ -1,9 +1,6 @@
 package com.techelevator.controller;
 
-import com.techelevator.dao.CampaignDao;
-import com.techelevator.dao.DonationDao;
-import com.techelevator.dao.ProposalDao;
-import com.techelevator.dao.VoteDao;
+import com.techelevator.dao.*;
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.*;
 import org.springframework.http.HttpStatus;
@@ -40,6 +37,11 @@ public class AppController {
     @RequestMapping(path="/all-campaigns", method = RequestMethod.GET)
     public List<CampaignDto> getAllCampaigns() {
         return dao.getCampaigns();
+    }
+
+    @RequestMapping(path="/campaigns-donated-to", method = RequestMethod.GET)
+    public List<CampaignDto> getCampaignByDonorUserId(Principal principal) {
+        return dao.getCampaignByDonorUserId(principal.getName());
     }
 
     @RequestMapping(path="/campaign", method = RequestMethod.GET)

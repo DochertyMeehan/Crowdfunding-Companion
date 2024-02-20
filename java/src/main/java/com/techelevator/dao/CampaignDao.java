@@ -13,6 +13,6 @@ public interface CampaignDao {
      void editCampaign(CampaignDto campaignToEdit, String username);
      void deleteCampaign(String name,int campaignId);
      CampaignDto mapRowToCampaign(SqlRowSet rowset);
-
      CampaignDto getCampaignByType(String campaignType);
+     List<CampaignDto> getCampaignByDonorUserId(String username);
 }
