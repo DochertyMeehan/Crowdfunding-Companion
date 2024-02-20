@@ -1,6 +1,28 @@
 <template>
-    <div>
-
+    <div class="container">
+        <div class="col-4" v-for="(campaign, index) in donationList" v-bind:key="index">        
+        <div class="card mb-3" v-on:click="viewCampaignDetails(campaign)">
+          <div class="card-header logged-in-card">
+            <i class="fa-solid fa-list"></i> {{ campaign.campaignType}}
+          </div>
+          <div class="card-body text-capitalize logged-in-card">
+            <h5 class="card-title">{{ campaign.campaignName}}</h5>
+            <div class="progress" role="progressbar" aria-label="Success example" :aria-valuenow="campaign.percentage" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar bg-success" :style="{ width: campaign.percentage + '%' }"></div>
+            </div>
+            <p class="card-text"><i class="fa-solid fa-bullseye"></i> ${{ campaign.balance }} raised of ${{ campaign.amountGoal }}</p>
+            <p class="card-text">{{ campaign.description }}</p>
+          </div>
+          <div class="card-footer text-body-secondary">
+            <div class="row d-flex align-items-center">
+              <div class="col text-end">
+                <router-link class="btn btn-primary" v-bind:to="{name: 'donation', params: {id: campaign.campaign_id}}">Donation</router-link>
+              </div>
+            </div>
+            A fundraiser organized by: {{ campaign.username }}
+          </div>
+        </div>  
+      </div>
     </div>
 </template>
 
@@ -16,7 +38,10 @@ export default {
     methods: {
         loadData() {
             console.log("hello")
-            CampaignService.getDonationHistory()
+            CampaignService.getDonationHistory().then(res => {
+                this.donationList = res.data;
+                console.log(this.donationList)
+            })
 
         }
     },
