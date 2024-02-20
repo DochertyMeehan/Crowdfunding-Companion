@@ -164,9 +164,9 @@ public class AppController {
 
     @RequestMapping(path = "/add-vote", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public void addVote(@RequestBody VoteDto voteDto, Principal principal) {
+    public void addVote(@RequestBody VoteDto voteDto, Principal principal, @RequestParam("campaign_id") int campaign_id) {
         try {
-            voteDao.addVote(voteDto, principal.getName());
+            voteDao.addVote(voteDto, principal.getName(), campaign_id);
         } catch (DaoException e){
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage(), e);
         }

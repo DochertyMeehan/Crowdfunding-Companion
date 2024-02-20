@@ -18,21 +18,25 @@ public class VoteJdbcDao implements VoteDao {
 
     @Override
 
-    public void addVote(VoteDto vote, String username) {
+    public void addVote(VoteDto vote, String username, int campaign_id) {
         LocalDate proposalDeadline = getProposalDeadlineByProposalId(vote.getProposal_id());
+        boolean hasDonated = hasUserDonatedToCampaign(getUserIdByUsername(username), campaign_id);
 
-        // can balance >= goal ? what if the last person donated more than the goal?
-        if (getCampaignBalanceByProposalId(vote.getProposal_id()) == getCampaignGoalByProposalId(vote.getProposal_id())
-                && LocalDate.now().isBefore(proposalDeadline)) {
+        if(hasDonated) {
+            // can balance >= goal ? what if the last person donated more than the goal?
+            if (getCampaignBalanceByProposalId(vote.getProposal_id()) == getCampaignGoalByProposalId(vote.getProposal_id())
+                    && LocalDate.now().isBefore(proposalDeadline)) {
 
-            boolean hasVoted = hasUserVotedForProposal(getUserIdByUsername(username), vote.getProposal_id());
+                boolean hasVoted = hasUserVotedForProposal(getUserIdByUsername(username), vote.getProposal_id());
 
-            if (hasVoted) {
-                String sql = "UPDATE vote SET vote_response = ? WHERE user_id = ? AND proposal_id = ?";
-                template.update(sql, vote.isVote_response(), getUserIdByUsername(username), vote.getProposal_id());
-            } else {
-                String sql = "INSERT INTO vote(user_id ,proposal_id,vote_response) VALUES (?, ?, ?)";
-                template.update(sql, getUserIdByUsername(username),vote.getProposal_id(), vote.isVote_response());
+
+                if (hasVoted) {
+                    String sql = "UPDATE vote SET vote_response = ? WHERE user_id = ? AND proposal_id = ?";
+                    template.update(sql, vote.isVote_response(), getUserIdByUsername(username), vote.getProposal_id());
+                } else {
+                    String sql = "INSERT INTO vote(user_id ,proposal_id,vote_response) VALUES (?, ?, ?)";
+                    template.update(sql, getUserIdByUsername(username), vote.getProposal_id(), vote.isVote_response());
+                }
             }
         }
     }
@@ -47,6 +51,12 @@ public class VoteJdbcDao implements VoteDao {
     public boolean hasUserVotedForProposal(int userId, int proposalId) {
         String sql = "SELECT COUNT(*) FROM vote WHERE user_id = ? AND proposal_id = ?";
         int count = template.queryForObject(sql, Integer.class, userId, proposalId);
+        return count > 0;
+    }
+
+    public boolean hasUserDonatedToCampaign(int userId, int campaignId){
+        String sql = "SELECT COUNT(*) FROM donation WHERE user_id = ? AND campaign_id = ?;";
+        int count = template.queryForObject(sql, Integer.class, userId, campaignId);
         return count > 0;
     }
 
