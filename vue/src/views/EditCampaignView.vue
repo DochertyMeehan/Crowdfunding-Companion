@@ -16,6 +16,7 @@ export default {
       formData: {
         username: '',
         campaignName: '',
+        campaignImage: '',
         campaignType: '',
         description: '',
         amountGoal: 0,

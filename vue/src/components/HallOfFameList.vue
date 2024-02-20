@@ -32,7 +32,7 @@ export default {
 }
 </script>
 <style>
-.list-group {
+.row {
     color: #87ae73;
     max-width: 900px;
     margin: 0 auto;
