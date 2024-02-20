@@ -11,7 +11,7 @@
         <div class="card mb-3" v-on:click="viewCampaignDetails(campaign)">
           <div class="card-header logged-in-card">
             <i v-if="campaign.campaignType === 'Animals'" class="bi bi-bug"></i>
-            <i v-else-if="campaign.campaignType === 'Business'" class="bi bi-luggage"></i>
+            <i v-else-if="campaign.campaignType === 'Business'" class="bi bi-briefcase"></i>
             <i v-else-if="campaign.campaignType === 'Education'" class="bi bi-mortarboard-fill"></i>
             <i v-else-if="campaign.campaignType === 'Emergency'" class="bi bi-fire"></i>
             <i v-else-if="campaign.campaignType === 'Events'" class="bi bi-ticket-perforated"></i>
