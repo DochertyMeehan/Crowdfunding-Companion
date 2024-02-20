@@ -10,7 +10,19 @@
       <div class="col-4" v-for="(campaign, index) in cards" v-bind:key="index">        
         <div class="card mb-3" v-on:click="viewCampaignDetails(campaign)">
           <div class="card-header logged-in-card">
-            <i class="fa-solid fa-list"></i> {{ campaign.campaignType}}
+            <i v-if="campaign.campaignType === 'Animals'" class="bi bi-bug"></i>
+            <i v-else-if="campaign.campaignType === 'Business'" class="bi bi-luggage"></i>
+            <i v-else-if="campaign.campaignType === 'Education'" class="bi bi-mortarboard-fill"></i>
+            <i v-else-if="campaign.campaignType === 'Emergency'" class="bi bi-fire"></i>
+            <i v-else-if="campaign.campaignType === 'Events'" class="bi bi-ticket-perforated"></i>
+            <i v-else-if="campaign.campaignType === 'Family'" class="bi bi-people-fill"></i>
+            <i v-else-if="campaign.campaignType === 'Medical'" class="bi bi-heart-pulse"></i>
+            <i v-else-if="campaign.campaignType === 'Memorial'" class="bi bi-balloon-heart"></i>
+            <i v-else-if="campaign.campaignType === 'Nonprofit'" class="bi bi-piggy-bank-fill"></i>
+            <i v-else-if="campaign.campaignType === 'Sports'" class="bi bi-dribbble"></i>
+            <i v-else-if="campaign.campaignType === 'Travel'" class="bi bi-airplane-engines"></i>
+            <i v-else-if="campaign.campaignType === 'Wishes'" class="bi bi-magic"></i>
+            {{ campaign.campaignType}}
           </div>
           <div class="card-body text-capitalize logged-in-card">
             <h5 class="card-title">{{ campaign.campaignName}}</h5>
