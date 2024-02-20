@@ -24,7 +24,7 @@
     <div>
         <h4 class="donation-list-header">Donation List:</h4>
         <ul class="list-group list-group-flush" v-for="(donation, index) in donations" v-bind:key="index">
-            <li class="list-group-item"> {{ donation.username }} donated: ${{ donation.amount }} for this campaign</li>
+            <li class="list-group-item style-donation-list"> {{ donation.username }} donated: ${{ donation.amount }} for this campaign</li>
         </ul>
     </div>
   </template>
@@ -159,7 +159,7 @@ import ProposalsView from '../views/ProposalsView.vue';
   width: fit-content; /* Optional for precise horizontal centering */
   margin: auto; /* Optional for centering within a larger container */
 }
-.list-group-item {
+.style-donation-list {
   text-align: center;
   font-size: 1.4em;
   font-weight: bold;
