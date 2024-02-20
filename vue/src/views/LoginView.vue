@@ -1,4 +1,10 @@
 <template>
+    <div class="container">
+    <div>
+      <h4>Welcome to Crowdfunding Companion!</h4>
+      <p>The easiest way to fundraise and donate to the causes that matter most to you.</p>
+    </div>
+  </div>
   <div id="login">
     <form v-on:submit.prevent="login" class="login-form">
       <h1>Please Sign In</h1>
