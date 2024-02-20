@@ -131,7 +131,6 @@ const routes = [
     }
   },
 
-
   // {
   //   path:"/campaign/:campaign_id",
   //   name: "campaign-details",

@@ -45,8 +45,8 @@ export default {
         return axios.get(`/get-donations-list-by-campaign-id/donor?campaign_id=${id}`)
     },
 
-    createVote(vote){
-        return axios.post('/add-vote', vote);
+    createVote(id,vote){
+        return axios.post(`/add-vote?campaign_id=${id}`, vote);
     },
     updateProposalStatus(id){
         const formData = new FormData();
