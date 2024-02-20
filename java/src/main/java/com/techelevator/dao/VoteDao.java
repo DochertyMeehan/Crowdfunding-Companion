@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface VoteDao {
 
-     void addVote(VoteDto vote, String username);
+     void addVote(VoteDto vote, String username, int campaign_id);
      double totalVotesByProposalId(int proposalId);
      double totalTrueVotesByProposalId(int proposalId);
      void updateProposalStatus(int proposalId);

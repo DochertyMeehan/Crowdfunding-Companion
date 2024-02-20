@@ -61,6 +61,18 @@ public class CampaignJdbcDao implements CampaignDao {
     }
 
     @Override
+    public CampaignDto getCampaignByType(String campaignType) {
+        String sql = "SELECT * FROM campaign WHERE campaigntype = ?";
+        SqlRowSet result = template.queryForRowSet(sql,campaignType);
+
+        CampaignDto campaign = null;
+        if (result.next()) {
+            campaign = mapRowToCampaign(result);
+        }
+        return campaign;
+    }
+
+    @Override
     public CampaignDto createCampaign(CampaignDto campaignToCreate) {
         String username = campaignToCreate.getUsername();
         String campaignName = campaignToCreate.getCampaignName();
