@@ -46,6 +46,10 @@ public class AppController {
     public CampaignDto getCampaign(@RequestParam("campaign_id") int campaign_id) {
         return dao.getCampaign(campaign_id);
     }
+    @RequestMapping(path="/campaign-type", method = RequestMethod.GET)
+    public CampaignDto getCampaignByType(@RequestParam("campaigntype") String campaigntype) {
+        return dao.getCampaignByType(campaigntype);
+    }
 
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path="/create-campaign", method = RequestMethod.POST)
