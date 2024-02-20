@@ -7,6 +7,10 @@
         {{campaign.description }}</p>
       <p>Goal: ${{ campaign.amountGoal }}</p>
       <p>Balance: ${{ campaign.balance }}</p>
+      <div class="progress" role="progressbar" aria-label="Success example" :aria-valuenow="campaignData.percentage" aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-bar bg-success" :style="{ width: campaignData.percentage + '%' }"></div>
+            </div>
+      <br>
       <router-link class="btn btn-primary" v-bind:to="{name: 'donation'}">donate</router-link>
       <router-link v-bind:to="{ name: 'EditCampaign', params: { id: $route.params.campaign_id } }" class="btn btn-submit">Edit
       Campaign</router-link>
@@ -37,6 +41,7 @@ import ProposalsView from '../views/ProposalsView.vue';
             selectedCampaign: '',
             donations:{
             },
+            campaignData:{},
         };
     },
     props: ['campaign'],
@@ -47,7 +52,6 @@ import ProposalsView from '../views/ProposalsView.vue';
                     if (resp.status === 204)
                         console.log(resp.status);
                     {
-                        console.log("haha");
                         this.$store.commit('SET_NOTIFICATION', {
                             message: 'Campaign was successfully deleted.',
                             type: 'Success'
@@ -77,11 +81,37 @@ import ProposalsView from '../views/ProposalsView.vue';
             });
 
         },
+        loadData2() {
+            let id = parseInt(this.$route.params.id);
+            CampaignService.getCampaign(id).then(resp => {
+                let campaign1 = resp.data;
+                let selectedCampaign = campaign1
+                if (selectedCampaign) {
+                let percentage = (selectedCampaign.balance / selectedCampaign.amountGoal) * 100;
+
+                this.campaignData = {
+                    campaign_id: selectedCampaign.campaign_id,
+                    username: selectedCampaign.username,
+                    description: selectedCampaign.description,
+                    amountGoal: selectedCampaign.amountGoal,
+                    balance: selectedCampaign.balance,
+                    campaignName: selectedCampaign.campaignName,
+                    campaignType: selectedCampaign.campaignType,
+                    percentage: percentage,
+                };
+
+                this.$store.commit('SET_CAMPAIGNS', this.campaignData);
+                console.log("print this:", this.campaignData);
+                }
+            });
+         }
+        
 
     },
     created() {
         this.selectedCampaign = this.$route.params.campaign_id;
         this.loadData();
+        this.loadData2();
     },
    
 };
