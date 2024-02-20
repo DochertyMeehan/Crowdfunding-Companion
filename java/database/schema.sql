@@ -14,6 +14,7 @@ CREATE TABLE campaign(
 	campaign_id SERIAL,
 	username varchar(50) NOT NULL,
 	campaignName varchar(50) NOT NULL,
+	campaignImage varchar(15000),
 	campaignType varchar(20) NOT NULL,
 	description varchar(300) NOT NULL,
 	amountGoal numeric (13,2) NOT NULL, 
@@ -37,6 +38,7 @@ CREATE TABLE donation (
 	user_id INT NOT NULL,
 	campaign_id INT NOT NULL,
 	amount numeric (13,2) NOT NULL,
+	donation_comment varchar (250),
 	CONSTRAINT FK_donation_user_user FOREIGN KEY (user_id) REFERENCES users(user_id),
     CONSTRAINT FK_donation_campaignId FOREIGN KEY (campaign_id) REFERENCES campaign(campaign_id)
 );
