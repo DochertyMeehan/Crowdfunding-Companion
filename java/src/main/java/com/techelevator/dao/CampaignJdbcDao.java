@@ -39,12 +39,13 @@ public class CampaignJdbcDao implements CampaignDao {
         int id = rowset.getInt("campaign_id");
         String username = rowset.getString("username");
         String campaignName = rowset.getString("campaignName");
+        String campaignImage = rowset.getString("campaignImage");
         String campaignType = rowset.getString("campaignType");
         String description = rowset.getString("description");
         double amountGoal = rowset.getDouble("amountGoal");
         double balance = rowset.getDouble("balance");
 
-        CampaignDto campaign = new CampaignDto(id, username, campaignName, campaignType, description, amountGoal, balance);
+        CampaignDto campaign = new CampaignDto(id, username, campaignName, campaignImage, campaignType, description, amountGoal, balance);
         return campaign;
     }
 
@@ -76,13 +77,14 @@ public class CampaignJdbcDao implements CampaignDao {
     public CampaignDto createCampaign(CampaignDto campaignToCreate) {
         String username = campaignToCreate.getUsername();
         String campaignName = campaignToCreate.getCampaignName();
+        String campaignImage = campaignToCreate.getCampaignImage();
         String campaignType = campaignToCreate.getCampaignType();
         String description = campaignToCreate.getDescription();
         double amountGoal = campaignToCreate.getAmountGoal();
         double balance = campaignToCreate.getBalance();
 
-        String sql = "INSERT INTO campaign(username, campaignName, campaignType, description, amountGoal, balance) VALUES (?, ?, ?, ?, ?, ?) RETURNING campaign_id;";
-        int newCampaignID = template.queryForObject(sql, Integer.class, username, campaignName, campaignType, description, amountGoal, balance);
+        String sql = "INSERT INTO campaign(username, campaignName, campaignImage, campaignType, description, amountGoal, balance) VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING campaign_id;";
+        int newCampaignID = template.queryForObject(sql, Integer.class, username, campaignName, campaignImage, campaignType, description, amountGoal, balance);
 
         return getCampaign(newCampaignID);
     }
@@ -92,11 +94,12 @@ public class CampaignJdbcDao implements CampaignDao {
 
         try {
             if(getUsernameByCampaignId(campaignToEdit.getCampaign_id()).equals(username)){
-                String sql = "UPDATE campaign SET campaignName = ?, campaignType = ?, " +
+                String sql = "UPDATE campaign SET campaignName = ?, campaignImage = ?, campaignType = ?, " +
                         "description = ?, amountGoal = ?, balance = ? WHERE campaign_id = ?;";
 
                 template.update(sql,
                         campaignToEdit.getCampaignName(),
+                        campaignToEdit.getCampaignImage(),
                         campaignToEdit.getCampaignType(),
                         campaignToEdit.getDescription(),
                         campaignToEdit.getAmountGoal(),

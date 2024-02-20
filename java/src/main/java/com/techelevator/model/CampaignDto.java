@@ -5,6 +5,7 @@ public class CampaignDto {
     private int campaign_id;
     private String username;
     private String campaignName;
+    private String campaignImage;
     private String campaignType;
     private String description;
     private double amountGoal;
@@ -14,14 +15,23 @@ public class CampaignDto {
     public CampaignDto(){}
 
 
-    public CampaignDto(int campaign_id, String username, String campaignName, String campaignType, String description, double amountGoal, double balance) {
+    public CampaignDto(int campaign_id, String username, String campaignName, String campaignImage, String campaignType, String description, double amountGoal, double balance) {
         this.campaign_id = campaign_id;
         this.username = username;
         this.campaignName = campaignName;
+        this.campaignImage = campaignImage;
         this.campaignType = campaignType;
         this.description = description;
         this.amountGoal = amountGoal;
         this.balance = balance;
+    }
+
+    public String getCampaignImage() {
+        return campaignImage;
+    }
+
+    public void setCampaignImage(String campaignImage) {
+        this.campaignImage = campaignImage;
     }
 
     public int getCampaign_id() {

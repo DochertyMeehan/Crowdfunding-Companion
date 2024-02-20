@@ -24,6 +24,10 @@
                                 <div class="col-10">
                                     <input class="form-control" type="text" placeholder="Campaign" aria-label="Campaign Name" v-model="formData.campaignName">
                                 </div>
+                                <div class="col-10">
+                                
+                                     Campaign Image<input class="form-control" type="text" placeholder="Campaign Image Link" aria-label="Campaign Image" v-model="formData.campaignImage">
+                                </div>
                             </div>
                             <div class="row align-items-center mb-3">
                                 <div class="col-2">
@@ -90,6 +94,7 @@ export default {
       formData: {
         username: null,
         campaignName: '',
+        campaignImage: '',
         campaignType: '',
         description: '',
         amountGoal: null,
