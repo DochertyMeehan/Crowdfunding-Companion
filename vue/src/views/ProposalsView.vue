@@ -4,8 +4,9 @@
       <div class="col-md-4" v-for="proposal in proposals" :key="proposal.id">
         <div class="card mb-3">
           <div class="card-body">
-            <h5 class="card-title">{{ proposal.proposalName }}</h5>
-            <p class="card-text">{{ proposal.description }}</p>
+            <h5 class="card-title">{{ proposal.description }}</h5>
+            <p class="card-text">Proposal Number: {{ proposal.proposal_id }}</p>
+            <p class="card-text">Description: {{ proposal.proposal_name }}</p>
             <p class="card-text"><strong>Status:</strong> {{ proposal.proposal_status }}</p>
             <p class="card-text"><strong>Vote Passed:</strong> {{ proposal.vote_passed }}</p>
             <div class="btn-group" role="group" aria-label="Vote">

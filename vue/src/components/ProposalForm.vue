@@ -4,7 +4,8 @@
         <form @submit.prevent="save" v-show="!isSaving">
             <div class="mb-3">
                 <label for="proposalId" class="form-label">campaign_id</label>
-                <input v-model="campaign_id" type="text" class="form-control" id="proposalId" >
+                {{this.$route.params.id }}
+                <!-- <input v-model="campaign_id" type="text" class="form-control" id="proposalId" > -->
                 </div>
                 <div class="mb-3">
                     <label for="proposalName" class="form-label">Proposal Name</label>
