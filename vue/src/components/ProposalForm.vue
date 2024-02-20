@@ -55,7 +55,10 @@ export default {
                     console.log(this.newProposal)
                     
                     if (res.status === 201) {
-                        console.log(res.status)
+                        this.$store.commit('SET_NOTIFICATION', {
+                        message: 'A new proposal was made successfully.',
+                        type: 'success'
+                        });
                         this.$router.push({name: 'ProposalList'})
                     }
                 })

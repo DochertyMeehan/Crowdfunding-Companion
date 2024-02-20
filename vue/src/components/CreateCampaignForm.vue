@@ -107,7 +107,7 @@ export default {
         campaignService.createNewCampaign(this.formData).then(resp => {
             if (resp.status === 201){
                 this.$store.commit('SET_NOTIFICATION', {
-                    message: 'A new card was added.',
+                    message: 'A new Campaign was added.',
                     type: 'success'
                 }
                 );

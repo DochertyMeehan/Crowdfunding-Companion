@@ -41,4 +41,5 @@ import FAQview from './views/FAQview.vue';
 .navbar-brand {
   color: #87ae73;
 }
+
 </style>

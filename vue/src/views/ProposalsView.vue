@@ -56,7 +56,7 @@ export default {
           .then(res => {
             if(res.status == 201){
               this.$store.commit('SET_NOTIFICATION', {
-                    message: 'A new vote was added.',
+                    message: 'Your vote was added/updated.',
                     type: 'success',
                     timeout: 3000
                 }

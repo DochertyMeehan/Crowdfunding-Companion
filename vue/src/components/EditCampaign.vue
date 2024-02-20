@@ -87,7 +87,7 @@ export default {
                 this.$store.commit(
                     'SET_NOTIFICATION',
                     {
-                        message: `Campaign ${this.editCampaign.id} was updated.`,
+                        message: `Campaign was updated.`,
                         type: 'success'
                     }
                 );

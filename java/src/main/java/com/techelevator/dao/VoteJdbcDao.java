@@ -30,6 +30,7 @@ public class VoteJdbcDao implements VoteDao {
             if (hasVoted) {
                 String sql = "UPDATE vote SET vote_response = ? WHERE user_id = ? AND proposal_id = ?";
                 template.update(sql, vote.isVote_response(), getUserIdByUsername(username), vote.getProposal_id());
+//                System.out.println("{ status: 201, message: 'Your vote has changed to vote.isVote_response()' }");
             } else {
                 String sql = "INSERT INTO vote(user_id ,proposal_id,vote_response) VALUES (?, ?, ?)";
                 template.update(sql, getUserIdByUsername(username),vote.getProposal_id(), vote.isVote_response());

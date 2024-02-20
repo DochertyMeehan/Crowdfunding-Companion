@@ -8,16 +8,17 @@
       <p>Goal: ${{ campaign.amountGoal }}</p>
       <p>Balance: ${{ campaign.balance }}</p>
       <router-link class="btn btn-primary" v-bind:to="{name: 'donation'}">donate</router-link>
-      <div class="container">
-        <button><router-link class="nav-link" v-bind:to="{ name: 'ProposalList' }">See all the proposals</router-link></button>
-    </div>
       <router-link v-bind:to="{ name: 'EditCampaign', params: { id: $route.params.campaign_id } }" class="btn btn-submit">Edit
       Campaign</router-link>
-    <button class="btn btn-cancel" v-on:click="removeCampaign(id)">Delete Card</button>
+    <button class="btn btn-cancel" v-on:click="removeCampaign(id)">Delete Campaign</button>
     </div>
     <br>
+    <div class="container">
+        <button><router-link class="nav-link" v-bind:to="{ name: 'ProposalList' }">See all the proposals</router-link></button>
+        </div>
     <br>
     <div>
+        <h4>Donation List:</h4>
         <ul class="list-group list-group-flush" v-for="(donation, index) in donations" v-bind:key="index">
             <li class="list-group-item">{{ index }}. {{ donation.username }} donated: {{ donation.amount }}$ for this campaign</li>
         </ul>
@@ -55,13 +56,13 @@ import ProposalsView from '../views/ProposalsView.vue';
                     }
                 }).catch(err => {
                     if (err.response) {
-                        this.$store.commit('SET_NOTIFICATION', `Error deleting card. Response received was "${err.response.statusText}".`);
+                        this.$store.commit('SET_NOTIFICATION', `Error deleting campaign. Response received was "${err.response.statusText}".`);
                     }
                     else if (err.request) {
-                        this.$store.commit('SET_NOTIFICATION', 'Error deleting card. Server could not be reached.');
+                        this.$store.commit('SET_NOTIFICATION', 'Error deleting campaign. Server could not be reached.');
                     }
                     else {
-                        this.$store.commit('SET_NOTIFICATION', 'Error deleting card. Request could not be created.');
+                        this.$store.commit('SET_NOTIFICATION', 'Error deleting campaign. Request could not be created.');
                     }
                 });
             }

@@ -1,4 +1,5 @@
 <template>
+    <div class="alert alert-success" role="alert" v-if="alert">{{ alert.message }}</div>
     <div>
         <div>
             <CampaignsList :campaigns="campaignData"/>
@@ -13,7 +14,8 @@ import CampaignService from '../services/CampaignService';
 export default {
     data(){
         return {
-            campaignData:[]
+            campaignData:[],
+            alert: null,
         }
     },
     components: {
@@ -52,10 +54,27 @@ export default {
                 console.log(this.campaignData)
             });
             
+        },
+        showAlert() {
+            // get alert message from STORE
+            this.alert = this.$store.state.notification
+
+            if(this.alert == null)
+                return
+
+            // get timeout for alert
+            let alertShowTimeout = this.alert.timeout
+
+            // use func Timeout to clear the alert display
+            setTimeout(() => {
+                this.alert = null
+            }, alertShowTimeout)
+            
         }
     },
     created() {
         this.loadData();
+        this.showAlert();
     }
 }
 </script>
