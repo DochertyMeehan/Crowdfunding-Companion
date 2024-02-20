@@ -18,11 +18,11 @@
     </div>
     <br>
     <div class="container">
-        <button><router-link class="nav-link" v-bind:to="{ name: 'ProposalList' }">See all the proposals</router-link></button>
+        <button class="propbutton"><router-link class="nav-link" v-bind:to="{ name: 'ProposalList' }">See all the proposals</router-link></button>
         </div>
     <br>
     <div>
-        <h4>Donation List:</h4>
+        <h4 class="donation-list-header">Donation List:</h4>
         <ul class="list-group list-group-flush" v-for="(donation, index) in donations" v-bind:key="index">
             <li class="list-group-item"> {{ donation.username }} donated: ${{ donation.amount }} for this campaign</li>
         </ul>
@@ -147,5 +147,24 @@ import ProposalsView from '../views/ProposalsView.vue';
   color: #87ae73;
   border-color: navy;
 }
+.donation-list-header{
+    text-align: center;
+    color: #87ae73;
+}
+.propbutton{
+    display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Added for vertical centering */
+  width: fit-content; /* Optional for precise horizontal centering */
+  margin: auto; /* Optional for centering within a larger container */
+}
+.list-group-item {
+  text-align: center;
+  font-size: 1.4em;
+  font-weight: bold;
+  color: #87ae73;
+}
+
 </style>
   
