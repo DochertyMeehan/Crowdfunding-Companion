@@ -9,7 +9,7 @@
                         <div class="col-6">
                             <div class="row align-items-center mb-3">
                                 <div class="col-2">
-                                    Username
+                                    Username:
                                 </div>
                                 <div class="col-10">
                                     <!-- <input class="form-control" type="text" placeholder="Username" aria-label="Username" v-model="formData.username">
@@ -25,7 +25,6 @@
                                     <input class="form-control" type="text" placeholder="Campaign" aria-label="Campaign Name" v-model="formData.campaignName">
                                 </div>
                                 <div class="col-10">
-                                
                                      Campaign Image<input class="form-control" type="text" placeholder="Campaign Image Link" aria-label="Campaign Image" v-model="formData.campaignImage">
                                 </div>
                             </div>
@@ -60,10 +59,10 @@
                             </div>
                             <div class="row align-items-center mb-3">
                                 <div class="col-2">
-                                    Goal
+                                    Goal $
                                 </div>
                                 <div class="col-10">
-                                    <input class="form-control" type="text" placeholder="" aria-label="Goal Amount" v-model.number="formData.amountGoal">
+                                    <input class="form-control" type="text" placeholder="Fundraising Goal $" aria-label="Goal Amount" v-model.number="formData.amountGoal">
                                 </div>
                             </div>
                             <div class="row justify-content-center mb-3">

@@ -66,7 +66,7 @@ public class CampaignJdbcDao implements CampaignDao {
     }
     public List<CampaignDto> getCampaignByDonorUserId(String username) {
         int userId = getUserIdByUsername(username);
-        String sql = "SELECT * FROM campaign WHERE user_id = ?";
+        String sql = "SELECT * FROM campaign JOIN donation on campaign.campaign_id = donation.campaign_id WHERE user_id = ?;";
 
         SqlRowSet result = template.queryForRowSet(sql,userId);
 
@@ -81,7 +81,7 @@ public class CampaignJdbcDao implements CampaignDao {
 
     @Override
     public CampaignDto getCampaignByType(String campaignType) {
-        String sql = "SELECT * FROM campaign WHERE campaigntype = ?";
+        String sql = "SELECT * FROM campaign WHERE campaigntype = ?;";
         SqlRowSet result = template.queryForRowSet(sql,campaignType);
 
         CampaignDto campaign = null;
@@ -135,7 +135,7 @@ public class CampaignJdbcDao implements CampaignDao {
 
       try {
           if (getUsernameByCampaignId(campaignId).equals(name)) {
-              String sql = "DELETE FROM campaign WHERE campaign_id = ? AND username = ?";
+              String sql = "DELETE FROM campaign WHERE campaign_id = ? AND username = ?;";
               template.update(sql, campaignId, name);
           }
       } catch (DataAccessException e){
