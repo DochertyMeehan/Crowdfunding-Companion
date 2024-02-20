@@ -34,7 +34,7 @@
                                 </div>
                                 <div class="col-10">
                                     <select class="form-control" id="campaignType" name="campaignType" v-model="formData.campaignType">
-                                                        <option value="Animals">Animals</option>
+                                                        <option value="Animals"><i class="bi bi-bug"></i>Animals</option>
                                                         <option value="Business">Business</option>
                                                         <option value="Education">Education</option>
                                                         <option value="Emergency">Emergency</option>
