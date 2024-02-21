@@ -79,7 +79,7 @@ export default {
       selectedCampaignName: '',
       cards: [],
       searchQuery: '', 
-      campaignType: ''
+      campaignType: 'All Campaigns'
     };
   },
   components: {
@@ -108,14 +108,16 @@ export default {
   filteredCampaigns() {
     const matchText = this.searchQuery.toLowerCase();
     // if the campaign type is ALL, then just return the original filter we had before
-    const resultCampaigns = this.campaigns.filter(campaign => {
-      return (
-        (campaign.campaignName.toLowerCase().includes(matchText) && (this.selectedCampaignName === '' || campaign.campaignName === this.selectedCampaignName)) 
-        && campaign.campaignType === this.campaignType
-      );
-    });
-    return resultCampaigns;
-  },
+    if(this.campaignType === 'All Campaigns') {
+      return this.campaigns.filter(campaign => {
+        return campaign.campaignName.toLowerCase().includes(matchText);
+      });
+    } else {
+      return this.campaigns.filter(campaign => {
+        return (campaign.campaignName.toLowerCase().includes(matchText) && (this.selectedCampaignType === '' || campaign.campaignType === this.campaignType));
+      });
+  }
+}
 },
 
   created() {
