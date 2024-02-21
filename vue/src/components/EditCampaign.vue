@@ -36,6 +36,11 @@
                         </div>
                 
                         <div class="mb-3">
+                        <label for="image" class="form-label">Image</label>
+                        <cloudinaryComp />
+                      </div>
+
+                        <div class="mb-3">
                         <label for="description" class="form-label">Description</label>
                         <textarea v-model="editCampaign.description" class="form-control" id="description" required></textarea>
                         </div>
@@ -52,8 +57,12 @@
     </div>
 </template>
 <script>
+import CloudinaryComp from './CloudinaryComp.vue';
 import CampaignService from '../services/CampaignService';
 export default {
+  components: {
+    CloudinaryComp
+  },
   props: {
     formData: {
       type: Object,
@@ -67,6 +76,7 @@ export default {
             campaign_id: this.formData.campaign_id,
             username: this.formData.username,
             campaignName: this.formData.campaignName,
+            campaignImage: this.formData.campaignImage,
             campaignType: this.formData.campaignType,
             description: this.formData.description,
             amountGoal: this.formData.amountGoal,

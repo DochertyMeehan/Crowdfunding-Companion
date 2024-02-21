@@ -9,6 +9,7 @@
   <div>
   <SearchBox @updateSearchQuery="updateSearchQuery" />
   <select id="campaignType" name="campaignType" v-model="campaignType">
+                  <option value="All Campaigns">All Campaigns</option>
                   <option value="Animals">Animals</option>
                   <option value="Business">Business</option>
                   <option value="Education">Education</option>
@@ -45,13 +46,12 @@
           </div>
           <div class="card-body text-capitalize logged-in-card">
             <h5 class="card-title">{{ campaign.campaignName}}</h5>
+            <img v-bind:src="campaign.campaignImage"/>
             <div class="progress" role="progressbar" aria-label="Success example" :aria-valuenow="campaign.percentage" aria-valuemin="0" aria-valuemax="100">
                 <div class="progress-bar bg-success" :style="{ width: campaign.percentage + '%' }"></div>
             </div>
             <p class="card-text"><i class="fa-solid fa-bullseye"></i> ${{ campaign.balance }} raised of ${{ campaign.amountGoal }}</p>
             <p class="card-text">{{ campaign.description }}</p>
-            <img v-bind:src="campaign.campaignImage"/>
-
           </div>
           <div class="card-footer text-body-secondary">
             <div class="row d-flex align-items-center">
@@ -76,7 +76,7 @@ export default {
   props: ['campaigns'],
   data() {
     return {
-      selectedCampaignType: '',
+      selectedCampaignName: '',
       cards: [],
       searchQuery: '', 
       campaignType: ''
@@ -99,6 +99,9 @@ export default {
     },
     updateSearchQuery(query) {
       this.searchQuery = query;
+    },
+    updateCampaignType() {
+      
     }
   },
   computed: {
@@ -106,8 +109,8 @@ export default {
     const matchText = this.searchQuery.toLowerCase();
     const resultCampaigns = this.campaigns.filter(campaign => {
       return (
-        campaign.campaignType.toLowerCase().includes(matchText) &&
-        (this.selectedCampaignType === '' || campaign.campaignType === this.selectedCampaignType)
+        campaign.campaignName.toLowerCase().includes(matchText) &&
+        (this.selectedCampaignName === '' || campaign.campaignName === this.selectedCampaignName)
       );
     });
     return resultCampaigns;
@@ -148,6 +151,7 @@ select {
   border: 1px solid #ccc;
 }
 img{
-  width: 200px;
+  width: 250px;
+  padding-bottom: 20px;
 }
 </style>

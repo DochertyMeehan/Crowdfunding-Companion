@@ -19,12 +19,12 @@
             </li>  
             <li class="nav-item">
               <router-link class="nav-link" v-bind:to="{name: 'FAQ'}">FAQ</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link class="nav-link" v-bind:to="{name: 'DonationHistory'}">Your Donations</router-link>
-            </li>                       
+            </li>                    
           </ul>
           <ul class="navbar-nav">
+            <li class="nav-item">
+              <router-link class="nav-link" v-bind:to="{name: 'DonationHistory'}">Your Donations</router-link>
+            </li>   
             <li class="nav-item">
               <router-link class="nav-link" v-bind:to="{ name: 'login' }" v-if="$store.state.token == ''">Sign In</router-link>
               <router-link class="nav-link" v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
