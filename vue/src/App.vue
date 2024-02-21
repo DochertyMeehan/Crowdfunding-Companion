@@ -15,7 +15,9 @@
               <router-link class="nav-link" v-bind:to="{name:'campaignCreate'}">Create Campaign</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" v-bind:to="{name: 'HallOfFame'}">Hall of Fame</router-link>
+              <router-link class="nav-link" v-bind:to="{ name: 'login' }" v-if="$store.state.token == ''">Hall Of Fame</router-link>
+              <router-link class="nav-link" v-bind:to="{ name: 'HallOfFame' }" v-if="$store.state.token != ''">Hall Of Fame</router-link>
+              <!-- <router-link class="nav-link" v-bind:to="{name: 'HallOfFame'}">Hall of Fame</router-link> -->
             </li>  
             <li class="nav-item">
               <router-link class="nav-link" v-bind:to="{name: 'FAQ'}">FAQ</router-link>
@@ -23,7 +25,9 @@
           </ul>
           <ul class="navbar-nav">
             <li class="nav-item">
-              <router-link class="nav-link" v-bind:to="{name: 'DonationHistory'}">Your Donations</router-link>
+              <router-link class="nav-link" v-bind:to="{ name: 'login' }" v-if="$store.state.token == ''">Your Donations</router-link>
+              <router-link class="nav-link" v-bind:to="{ name: 'DonationHistory' }" v-if="$store.state.token != ''">Your Donations</router-link>
+              <!-- <router-link class="nav-link" v-bind:to="{name: 'DonationHistory'}">Your Donations</router-link> -->
             </li>   
             <li class="nav-item">
               <router-link class="nav-link" v-bind:to="{ name: 'login' }" v-if="$store.state.token == ''">Sign In</router-link>
