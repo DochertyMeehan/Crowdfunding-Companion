@@ -1,4 +1,5 @@
 <template>
+    <div class="all">
     <div class="faq">
   <h1>FAQ</h1>
   <div class="faq-item">
@@ -34,6 +35,7 @@
     fundraising at all. This means more money goes directly to those in need.</p>
 </div>
 </div>
+</div>
 </template>
 
 <script>
@@ -44,7 +46,7 @@ export default {
 
 <style>
 .faq {
-    color: #87ae73;
+    color: rgb(6, 82, 6);
     max-width: 900px;
     margin: 0 auto;
     margin-bottom: 30px;
@@ -55,9 +57,16 @@ export default {
 .faq-item h4 {
     font-size: 25px;
     margin-bottom: 10px;
+    font-weight: bold;
 }
 .faq-item p {
     font-size: 16px;
     line-height: 1.5;
+    font-weight: bold;
+}
+.all{
+  background-color: #e5e5f7; opacity: 0.8; 
+  background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #e5e5f7 20px ), repeating-linear-gradient( #F5F5DC, #B2AC88 );
+  min-height: 100vh;
 }
 </style>

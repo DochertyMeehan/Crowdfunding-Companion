@@ -1,7 +1,8 @@
 <template>
+  <div class="all">
   <div class="container">
     <div>
-      <h4>Welcome to Crowdfunding Companion!</h4>
+      <h4 id="welcome">Welcome to Crowdfunding Companion!</h4>
       <p>The easiest way to fundraise and donate to the causes that matter most to you.</p>
     </div>
   </div>
@@ -68,6 +69,7 @@
       </div>
     </div>
   </div> 
+  </div>
 </template>
 
 <script>
@@ -131,6 +133,7 @@ export default {
   cursor: pointer;
 }
 
+
 .card {  
   color: #87ae73;
   margin-bottom: 20px;
@@ -138,6 +141,8 @@ export default {
 .container {
   color: #87ae73;
   margin-bottom: 20px;
+  padding-top: 10px;
+  
 }
 .btn {
   background-color: #87ae73;
@@ -155,6 +160,8 @@ select {
 }
 img{
   width: 250px;
+  max-height: 250px;
+  max-width: 250px;
   padding-bottom: 20px;
 }
 </style>

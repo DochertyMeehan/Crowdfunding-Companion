@@ -1,4 +1,5 @@
 <template>
+    
     <div class="alert alert-success" role="alert" v-if="alert">{{ alert.message }}</div>
     <div>
         <div>

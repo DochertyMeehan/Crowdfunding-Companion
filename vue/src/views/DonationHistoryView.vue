@@ -1,4 +1,5 @@
 <template>
+  <div class="all">
     <div class="container">
         <div class="col-4" v-for="(campaign, index) in donationList" v-bind:key="index">        
         <div class="card mb-3" v-on:click="viewCampaignDetails(campaign)">
@@ -22,6 +23,7 @@
         </div>  
       </div>
     </div>
+  </div>
 </template>
 
 <script>
