@@ -15,7 +15,6 @@ export default {
         return axios.put('/edit-campaign', campaign);
     },
     getCampaign(id) {
-        console.log("this is getcampaign")
         return axios.get('/campaign', {params: { campaign_id: id }});
     },
     deleteCampaign(id){
@@ -56,7 +55,7 @@ export default {
         return axios.get('/hall-of-fame');
     },
     getDonationHistory() {
-        console.log("hello")
+        
         return axios.get('/campaigns-donated-to');
     }
 
