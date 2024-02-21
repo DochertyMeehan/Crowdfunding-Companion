@@ -20,8 +20,8 @@
                     <label for="proposalStatus" class="form-label">Proposal Status</label>
                     <select v-model="newProposal.proposal_status" class="form-select" id="proposalStatus" >
                     <option value="pending">Pending</option>
-                    <option value="approved">Approved</option>
-                    <option value="rejected">Rejected</option>
+                    <!-- <option value="approved">Approved</option>
+                    <option value="rejected">Rejected</option> -->
                     </select>
                 </div>
                 <div class="mb-3">
