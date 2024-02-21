@@ -49,3 +49,37 @@ export default {
     }
 }
 </script>
+<style>
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.col-4 {
+  max-width: calc(33.33% - 20px);
+}
+
+.card {
+  width: 100%; 
+  box-sizing: border-box; 
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-title {
+  margin-bottom: 10px; 
+}
+
+.card-text {
+  flex: 1; 
+  margin-bottom: 10px;
+}
+
+.card-footer {
+  margin-top: auto;
+}
+</style>

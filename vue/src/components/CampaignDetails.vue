@@ -78,7 +78,7 @@ import CloudinaryComp from '../components/CloudinaryComp.vue';
             }
         },
         loadData(){
-            console.log("hello 2")
+            // console.log("hello 2")
             // console.log("hellp 3",this.campaign)
             CampaignService.getDonationForDonor(this.$route.params.id).then(res => {
                 console.log(res.status)
