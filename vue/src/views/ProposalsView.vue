@@ -1,4 +1,5 @@
 <template>
+  <div class="all">
     <router-link v-bind:to="{ name: 'SingleCampaignView' }">Go back </router-link>
     <div class="row">
       <div class="col-md-4" v-for="proposal in proposals" :key="proposal.id">
@@ -17,7 +18,9 @@
         </div>
       </div>
     </div>
+    
     <button><router-link class="nav-link" v-bind:to="{ name: 'CreateProposal' }">Make a new Proposal</router-link></button>
+    </div>
 </template>
 <script>
 import CampaignService from '../services/CampaignService';

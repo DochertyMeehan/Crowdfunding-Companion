@@ -84,7 +84,9 @@ public class DonationJdbcDao implements DonationDao{
 
         double amount = rowset.getDouble("amount");
 
-        DonorUserDto donation = new DonorUserDto(username, amount);
+        String donation_comment = rowset.getString("donation_comment");
+
+        DonorUserDto donation = new DonorUserDto(username, amount, donation_comment);
         return donation;
     }
 
@@ -127,7 +129,7 @@ public class DonationJdbcDao implements DonationDao{
         List<DonorUserDto> donationUserDtoList = new ArrayList<>();
 
         try {
-                String sql = "SELECT donation.amount, users.username\n" +
+                String sql = "SELECT donation.amount, users.username, donation.donation_comment\n" +
                         "FROM donation\n" +
                         "JOIN users ON donation.user_id = users.user_id\n" +
                         "WHERE donation.campaign_id = ?;\n";

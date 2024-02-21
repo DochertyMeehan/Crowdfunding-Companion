@@ -1,5 +1,5 @@
 <template>
-
+    <div class="all">
     <div class="campaign-details">
       <img v-bind:src="campaign.campaignImage"/>
       <h2>{{ campaign.campaignName }}</h2>
@@ -30,6 +30,7 @@
             <p>{{ donation.donation_comment }}</p>
         </ul>
     </div>
+</div>
   </template>
   
 <script>
@@ -159,6 +160,7 @@ import CloudinaryComp from '../components/CloudinaryComp.vue';
 .donation-list-header{
     text-align: center;
     color: #87ae73;
+    font-size: 50px;
 }
 .propbutton{
     display: flex;

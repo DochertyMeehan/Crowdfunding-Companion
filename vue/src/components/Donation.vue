@@ -1,4 +1,5 @@
 <template>
+  <div class="all">
  <div class="container">
   <h2>Thank you for your Donation</h2>
       
@@ -46,6 +47,7 @@
       <p>Amount submitted: {{ amount }}</p>
     </div>
   </div>
+</div>
 </template>
 <script>
 import CampaignService from '../services/CampaignService';
