@@ -2,7 +2,7 @@
   <div class="all">
     <div class="container">
     <div>
-      <h4>Welcome to Crowdfunding Companion!</h4>
+      <h4 class="welcome">Welcome to Crowdfunding Companion!</h4>
       <p>The easiest way to fundraise and donate to the causes that matter most to you.</p>
       <img src="/logo2.png" style="max-width: 300px;" alt="">
     </div>
@@ -80,8 +80,7 @@ html, body {
 
 .container{
   text-align: center;
-  margin-top: 20px;
-  
+  padding-top: 10px;
 }
 
 .all{
@@ -112,6 +111,11 @@ html, body {
   margin-bottom: 5px;
   font-size: 24px;
   color: navy;
+}
+
+.welcome{
+  margin-top: 10px;
+  
 }
 
 

@@ -1,7 +1,9 @@
 <template>
+    <div class="all">
     <div class="HallOfFame">
   <h1>Donor Hall of Fame</h1>
   <HallOfFameList />
+</div>
 </div>
 </template>
 
