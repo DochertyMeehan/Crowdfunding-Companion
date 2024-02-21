@@ -35,6 +35,24 @@ public class CampaignJdbcDao implements CampaignDao {
 
         return campaigns;
     }
+
+    @Override
+    public List<CampaignDto> getCampaignsByUsername(String username) {
+        String sql = "SELECT * FROM campaign WHERE username = ?";
+        List<CampaignDto> campaigns = new ArrayList<>();
+
+        SqlRowSet results = template.queryForRowSet(sql, username);
+
+        while(results.next()) {
+            CampaignDto campaign = mapRowToCampaign(results);
+            campaigns.add(campaign);
+        }
+
+        return campaigns;
+    }
+
+
+
     public CampaignDto mapRowToCampaign(SqlRowSet rowset) {
         int id = rowset.getInt("campaign_id");
         String username = rowset.getString("username");

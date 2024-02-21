@@ -44,6 +44,13 @@ public class AppController {
         return dao.getCampaignByDonorUserId(principal.getName());
     }
 
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(path="/campaigns-created", method = RequestMethod.GET)
+    public List<CampaignDto> getCampaignsByUsername(Principal principal) {
+        return dao.getCampaignsByUsername(principal.getName());
+    }
+
+
     @RequestMapping(path="/campaign", method = RequestMethod.GET)
     public CampaignDto getCampaign(@RequestParam("campaign_id") int campaign_id) {
         return dao.getCampaign(campaign_id);

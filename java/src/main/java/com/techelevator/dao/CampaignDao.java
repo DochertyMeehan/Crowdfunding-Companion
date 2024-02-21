@@ -15,4 +15,5 @@ public interface CampaignDao {
      CampaignDto mapRowToCampaign(SqlRowSet rowset);
      CampaignDto getCampaignByType(String campaignType);
      List<CampaignDto> getCampaignByDonorUserId(String username);
+     List<CampaignDto> getCampaignsByUsername(String username);
 }
