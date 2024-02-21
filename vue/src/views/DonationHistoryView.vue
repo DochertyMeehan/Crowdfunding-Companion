@@ -7,9 +7,7 @@
           </div>
           <div class="card-body text-capitalize logged-in-card">
             <h5 class="card-title">{{ campaign.campaignName}}</h5>
-            <div class="progress" role="progressbar" aria-label="Success example" :aria-valuenow="campaign.percentage" aria-valuemin="0" aria-valuemax="100">
-                <div class="progress-bar bg-success" :style="{ width: campaign.percentage + '%' }"></div>
-            </div>
+            <img v-bind:src="campaign.campaignImage"/>
             <p class="card-text"><i class="fa-solid fa-bullseye"></i> ${{ campaign.balance }} raised of ${{ campaign.amountGoal }}</p>
             <p class="card-text">{{ campaign.description }}</p>
           </div>
@@ -43,7 +41,8 @@ export default {
                 console.log(this.donationList)
             })
 
-        }
+        },
+        
     },
     created() {
         this.loadData();

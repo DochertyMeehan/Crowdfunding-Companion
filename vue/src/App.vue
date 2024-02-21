@@ -1,6 +1,6 @@
 <template>
   <div id="capstone-app">
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary alo">
       <div class="container">
         <a class="navbar-brand"><img src="/logo2.png" style="max-width: 30px;" alt=""> Crowdfunding</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,7 +32,7 @@
           </ul>
         </div>
       </div>
-    </nav>
+    </nav >
     <router-view />
   </div>
 </template>
@@ -55,7 +55,13 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 0px;
+ 
 }
+#alo{
+  
+}
+
+
 
 </style>
