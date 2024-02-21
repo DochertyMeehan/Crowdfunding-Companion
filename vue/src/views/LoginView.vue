@@ -1,4 +1,5 @@
 <template>
+  <div class="all">
     <div class="container">
     <div>
       <h4>Welcome to Crowdfunding Companion!</h4>
@@ -29,6 +30,7 @@
       </p>
     </form>
   </div>
+</div>
 </template>
 
 <script>
@@ -70,9 +72,22 @@ export default {
 
 <style scoped>
 
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
 .container{
   text-align: center;
   margin-top: 20px;
+  
+}
+
+.all{
+  background-color: #e5e5f7; opacity: 0.8; 
+  background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #e5e5f7 20px ), repeating-linear-gradient( #F5F5DC, #B2AC88 );
+  min-height: 100vh;
 }
 
 
@@ -80,7 +95,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  /* height: 50vh; */
   color: navy;
 }
 
@@ -94,7 +109,7 @@ export default {
 }
 
 .login-form h1 {
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   font-size: 24px;
   color: navy;
 }
@@ -119,10 +134,10 @@ label {
 }
 
 input {
-  width: 100%;
+  width: calc(100% - 10px);
   padding: 8px;
-  box-sizing: border-box;
-  margin-top: 4px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 .submit-button {
