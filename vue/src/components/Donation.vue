@@ -26,8 +26,8 @@
       </div>
     <form @submit.prevent="submitForm" >
       <div class="mb-3">
-        <label for="email" class="form-label">Email Address</label>
-        <input type="email" class="form-control" id="email">
+        <label for="comments" class="form-label">Comments</label>
+        <textarea type="Comments" class="form-control" id="Comments" v-model="donation.donation_comment"></textarea>
       </div>
 
       <label for="amount">Amount:</label>
@@ -55,10 +55,11 @@ export default {
             donation: {
                 campaign_id: null,
                 user_id: null,
-                amount: null,
-                comment: null,
+                amount: '',
+                donation_comment: '',
             },
             amount: null,
+            donation_comment: null,
             submitted: false,
         };
     },
