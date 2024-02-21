@@ -69,6 +69,13 @@ export default {
 </script>
 
 <style scoped>
+
+.container{
+  text-align: center;
+  margin-top: 20px;
+}
+
+
 #login {
   display: flex;
   align-items: center;
@@ -85,6 +92,13 @@ export default {
   background-color: #e0f2e9; /* Light green background color */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
+.login-form h1 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: navy;
+}
+
 
 .error-message {
   color: #ff0000;
