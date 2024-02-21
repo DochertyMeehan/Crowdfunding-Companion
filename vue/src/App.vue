@@ -37,15 +37,11 @@
   </div>
 </template>
 <script>
-import CampaignView from './views/CampaignView.vue';
-import FAQview from './views/FAQview.vue';
-
-import CloudinaryComp from './components/CloudinaryComp.vue'
 
 export default {
   name: 'App',
   components: {
-    CloudinaryComp
+   
   }
 }
 </script>

@@ -6,22 +6,13 @@
     </div>
   </div>
 
-  <div class="container">
-  <div class="row">
-    <div class="col-12">
-      <label for="search">Search by Campaign Type:</label>
-      <input type="text" id="search" v-model="searchQuery" @input="filterCampaigns" class="form-control">
-    </div>
+  <div>
+  <SearchBox @updateSearchQuery="updateSearchQuery" />
   </div>
-  <div class="row">
-    <div class="col-4" v-for="(campaign, index) in filteredCampaigns" :key="index">
-    </div>
-  </div>
-</div>
-
+  <br>
   <div class="container">
     <div class="row">
-      <div class="col-4" v-for="(campaign, index) in cards" v-bind:key="index">        
+      <div class="col-4" v-for="(campaign, index) in filteredCampaigns" v-bind:key="index">        
         <div class="card mb-3" v-on:click="viewCampaignDetails(campaign)">
           <div class="card-header logged-in-card">
             <i v-if="campaign.campaignType === 'Animals'" class="bi bi-bug"></i>
@@ -64,6 +55,7 @@
 </template>
 
 <script>
+import SearchBox from '../components/SearchBox.vue';
 export default {
   props: ['campaigns'],
   data() {
@@ -72,6 +64,9 @@ export default {
       cards: [],
       searchQuery: '', 
     };
+  },
+  components: {
+    SearchBox
   },
   methods: {
     loadData() {
@@ -85,30 +80,23 @@ export default {
         this.$router.push({ name: 'SingleCampaignView', params: { id: campaign.campaign_id } });
       }
     },
+    updateSearchQuery(query) {
+      this.searchQuery = query;
+    }
   },
   computed: {
-    campaignForFilter() {
-      console.log ("filtered test: ",this.$store.state.campaign)
-      return this.$store.state.campaign;
-    }
-
-    // campaignTypes() {
-      
-    //   const types = new Set();
-    //   this.campaigns.forEach(campaign => {
-    //     types.add(campaign.campaignType);
-    //   });
-    //   return Array.from(types);
-    // },
-    // filteredCampaigns() {
-    //   if (!this.searchQuery) {
-    //     return this.campaigns;
-    //   }
-    //   return this.campaigns.filter(campaign => {
-    //     return campaign.campaignType === this.selectedCampaignType;
-    //   });
-    // },
+  filteredCampaigns() {
+    const matchText = this.searchQuery.toLowerCase();
+    const resultCampaigns = this.campaigns.filter(campaign => {
+      return (
+        campaign.campaignType.toLowerCase().includes(matchText) &&
+        (this.selectedCampaignType === '' || campaign.campaignType === this.selectedCampaignType)
+      );
+    });
+    return resultCampaigns;
   },
+},
+
   created() {
     this.loadData()
   }

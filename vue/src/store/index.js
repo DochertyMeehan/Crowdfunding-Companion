@@ -30,6 +30,9 @@ export function createStore(currentToken, currentUser) {
       SET_CAMPAIGNS(state,campaignData) {
         state.campaigns = campaignData;
       },
+      UPDATE_SEARCH_TERM(state, searchText) {
+        state.searchTerm = searchText;
+      },
       TOGGLE_SHOW_DETAILS(state,campaign){
         const theCampaign = state.campaigns.find(curCampaign => curCampaign.campaign_id == campaign.campaign_id);
         theCampaign.showDetails = !theCampaign.showDetails;

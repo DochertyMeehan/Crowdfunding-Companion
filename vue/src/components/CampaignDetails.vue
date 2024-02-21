@@ -1,5 +1,7 @@
 <template>
+
     <div class="campaign-details">
+      <CloudinaryComp v-if="campaignData" :msg="campaignData.campaignName"/>
       <h2>{{ campaign.campaignName }}</h2>
       <p>Campaign Manager: {{ campaign.username }}</p>
       <p>Campaign Type: {{ campaign.campaignType }}</p>
@@ -32,9 +34,13 @@
 <script>
 import CampaignService from '../services/CampaignService';
 import ProposalsView from '../views/ProposalsView.vue';
+import CloudinaryComp from '../components/CloudinaryComp.vue'
+
 
   export default {
     components: {
+        CloudinaryComp
+
     },
     data() {
         return {
@@ -108,7 +114,7 @@ import ProposalsView from '../views/ProposalsView.vue';
         
 
     },
-    created() {
+   async created() {
         this.selectedCampaign = this.$route.params.campaign_id;
         this.loadData();
         this.loadData2();
