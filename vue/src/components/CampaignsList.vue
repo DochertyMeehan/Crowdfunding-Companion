@@ -8,6 +8,20 @@
 
   <div>
   <SearchBox @updateSearchQuery="updateSearchQuery" />
+  <select id="campaignType" name="campaignType" v-model="campaignType">
+                  <option value="Animals">Animals</option>
+                  <option value="Business">Business</option>
+                  <option value="Education">Education</option>
+                  <option value="Emergency">Emergency</option>
+                  <option value="Events">Events</option>
+                  <option value="Family">Family</option>
+                  <option value="Medical">Medical</option>
+                  <option value="Memorial">Memorial</option>
+                  <option value="Nonprofit">Nonprofit</option>
+                  <option value="Sports">Sports</option>
+                  <option value="Travel">Travel</option>
+                  <option value="Wishes">Wishes</option>
+                </select>
   </div>
   <br>
   <div class="container">
@@ -36,6 +50,8 @@
             </div>
             <p class="card-text"><i class="fa-solid fa-bullseye"></i> ${{ campaign.balance }} raised of ${{ campaign.amountGoal }}</p>
             <p class="card-text">{{ campaign.description }}</p>
+            <img v-bind:src="campaign.campaignImage"/>
+
           </div>
           <div class="card-footer text-body-secondary">
             <div class="row d-flex align-items-center">
@@ -63,6 +79,7 @@ export default {
       selectedCampaignType: '',
       cards: [],
       searchQuery: '', 
+      campaignType: ''
     };
   },
   components: {
@@ -129,5 +146,8 @@ select {
   padding: 8px 16px;
   border-radius: 5px;
   border: 1px solid #ccc;
+}
+img{
+  width: 200px;
 }
 </style>

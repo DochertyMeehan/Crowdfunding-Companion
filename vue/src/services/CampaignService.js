@@ -11,7 +11,6 @@ export default {
         return axios.get('/all-campaigns');
     },
     editCampaign(campaign) {
-        console.log("alo")
         console.log(campaign)
         return axios.put('/edit-campaign', campaign);
     },

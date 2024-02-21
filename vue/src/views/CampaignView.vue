@@ -39,6 +39,7 @@ export default {
                     let data = {
                         campaign_id: campaign.campaign_id,
                         username: campaign.username,
+                        campaignImage: campaign.campaignImage,
                         description: campaign.description,
                         amountGoal: campaign.amountGoal,
                         balance: campaign.balance,
