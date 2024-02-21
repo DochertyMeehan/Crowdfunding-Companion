@@ -107,10 +107,11 @@ export default {
   computed: {
   filteredCampaigns() {
     const matchText = this.searchQuery.toLowerCase();
+    // if the campaign type is ALL, then just return the original filter we had before
     const resultCampaigns = this.campaigns.filter(campaign => {
       return (
-        campaign.campaignName.toLowerCase().includes(matchText) &&
-        (this.selectedCampaignName === '' || campaign.campaignName === this.selectedCampaignName)
+        (campaign.campaignName.toLowerCase().includes(matchText) && (this.selectedCampaignName === '' || campaign.campaignName === this.selectedCampaignName)) 
+        && campaign.campaignType === this.campaignType
       );
     });
     return resultCampaigns;
