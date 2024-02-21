@@ -45,7 +45,7 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped>
 .navbar-brand {
   color: #87ae73;
 }
