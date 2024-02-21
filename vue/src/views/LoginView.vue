@@ -3,6 +3,7 @@
     <div>
       <h4>Welcome to Crowdfunding Companion!</h4>
       <p>The easiest way to fundraise and donate to the causes that matter most to you.</p>
+      <img src="/logo2.png" style="max-width: 300px;" alt="">
     </div>
   </div>
   <div id="login">
@@ -73,6 +74,7 @@ export default {
   align-items: center;
   justify-content: center;
   height: 100vh;
+  color: navy;
 }
 
 .login-form {
@@ -110,20 +112,23 @@ input {
 }
 
 .submit-button {
-  background-color: #007bff;
-  color: #fff;
-  padding: 10px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+  padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    background-color: #87ae73;
+    color: white;
+    border-color: navy;
 }
 
 .submit-button:hover {
-  background-color: #0056b3;
+  background-color: white;
+  color: #87ae73;
+  border-color: navy;
 }
 
 router-link {
-  color: #007bff;
+  color: navy;
   text-decoration: none;
 }
 

@@ -33,8 +33,8 @@
   
 <script>
 import CampaignService from '../services/CampaignService';
-import ProposalsView from '../views/ProposalsView.vue';
-import CloudinaryComp from '../components/CloudinaryComp.vue'
+// import ProposalsView from '../views/ProposalsView.vue';
+import CloudinaryComp from '../components/CloudinaryComp.vue';
 
 
   export default {
