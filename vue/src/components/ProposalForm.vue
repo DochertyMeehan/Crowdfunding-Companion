@@ -1,4 +1,5 @@
 <template>
+    <div class="all">
     <router-link class="nav-link" v-bind:to="{ name: 'ProposalList' }">Go back</router-link>
     <div class="container">
         <form @submit.prevent="save" v-show="!isSaving">
@@ -33,6 +34,7 @@
                 <button class="btn btn-primary" v-bind:to="{ name: 'ProposalList' }">Cancel</button>
             </form>
   </div>
+</div>
 </template>
 <script>
 import CampaignService from '../services/CampaignService';
