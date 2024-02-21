@@ -155,6 +155,8 @@ select {
 }
 img{
   width: 250px;
+  max-height: 250px;
+  max-width: 250px;
   padding-bottom: 20px;
 }
 </style>
