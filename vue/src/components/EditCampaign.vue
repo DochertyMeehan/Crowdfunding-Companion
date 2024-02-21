@@ -1,4 +1,5 @@
 <template>
+  <div class="all">
         <div class="container">
             <div class="container">
                     <h2>Edit Form</h2>
@@ -55,6 +56,7 @@
                     </form>
         </div>
     </div>
+  </div>
 </template>
 <script>
 import CloudinaryComp from './CloudinaryComp.vue';
