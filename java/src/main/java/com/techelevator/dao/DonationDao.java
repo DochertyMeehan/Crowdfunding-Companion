@@ -11,7 +11,7 @@ public interface DonationDao {
      String createDonation(DonationDto donationToCreate);
      List<DonorUserDto> getDonationsByCampaignIdForCreator(int campaign_id, String username);
      void updateBalanceForCampaign(int campaignId, double amount);
-     List<DonorUserDto> getDonationsByCampaignIdForDonor(int campaign_id, String username);
+     List<DonorUserDto> getDonationsByCampaignId(int campaign_id);
      List<DonorUserDto> getHallOfFameDonors();
      double getBalanceByCampaignId(int campaign_id);
      DonorUserDto mapRowToDonorUser(SqlRowSet rowset);
