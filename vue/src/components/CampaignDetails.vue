@@ -26,8 +26,7 @@
     <div>
         <h4 class="donation-list-header">Donation List:</h4>
         <ul class="list-group list-group-flush" v-for="(donation, index) in donations" v-bind:key="index">
-            <li class="list-group-item style-donation-list"> {{ donation.username }} donated: ${{ donation.amount }} for this campaign</li>
-            <p>{{ donation.donation_comment }}</p>
+            <li class="list-group-item style-donation-list"> {{ donation.username }} donated ${{ donation.amount }} for this campaign : <a class="comment">{{ donation.donation_comment }}</a></li>
         </ul>
     </div>
 </div>
@@ -176,6 +175,10 @@ import CloudinaryComp from '../components/CloudinaryComp.vue';
   font-weight: bold;
   color: #87ae73;
 }
-
+.comment{
+    color: #0e0e0e;
+    font-size: small;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
 </style>
   

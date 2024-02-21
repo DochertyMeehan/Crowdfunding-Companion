@@ -84,4 +84,7 @@ export default {
 .card-footer {
   margin-top: auto;
 }
+img{
+  flex: 1;
+}
 </style>
