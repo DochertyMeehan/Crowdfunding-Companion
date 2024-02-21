@@ -81,7 +81,7 @@ export default {
       selectedCampaignName: '',
       cards: [],
       searchQuery: '', 
-      campaignType: ''
+      campaignType: 'All Campaigns'
     };
   },
   components: {
@@ -109,14 +109,17 @@ export default {
   computed: {
   filteredCampaigns() {
     const matchText = this.searchQuery.toLowerCase();
-    const resultCampaigns = this.campaigns.filter(campaign => {
-      return (
-        campaign.campaignName.toLowerCase().includes(matchText) &&
-        (this.selectedCampaignName === '' || campaign.campaignName === this.selectedCampaignName)
-      );
-    });
-    return resultCampaigns;
-  },
+    // if the campaign type is ALL, then just return the original filter we had before
+    if(this.campaignType === 'All Campaigns') {
+      return this.campaigns.filter(campaign => {
+        return campaign.campaignName.toLowerCase().includes(matchText);
+      });
+    } else {
+      return this.campaigns.filter(campaign => {
+        return (campaign.campaignName.toLowerCase().includes(matchText) && (this.selectedCampaignType === '' || campaign.campaignType === this.campaignType));
+      });
+  }
+}
 },
 
   created() {
@@ -157,6 +160,8 @@ select {
 }
 img{
   width: 250px;
+  max-height: 250px;
+  max-width: 250px;
   padding-bottom: 20px;
 }
 </style>

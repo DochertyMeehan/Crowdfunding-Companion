@@ -78,30 +78,7 @@ public class DonationJdbcDao implements DonationDao{
                 );
     }
 
-    @Override
-    public List<DonorUserDto> getDonationsByCampaignIdForCreator(int campaign_id, String username) {
-        List<DonorUserDto> donationUserDtoList = new ArrayList<>();
 
-        try {
-            if (getCreatorByCampaignId(campaign_id).equals(username)){
-                String sql = "SELECT donation.amount, users.username\n" +
-                        "FROM donation\n" +
-                        "JOIN users ON donation.user_id = users.user_id\n" +
-                        "WHERE donation.campaign_id = ?;\n";
-
-
-            SqlRowSet results = template.queryForRowSet(sql, campaign_id);
-
-            while (results.next()) {
-                donationUserDtoList.add(mapRowToDonorUser(results));
-            }
-
-        }
-        }catch (DataAccessException e){
-            throw new DaoException("Cannot view donations of campaign that's not yours");
-        }
-        return donationUserDtoList;
-    }
     public DonorUserDto mapRowToDonorUser(SqlRowSet rowset) {
         String username = rowset.getString("username");
 
@@ -121,11 +98,11 @@ public class DonationJdbcDao implements DonationDao{
 
 
     @Override
-    public List<DonorUserDto> getDonationsByCampaignIdForDonor(int campaign_id, String username) {
+    public List<DonorUserDto> getDonationsByCampaignIdForCreator(int campaign_id, String username) {
         List<DonorUserDto> donationUserDtoList = new ArrayList<>();
 
         try {
-            if (listOfDonors(campaign_id).contains(username)){
+            if (getCreatorByCampaignId(campaign_id).equals(username)){
                 String sql = "SELECT donation.amount, users.username\n" +
                         "FROM donation\n" +
                         "JOIN users ON donation.user_id = users.user_id\n" +
@@ -139,6 +116,28 @@ public class DonationJdbcDao implements DonationDao{
                 }
 
             }
+        }catch (DataAccessException e){
+            throw new DaoException("Cannot view donations of campaign that's not yours");
+        }
+        return donationUserDtoList;
+    }
+
+    @Override
+    public List<DonorUserDto> getDonationsByCampaignId(int campaign_id) {
+        List<DonorUserDto> donationUserDtoList = new ArrayList<>();
+
+        try {
+                String sql = "SELECT donation.amount, users.username\n" +
+                        "FROM donation\n" +
+                        "JOIN users ON donation.user_id = users.user_id\n" +
+                        "WHERE donation.campaign_id = ?;\n";
+
+
+                SqlRowSet results = template.queryForRowSet(sql, campaign_id);
+
+                while (results.next()) {
+                    donationUserDtoList.add(mapRowToDonorUser(results));
+                }
         }catch (DataAccessException e){
             throw new DaoException("Cannot view donations of campaign that's not yours");
         }

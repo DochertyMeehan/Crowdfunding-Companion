@@ -37,7 +37,7 @@
                 
                         <div class="mb-3">
                         <label for="image" class="form-label">Image</label>
-                        <cloudinaryComp />
+                        <cloudinaryComp @image-uploaded="handleImageUploaded"/>
                       </div>
 
                         <div class="mb-3">
@@ -120,6 +120,10 @@ export default {
       } else {
         this.$store.commit('SET_NOTIFICATION', "Error " + verb + " card. Request could not be created.");
       }
+    },
+    handleImageUploaded(imageUrl) {
+      this.editCampaign.campaignImage = imageUrl;
+      console.log("image URL: ", imageUrl)
     },
   },
 };

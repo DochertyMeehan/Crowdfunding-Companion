@@ -158,13 +158,11 @@ public class AppController {
         }
 
     }
-    @RequestMapping(path = "/get-donations-list-by-campaign-id/donor", method = RequestMethod.GET)
+    @RequestMapping(path = "/get-donations-list-by-campaign-id", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    public List<DonorUserDto> getDonationsByCampaignIdForDonor(@RequestParam("campaign_id") int campaign_id, Principal principal){
-
-
+    public List<DonorUserDto> getDonationsByCampaignIdForDonor(@RequestParam("campaign_id") int campaign_id){
         try {
-            return donationDao.getDonationsByCampaignIdForDonor(campaign_id, principal.getName());
+            return donationDao.getDonationsByCampaignId(campaign_id);
         } catch (DaoException e){
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage(), e);
         }
