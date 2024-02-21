@@ -1,7 +1,6 @@
 <template>
     <div class="search-box-container">
-        <input id="search-box" type="text" v-model="searchQuery" @input="updateSearchQuery"/>
-        <label for="search-box">Filter</label>
+        <input id="search-box" placeholder="Search by Campaign Name" type="text" v-model="searchQuery" @input="updateSearchQuery"/>
     </div>
 </template>
 
@@ -29,6 +28,19 @@ export default {
 
 
 <style scoped>
+.search-box-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 10px;
+}
+
+.search-input {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid navy;
+}
 div.search-box-container>label {
     padding-left: 10px;
     font-weight: bold;

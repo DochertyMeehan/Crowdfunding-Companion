@@ -1,4 +1,5 @@
 <template>
+  <div class="all">
   <div id="register" class="text-center">
     <form v-on:submit.prevent="register">
       <h1>Create Account</h1>
@@ -21,6 +22,7 @@
       <p><router-link v-bind:to="{ name: 'login' }">Already have an account? Log in.</router-link></p>
     </form>
   </div>
+</div>
 </template>
 
 <script>
@@ -78,5 +80,9 @@ export default {
 }
 label {
   margin-right: 0.5rem;
+}
+#register{
+  color: rgb(6, 82, 6);
+  padding-top: 150px;
 }
 </style>

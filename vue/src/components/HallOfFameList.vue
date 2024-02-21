@@ -46,5 +46,6 @@ export default {
     max-width: 900px;
     margin: 0 auto;
     margin-bottom: 30px;
+    font-size: 20px;
 }
 </style>

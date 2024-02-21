@@ -1,8 +1,8 @@
 <template>
-  <div class="ALL">
+  <div class="all">
     <div class="container">
     <div>
-      <h4>Welcome to Crowdfunding Companion!</h4>
+      <h4 class="welcome">Welcome to Crowdfunding Companion!</h4>
       <p>The easiest way to fundraise and donate to the causes that matter most to you.</p>
       <img src="/logo2.png" style="max-width: 300px;" alt="">
     </div>
@@ -72,14 +72,21 @@ export default {
 
 <style scoped>
 
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
 .container{
   text-align: center;
-  margin-top: 20px;
-  
+  padding-top: 10px;
 }
 
 .all{
-  color: red;
+  background-color: #e5e5f7; opacity: 0.8; 
+  background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #e5e5f7 20px ), repeating-linear-gradient( #F5F5DC, #B2AC88 );
+  min-height: 100vh;
 }
 
 
@@ -101,9 +108,14 @@ export default {
 }
 
 .login-form h1 {
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   font-size: 24px;
   color: navy;
+}
+
+.welcome{
+  margin-top: 10px;
+  
 }
 
 

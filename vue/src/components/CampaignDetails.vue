@@ -1,7 +1,7 @@
 <template>
 
     <div class="campaign-details">
-      <CloudinaryComp v-if="campaignData" :msg="campaignData.campaignName"/>
+      <img v-bind:src="campaign.campaignImage"/>
       <h2>{{ campaign.campaignName }}</h2>
       <p>Campaign Manager: {{ campaign.username }}</p>
       <p>Campaign Type: {{ campaign.campaignType }}</p>

@@ -1,7 +1,8 @@
 <template>
+  <div class="all">
   <div class="container">
     <div>
-      <h4>Welcome to Crowdfunding Companion!</h4>
+      <h4 id="welcome">Welcome to Crowdfunding Companion!</h4>
       <p>The easiest way to fundraise and donate to the causes that matter most to you.</p>
     </div>
   </div>
@@ -9,6 +10,7 @@
   <div>
   <SearchBox @updateSearchQuery="updateSearchQuery" />
   <select id="campaignType" name="campaignType" v-model="campaignType">
+                  <option value="All Campaigns">All Campaigns</option>
                   <option value="Animals">Animals</option>
                   <option value="Business">Business</option>
                   <option value="Education">Education</option>
@@ -45,13 +47,12 @@
           </div>
           <div class="card-body text-capitalize logged-in-card">
             <h5 class="card-title">{{ campaign.campaignName}}</h5>
+            <img v-bind:src="campaign.campaignImage"/>
             <div class="progress" role="progressbar" aria-label="Success example" :aria-valuenow="campaign.percentage" aria-valuemin="0" aria-valuemax="100">
                 <div class="progress-bar bg-success" :style="{ width: campaign.percentage + '%' }"></div>
             </div>
             <p class="card-text"><i class="fa-solid fa-bullseye"></i> ${{ campaign.balance }} raised of ${{ campaign.amountGoal }}</p>
             <p class="card-text">{{ campaign.description }}</p>
-            <img v-bind:src="campaign.campaignImage"/>
-
           </div>
           <div class="card-footer text-body-secondary">
             <div class="row d-flex align-items-center">
@@ -68,6 +69,7 @@
       </div>
     </div>
   </div> 
+  </div>
 </template>
 
 <script>
@@ -76,7 +78,7 @@ export default {
   props: ['campaigns'],
   data() {
     return {
-      selectedCampaignType: '',
+      selectedCampaignName: '',
       cards: [],
       searchQuery: '', 
       campaignType: ''
@@ -99,6 +101,9 @@ export default {
     },
     updateSearchQuery(query) {
       this.searchQuery = query;
+    },
+    updateCampaignType() {
+      
     }
   },
   computed: {
@@ -106,8 +111,8 @@ export default {
     const matchText = this.searchQuery.toLowerCase();
     const resultCampaigns = this.campaigns.filter(campaign => {
       return (
-        campaign.campaignType.toLowerCase().includes(matchText) &&
-        (this.selectedCampaignType === '' || campaign.campaignType === this.selectedCampaignType)
+        campaign.campaignName.toLowerCase().includes(matchText) &&
+        (this.selectedCampaignName === '' || campaign.campaignName === this.selectedCampaignName)
       );
     });
     return resultCampaigns;
@@ -125,6 +130,7 @@ export default {
   cursor: pointer;
 }
 
+
 .card {  
   color: #87ae73;
   margin-bottom: 20px;
@@ -132,6 +138,8 @@ export default {
 .container {
   color: #87ae73;
   margin-bottom: 20px;
+  padding-top: 10px;
+  
 }
 .btn {
   background-color: #87ae73;
@@ -148,6 +156,7 @@ select {
   border: 1px solid #ccc;
 }
 img{
-  width: 200px;
+  width: 250px;
+  padding-bottom: 20px;
 }
 </style>
