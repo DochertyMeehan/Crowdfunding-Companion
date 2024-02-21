@@ -27,6 +27,7 @@
         <h4 class="donation-list-header">Donation List:</h4>
         <ul class="list-group list-group-flush" v-for="(donation, index) in donations" v-bind:key="index">
             <li class="list-group-item style-donation-list"> {{ donation.username }} donated: ${{ donation.amount }} for this campaign</li>
+            <p>{{ donation.donation_comment }}</p>
         </ul>
     </div>
 </div>
@@ -52,6 +53,7 @@ import CloudinaryComp from '../components/CloudinaryComp.vue';
         };
     },
     props: ['campaign'],
+            
     methods: {
         removeCampaign() {
             if (confirm('Are you sure you want to delete this card? This action cannot be undone.')) {
@@ -79,6 +81,7 @@ import CloudinaryComp from '../components/CloudinaryComp.vue';
             }
         },
         loadData(){
+            console.log("donations: ", this.donations)
             // console.log("hello 2")
             // console.log("hellp 3",this.campaign)
             CampaignService.getDonationForDonor(this.$route.params.id).then(res => {
