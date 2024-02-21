@@ -40,7 +40,7 @@ export default {
     },
     getDonationForDonor(id){
         console.log(`/get-donations-list-by-campaign-id/donor?campaign_id=${id}`)
-        return axios.get(`/get-donations-list-by-campaign-id/donor?campaign_id=${id}`)
+        return axios.get(`/get-donations-list-by-campaign-id?campaign_id=${id}`)
     },
 
     createVote(id,vote){
