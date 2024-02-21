@@ -58,10 +58,4 @@ export default {
   margin-top: 0px;
  
 }
-#alo{
-  
-}
-
-
-
 </style>
