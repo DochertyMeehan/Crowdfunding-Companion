@@ -27,6 +27,7 @@ public class DonationJdbcDao implements DonationDao{
         int userId = donationToCreate.getUser_id();
         int campaignId = donationToCreate.getCampaign_id();
         double amount = donationToCreate.getAmount();
+        String donationComment = donationToCreate.getDonation_comment();
 
 
 
@@ -36,8 +37,8 @@ public class DonationJdbcDao implements DonationDao{
         } else if (getAmountDifferenceByCampaignId(campaignId,amount) > getAmountGoalByCampaignId(campaignId)) {
             return "Maximum donation allowed $" +  (getAmountGoalByCampaignId(campaignId) - getBalanceByCampaignId(campaignId));
         }
-            String sql = "INSERT INTO donation(user_id, campaign_id, amount) VALUES (?, ?, ?);";
-            template.update(sql,userId, campaignId, amount);
+            String sql = "INSERT INTO donation(user_id, campaign_id, amount, donation_comment) VALUES (?, ?, ?, ?);";
+            template.update(sql,userId, campaignId, amount, donationComment);
             updateBalanceForCampaign(campaignId, amount);
             return "Thank you for donating!";
 
