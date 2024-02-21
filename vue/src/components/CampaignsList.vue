@@ -75,22 +75,27 @@ export default {
     },
   },
   computed: {
-    campaignTypes() {
+    campaignForFilter() {
+      console.log ("filtered test: ",this.$store.state.campaign)
+      return this.$store.state.campaign;
+    }
+
+    // campaignTypes() {
       
-      const types = new Set();
-      this.campaigns.forEach(campaign => {
-        types.add(campaign.campaignType);
-      });
-      return Array.from(types);
-    },
-    filteredCampaigns() {
-      if (!this.searchQuery) {
-        return this.campaigns;
-      }
-      return this.campaigns.filter(campaign => {
-        return campaign.campaignType === this.selectedCampaignType;
-      });
-    },
+    //   const types = new Set();
+    //   this.campaigns.forEach(campaign => {
+    //     types.add(campaign.campaignType);
+    //   });
+    //   return Array.from(types);
+    // },
+    // filteredCampaigns() {
+    //   if (!this.searchQuery) {
+    //     return this.campaigns;
+    //   }
+    //   return this.campaigns.filter(campaign => {
+    //     return campaign.campaignType === this.selectedCampaignType;
+    //   });
+    // },
   },
   created() {
     this.loadData()

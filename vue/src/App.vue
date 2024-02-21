@@ -39,10 +39,27 @@
 <script>
 import CampaignView from './views/CampaignView.vue';
 import FAQview from './views/FAQview.vue';
+
+import CloudinaryComp from './components/CloudinaryComp.vue'
+
+export default {
+  name: 'App',
+  components: {
+    CloudinaryComp
+  }
+}
 </script>
 <style>
 .navbar-brand {
   color: #87ae73;
+}
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
 }
 
 </style>

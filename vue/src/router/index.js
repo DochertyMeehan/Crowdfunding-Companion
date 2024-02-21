@@ -17,7 +17,8 @@ import FAQView from '../views/FAQview.vue';
 import Donation from '../components/Donation.vue';
 import CampaignsList from '../components/CampaignsList.vue';
 import hallOfFame from '../views/HallOfFameView.vue';
-import DonationHistoryView from '../views/DonationHistoryView.vue'
+import DonationHistoryView from '../views/DonationHistoryView.vue';
+import TestView from '../views/TestView.vue'
 
 
 
@@ -139,13 +140,13 @@ const routes = [
       requireAuth: true
     }
 
-  }
+  },
 
-  // {
-  //   path:"/campaign/:campaign_id",
-  //   name: "campaign-details",
-  //   component: CampaignDetails
-  // }
+  {
+    path:"/campaign/test",
+    name: "campaigntest",
+    component: TestView
+  }
 ];
 
 // Create the router

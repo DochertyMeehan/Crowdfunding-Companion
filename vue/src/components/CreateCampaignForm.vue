@@ -15,7 +15,8 @@
               </div>
               <div class="mb-3">
                 <label for="campaignImage" class="form-label">Campaign Image</label>
-                <input class="form-control" type="text" placeholder="Campaign Image Link" aria-label="Campaign Image" v-model="formData.campaignImage">
+                <CloudinaryComp @image-uploaded="handleImageUploaded" />
+                <img v-if="formData.campaignImage" :src="formData.campaignImage" alt="Campaign Image" />
               </div>
               <div class="mb-3">
                 <label for="campaignType" class="form-label">Type of Campaign</label>
@@ -49,7 +50,7 @@
                 <div class="col-3">
                   <button type="button" class="btn btn-secondary" @click="goToCampaignList">Cancel</button>
                 </div>
-              </div>
+            </div>       
             </div>
           </div>
         </div>
@@ -57,13 +58,16 @@
     </div>
   </template>
   
-  <!-- The rest of your script remains unchanged -->
-  
 
 <script>
 import campaignService from '../services/CampaignService';
+import CloudinaryComp from '../components/CloudinaryComp.vue'
+
 
 export default {
+  components: {
+    CloudinaryComp
+  },
   data() {
     return {
       formData: {
@@ -82,6 +86,10 @@ export default {
   methods: {
     goToCampaignList(){
         this.$router.push({name: 'home'});
+    },
+    handleImageUploaded(imageUrl) {
+      this.formData.campaignImage = imageUrl;
+      console.log("image URL: ", imageUrl)
     },
     submitForm(){
         campaignService.createNewCampaign(this.formData).then(resp => {
