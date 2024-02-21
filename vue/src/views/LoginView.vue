@@ -1,4 +1,5 @@
 <template>
+  <div class="ALL">
     <div class="container">
     <div>
       <h4>Welcome to Crowdfunding Companion!</h4>
@@ -29,6 +30,7 @@
       </p>
     </form>
   </div>
+</div>
 </template>
 
 <script>
@@ -73,6 +75,11 @@ export default {
 .container{
   text-align: center;
   margin-top: 20px;
+  
+}
+
+.all{
+  color: red;
 }
 
 
@@ -80,7 +87,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  /* height: 50vh; */
   color: navy;
 }
 
@@ -119,10 +126,10 @@ label {
 }
 
 input {
-  width: 100%;
+  width: calc(100% - 10px);
   padding: 8px;
-  box-sizing: border-box;
-  margin-top: 4px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 .submit-button {
