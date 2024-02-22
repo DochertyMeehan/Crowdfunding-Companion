@@ -9,6 +9,7 @@
             <p class="card-text">Proposal Number: {{ proposal.proposal_id }}</p>
             <p class="card-text">Description: {{ proposal.proposal_name }}</p>
             <p class="card-text"><strong>Status:</strong> {{ proposal.proposal_status }}</p>
+            <p class="card-text"><strong>Deadline:</strong> {{ proposal.proposal_deadline }}</p>
             <p class="card-text"><strong>Vote Passed:</strong> {{ proposal.vote_passed }}</p>
             <div class="btn-group" role="group" aria-label="Vote">
               <button type="button" class="btn btn-success" @click="createVote(proposal.proposal_id, 'true')">Yes</button>

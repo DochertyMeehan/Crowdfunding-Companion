@@ -16,7 +16,6 @@
               <div class="mb-3">
                 <label for="campaignImage" class="form-label">Campaign Image</label>
                 <CloudinaryComp @image-uploaded="handleImageUploaded" />
-                <img v-if="formData.campaignImage" :src="formData.campaignImage" alt="Campaign Image" />
               </div>
               <div class="mb-3">
                 <label for="campaignType" class="form-label">Type of Campaign</label>

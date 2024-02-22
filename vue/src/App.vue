@@ -62,5 +62,9 @@ export default {
   margin-top: 0px;
  
 }
+img {
+  margin-right: 5px;
+  margin-top: 15px;
+}
 
 </style>
