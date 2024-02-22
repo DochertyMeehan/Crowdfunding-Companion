@@ -27,7 +27,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="deadline" class="form-label">Deadline</label>
-                    <input v-model="newProposal.proposal_deadline" type="date" class="form-control" id="deadline" required>
+                    <input v-model="newProposal.proposal_deadline" type="date" v-bind:min="todaysDate" class="form-control" id="deadline" required>
                 </div>
 
                 <button type="submit" class="btn btn-primary">Submit Proposal</button>
@@ -44,7 +44,8 @@ export default {
             campaign_id: this.$route.params.id,
             newProposal: {
             },
-            isSaving: false
+            isSaving: false,
+            todaysDate: new Date().toISOString().split("T")[0]
         };
     },
     methods: {        
