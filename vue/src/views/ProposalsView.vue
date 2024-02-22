@@ -6,7 +6,6 @@
         <div class="card mb-3">
           <div class="card-body">
             <h5 class="card-title">{{ proposal.description }}</h5>
-            <p class="card-text">Proposal Number: {{ proposal.proposal_id }}</p>
             <p class="card-text">Description: {{ proposal.proposal_name }}</p>
             <p class="card-text"><strong>Status:</strong> {{ proposal.proposal_status }}</p>
             <p class="card-text"><strong>Deadline:</strong> {{ proposal.proposal_deadline }}</p>
