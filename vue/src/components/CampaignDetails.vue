@@ -61,7 +61,7 @@ import CloudinaryComp from '../components/CloudinaryComp.vue';
                         console.log(resp.status);
                     {
                         this.$store.commit('SET_NOTIFICATION', {
-                            message: 'Campaign was successfully deleted.',
+                            message: '',
                             type: 'Success'
                         });
                         this.$router.push({ name: 'home' });

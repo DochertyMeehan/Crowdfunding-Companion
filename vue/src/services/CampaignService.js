@@ -57,6 +57,10 @@ export default {
     getDonationHistory() {
         
         return axios.get('/campaigns-donated-to');
+    },
+    getYourCampaigns() {
+        console.log("hellp")
+        return axios.get('/campaigns-created')
     }
 
 }    

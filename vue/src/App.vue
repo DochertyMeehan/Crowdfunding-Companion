@@ -28,6 +28,10 @@
               <router-link class="nav-link" v-bind:to="{ name: 'login' }" v-if="$store.state.token == ''">Your Donations</router-link>
               <router-link class="nav-link" v-bind:to="{ name: 'DonationHistory' }" v-if="$store.state.token != ''">Your Donations</router-link>
               <!-- <router-link class="nav-link" v-bind:to="{name: 'DonationHistory'}">Your Donations</router-link> -->
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" v-bind:to="{ name: 'login' }" v-if="$store.state.token == ''">Your Campaigns</router-link>
+              <router-link class="nav-link" v-bind:to="{ name: 'yourCampaign' }" v-if="$store.state.token != ''">Your Campaigns</router-link>
             </li>   
             <li class="nav-item">
               <router-link class="nav-link" v-bind:to="{ name: 'login' }" v-if="$store.state.token == ''">Sign In</router-link>

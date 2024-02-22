@@ -99,7 +99,7 @@ export default {
                 this.$store.commit(
                     'SET_NOTIFICATION',
                     {
-                        message: `Campaign was updated.`,
+                        message: ``,
                         type: 'success'
                     }
                 );

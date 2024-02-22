@@ -18,7 +18,8 @@ import Donation from '../components/Donation.vue';
 import CampaignsList from '../components/CampaignsList.vue';
 import hallOfFame from '../views/HallOfFameView.vue';
 import DonationHistoryView from '../views/DonationHistoryView.vue';
-import TestView from '../views/TestView.vue'
+import TestView from '../views/TestView.vue';
+import YourCampaignView from '../views/YourCampaignView.vue';
 
 
 
@@ -146,6 +147,14 @@ const routes = [
     path:"/campaign/test",
     name: "campaigntest",
     component: TestView
+  },
+  {
+    path: "/view/your-campaign",
+    name: "yourCampaign",
+    component: YourCampaignView,
+    meta: {
+      requireAuth: true
+    }
   }
 ];
 
